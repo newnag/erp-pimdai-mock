@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมุดรายชื่อ - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation-list.css">
+    <link rel="stylesheet" href="../css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item active">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title-wrapper">
+                        <h1 class="page-title-main">สมุดรายชื่อ</h1>
+                        <p class="page-subtitle">สมุดรวมชื่อ</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary" id="importBtn">
+                        <i class="fas fa-file-import"></i>
+                        นำเข้ารายชื่อ
+                    </button>
+                    <button class="btn-primary" id="createBtn">
+                        <i class="fas fa-plus"></i>
+                        สร้างใหม่
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="content-wrapper">
+                    <!-- Filter Bar -->
+                    <div class="filter-bar">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">
+                                <i class="fas fa-layer-group"></i>
+                                แสดงทั้งหมด
+                            </button>
+                            <button class="filter-tab" data-filter="customer">
+                                <i class="fas fa-circle" style="color: #3b82f6;"></i>
+                                ลูกค้า
+                            </button>
+                            <button class="filter-tab" data-filter="vendor">
+                                <i class="fas fa-circle" style="color: #f59e0b;"></i>
+                                ผู้จำหน่าย
+                            </button>
+                            <button class="filter-tab" data-filter="both">
+                                <i class="fas fa-circle" style="color: #10b981;"></i>
+                                ผู้จำหน่าย/ลูกค้า
+                            </button>
+                        </div>
+                        <button class="btn-icon" id="copyListBtn" title="คัดลอก">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="ค้นหารายชื่อ หรือระบุหมู่ผู้ติดต่อ" class="search-input">
+                            <button class="btn-clear" id="clearSearch" style="display: none;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-checkbox">
+                                        <input type="checkbox" id="selectAll">
+                                    </th>
+                                    <th class="col-name">รายชื่อ</th>
+                                    <th class="col-contact">ชื่อผู้ติดต่อ</th>
+                                    <th class="col-phone">เบอร์ติดต่อ</th>
+                                    <th class="col-email">อีเมล</th>
+                                    <th class="col-type">ประเภท</th>
+                                    <th class="col-actions"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>•••••••)</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact">•••••••)</td>
+                                    <td class="col-phone">••••••32</td>
+                                    <td class="col-email"></td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="1">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>0646545945 พิมพ์</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact"></td>
+                                    <td class="col-phone">0646545945</td>
+                                    <td class="col-email">Jaymart311017@gmil...</td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="2">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>0885869380</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact">0885869380</td>
+                                    <td class="col-phone">660885869380</td>
+                                    <td class="col-email"></td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="3">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>0898852451</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact">0898852451</td>
+                                    <td class="col-phone">660898852451</td>
+                                    <td class="col-email"></td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="4">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>951495649</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact">951495649</td>
+                                    <td class="col-phone">660951495649</td>
+                                    <td class="col-email"></td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="5">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>965205538</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact">965205538</td>
+                                    <td class="col-phone">660965205538</td>
+                                    <td class="col-email"></td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="6">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>A••••••m</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact">A••••••m</td>
+                                    <td class="col-phone">••••••98</td>
+                                    <td class="col-email"></td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="7">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>A•••••9</span>
+                                        </div>
+                                    </td>
+                                    <td class="col-contact">A•••••9</td>
+                                    <td class="col-phone">••••••62</td>
+                                    <td class="col-email"></td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="8">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-type="customer">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-name">
+                                        <div class="customer-name">
+                                            <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
+                                            <span>Achita</span>
+                                        </div>
+                                        <small class="customer-note">สำนักงานใหญ่</small>
+                                    </td>
+                                    <td class="col-contact"></td>
+                                    <td class="col-phone">0635696665</td>
+                                    <td class="col-email">achita.s@wetrade.com</td>
+                                    <td class="col-type">
+                                        <span class="type-badge customer-badge">ลูกค้า</span>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="9">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn" id="firstPage">
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="page-btn" id="prevPage">
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">5</button>
+                        <button class="page-btn" id="nextPage">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="page-btn" id="lastPage">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu" style="display: none;">
+        <div class="context-menu-item">
+            <i class="fas fa-eye"></i>
+            <span>ดูรายละเอียด</span>
+        </div>
+        <div class="context-menu-item">
+            <i class="fas fa-edit"></i>
+            <span>แก้ไข</span>
+        </div>
+        <div class="context-menu-item">
+            <i class="fas fa-copy"></i>
+            <span>ทำสำเนา</span>
+        </div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item delete">
+            <i class="fas fa-trash-alt"></i>
+            <span>ลบ</span>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/customers.js"></script>
+</body>
+</html>

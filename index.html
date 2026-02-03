@@ -3,68 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ERP System - Wireframe</title>
+    <title>ERP Stock - PIMDAI Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="app-container">
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo">
-                <i class="fas fa-cube"></i>
-                <span>ERP System</span>
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
             </div>
             
             <nav class="nav-menu">
-                <a href="index.html" class="nav-item active">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="pages/sales.html" class="nav-item">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Sales</span>
-                </a>
-                <a href="pages/purchase.html" class="nav-item">
-                    <i class="fas fa-truck"></i>
-                    <span>Purchase</span>
-                </a>
-                <a href="pages/inventory.html" class="nav-item">
-                    <i class="fas fa-warehouse"></i>
-                    <span>Inventory</span>
-                </a>
-                <a href="pages/accounting.html" class="nav-item">
-                    <i class="fas fa-calculator"></i>
-                    <span>Accounting</span>
-                </a>
-                <a href="pages/hr.html" class="nav-item">
-                    <i class="fas fa-users"></i>
-                    <span>HR & Payroll</span>
-                </a>
-                <a href="pages/crm.html" class="nav-item">
-                    <i class="fas fa-handshake"></i>
-                    <span>CRM</span>
-                </a>
-                <a href="pages/reports.html" class="nav-item">
-                    <i class="fas fa-chart-bar"></i>
-                    <span>Reports</span>
-                </a>
-                <a href="pages/settings.html" class="nav-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Settings</span>
-                </a>
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="index.html" class="nav-item active">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="pages/quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="pages/billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="pages/invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="pages/customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pages/pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="pages/suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="pages/products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="pages/inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="pages/stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="pages/stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="pages/stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">การชำระเงิน</span>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-calculator"></i>
+                        <span>ยืนยันค่า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>สารอชำระเงิน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ลัดลา</span>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ฟอร์ม</span>
+                    </a>
+                </div>
             </nav>
             
             <div class="sidebar-footer">
                 <div class="user-info">
-                    <div class="avatar">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="user-details">
-                        <span class="user-name">Admin User</span>
-                        <span class="user-role">Administrator</span>
-                    </div>
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
                 </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
             </div>
         </aside>
 
@@ -76,252 +134,501 @@
                     <button class="menu-toggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search...">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                        <span class="page-subtitle">ร้านค้า-ของ • ของรับเข้าขาย/เบิกออก</span>
                     </div>
                 </div>
                 <div class="header-right">
-                    <button class="header-btn">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge">3</span>
-                    </button>
-                    <button class="header-btn">
-                        <i class="fas fa-envelope"></i>
-                        <span class="badge">5</span>
-                    </button>
-                    <button class="header-btn">
-                        <i class="fas fa-cog"></i>
-                    </button>
+                    <div class="user-badge">
+                        <i class="fas fa-user-circle"></i>
+                        <span>สวัสดี, Pzo</span>
+                    </div>
                 </div>
             </header>
 
             <!-- Page Content -->
             <div class="page-content">
-                <div class="page-header">
-                    <h1>Dashboard</h1>
-                    <div class="breadcrumb">
-                        <span>Home</span>
-                        <i class="fas fa-chevron-right"></i>
-                        <span>Dashboard</span>
+                
+                <!-- Monthly Summary Section -->
+                <div class="monthly-summary">
+                    <div class="summary-header">
+                        <h2><i class="fas fa-calendar-alt"></i> สรุปประจำเดือน</h2>
+                        <span class="summary-period">กุมภาพันธ์ 2569</span>
                     </div>
-                </div>
-
-                <!-- Stats Cards -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon sales">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>฿1,250,000</h3>
-                            <p>Total Sales</p>
-                            <span class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i> 12.5%
-                            </span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon orders">
-                            <i class="fas fa-file-invoice"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>356</h3>
-                            <p>Total Orders</p>
-                            <span class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i> 8.2%
-                            </span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon products">
-                            <i class="fas fa-box"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>1,245</h3>
-                            <p>Products</p>
-                            <span class="stat-change negative">
-                                <i class="fas fa-arrow-down"></i> 2.1%
-                            </span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon customers">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-info">
-                            <h3>892</h3>
-                            <p>Customers</p>
-                            <span class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i> 15.3%
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Charts Section -->
-                <div class="charts-grid">
-                    <div class="chart-card">
-                        <div class="card-header">
-                            <h3>Sales Overview</h3>
-                            <select class="chart-filter">
-                                <option>This Year</option>
-                                <option>Last Year</option>
-                                <option>Last 6 Months</option>
-                            </select>
-                        </div>
-                        <div class="chart-placeholder">
-                            <div class="bar-chart">
-                                <div class="bar" style="height: 60%"><span>Jan</span></div>
-                                <div class="bar" style="height: 80%"><span>Feb</span></div>
-                                <div class="bar" style="height: 45%"><span>Mar</span></div>
-                                <div class="bar" style="height: 90%"><span>Apr</span></div>
-                                <div class="bar" style="height: 70%"><span>May</span></div>
-                                <div class="bar" style="height: 85%"><span>Jun</span></div>
-                                <div class="bar" style="height: 65%"><span>Jul</span></div>
-                                <div class="bar" style="height: 75%"><span>Aug</span></div>
-                                <div class="bar" style="height: 95%"><span>Sep</span></div>
-                                <div class="bar" style="height: 55%"><span>Oct</span></div>
-                                <div class="bar" style="height: 70%"><span>Nov</span></div>
-                                <div class="bar" style="height: 88%"><span>Dec</span></div>
+                    <div class="summary-cards">
+                        <!-- Income Card -->
+                        <div class="summary-card income">
+                            <div class="summary-card-icon">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="summary-card-content">
+                                <span class="summary-label">รายรับทั้งหมด</span>
+                                <span class="summary-amount">฿ 2,450,000.00</span>
+                                <span class="summary-change positive">
+                                    <i class="fas fa-caret-up"></i> +18.5% จากเดือนก่อน
+                                </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="chart-card">
-                        <div class="card-header">
-                            <h3>Revenue by Category</h3>
-                            <button class="btn-icon"><i class="fas fa-ellipsis-v"></i></button>
+                        
+                        <!-- Expense Card -->
+                        <div class="summary-card expense">
+                            <div class="summary-card-icon">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="summary-card-content">
+                                <span class="summary-label">รายจ่ายทั้งหมด</span>
+                                <span class="summary-amount">฿ 1,200,000.00</span>
+                                <span class="summary-change negative">
+                                    <i class="fas fa-caret-up"></i> +5.2% จากเดือนก่อน
+                                </span>
+                            </div>
                         </div>
-                        <div class="chart-placeholder">
-                            <div class="pie-chart-placeholder">
-                                <div class="pie-legend">
-                                    <div class="legend-item">
-                                        <span class="dot" style="background: #4f46e5"></span>
-                                        <span>Electronics (35%)</span>
-                                    </div>
-                                    <div class="legend-item">
-                                        <span class="dot" style="background: #10b981"></span>
-                                        <span>Furniture (25%)</span>
-                                    </div>
-                                    <div class="legend-item">
-                                        <span class="dot" style="background: #f59e0b"></span>
-                                        <span>Clothing (20%)</span>
-                                    </div>
-                                    <div class="legend-item">
-                                        <span class="dot" style="background: #ef4444"></span>
-                                        <span>Others (20%)</span>
-                                    </div>
-                                </div>
+                        
+                        <!-- Net Balance Card -->
+                        <div class="summary-card net-balance">
+                            <div class="summary-card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="summary-card-content">
+                                <span class="summary-label">ยอดสุทธิ</span>
+                                <span class="summary-amount">฿ 1,250,000.00</span>
+                                <span class="summary-change positive">
+                                    <i class="fas fa-caret-up"></i> +32.8% จากเดือนก่อน
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tables Section -->
-                <div class="tables-grid">
-                    <div class="table-card">
-                        <div class="card-header">
-                            <h3>Recent Orders</h3>
-                            <a href="pages/sales.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    
+                    <!-- Account Section -->
+                    <div class="dashboard-section account-section">
+                        <div class="section-header">
+                            <div class="section-icon account">
+                                <i class="fas fa-wallet"></i>
+                            </div>
+                            <h2>Account</h2>
                         </div>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Order ID</th>
-                                    <th>Customer</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#ORD-001</td>
-                                    <td>บริษัท ABC จำกัด</td>
-                                    <td>฿45,000</td>
-                                    <td><span class="status completed">Completed</span></td>
-                                    <td>31 Jan 2026</td>
-                                </tr>
-                                <tr>
-                                    <td>#ORD-002</td>
-                                    <td>ร้าน XYZ</td>
-                                    <td>฿12,500</td>
-                                    <td><span class="status pending">Pending</span></td>
-                                    <td>30 Jan 2026</td>
-                                </tr>
-                                <tr>
-                                    <td>#ORD-003</td>
-                                    <td>บริษัท DEF จำกัด</td>
-                                    <td>฿78,900</td>
-                                    <td><span class="status processing">Processing</span></td>
-                                    <td>29 Jan 2026</td>
-                                </tr>
-                                <tr>
-                                    <td>#ORD-004</td>
-                                    <td>ห้างหุ้นส่วน GHI</td>
-                                    <td>฿23,400</td>
-                                    <td><span class="status completed">Completed</span></td>
-                                    <td>28 Jan 2026</td>
-                                </tr>
-                                <tr>
-                                    <td>#ORD-005</td>
-                                    <td>บริษัท JKL จำกัด</td>
-                                    <td>฿56,700</td>
-                                    <td><span class="status cancelled">Cancelled</span></td>
-                                    <td>27 Jan 2026</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="table-card small">
-                        <div class="card-header">
-                            <h3>Low Stock Alert</h3>
-                            <a href="pages/inventory.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                        <div class="alert-list">
-                            <div class="alert-item">
-                                <div class="alert-icon warning">
-                                    <i class="fas fa-exclamation-triangle"></i>
+                        <div class="section-content">
+                            <div class="account-layout-simple">
+                                <!-- Cash Balance Card -->
+                                <div class="cash-balance-card">
+                                    <div class="cash-icon">
+                                        <i class="fas fa-coins"></i>
+                                    </div>
+                                    <div class="cash-label">Cash Balance</div>
+                                    <div class="cash-symbol">฿</div>
+                                    <div class="cash-amount">1,250,000.00</div>
+                                    <div class="cash-trend">
+                                        <i class="fas fa-arrow-up"></i>
+                                        <span>+12.5% จากเดือนก่อน</span>
+                                    </div>
                                 </div>
-                                <div class="alert-info">
-                                    <span class="alert-title">Product A</span>
-                                    <span class="alert-detail">Only 5 units left</span>
-                                </div>
-                            </div>
-                            <div class="alert-item">
-                                <div class="alert-icon danger">
-                                    <i class="fas fa-times-circle"></i>
-                                </div>
-                                <div class="alert-info">
-                                    <span class="alert-title">Product B</span>
-                                    <span class="alert-detail">Out of stock</span>
-                                </div>
-                            </div>
-                            <div class="alert-item">
-                                <div class="alert-icon warning">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                </div>
-                                <div class="alert-info">
-                                    <span class="alert-title">Product C</span>
-                                    <span class="alert-detail">Only 8 units left</span>
-                                </div>
-                            </div>
-                            <div class="alert-item">
-                                <div class="alert-icon warning">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                </div>
-                                <div class="alert-info">
-                                    <span class="alert-title">Product D</span>
-                                    <span class="alert-detail">Only 3 units left</span>
+                                
+                                <!-- Chart Area -->
+                                <div class="account-chart-area-full">
+                                    <div class="chart-title">INBOUND VS OUTBOUND</div>
+                                    <div class="account-chart-wrapper-large">
+                                        <canvas id="accountChart"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Sales Section -->
+                    <div class="dashboard-section sales-section">
+                        <div class="section-header">
+                            <div class="section-icon sales">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h2>Sales</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="sales-grid">
+                                <div class="sales-chart-area">
+                                    <h4>Quotation vs Order</h4>
+                                    <div class="sales-bar-chart">
+                                        <canvas id="salesBarChart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="sales-gauge-area">
+                                    <h4>อัตราปิดการขาย</h4>
+                                    <div class="gauge-container">
+                                        <canvas id="salesGaugeChart"></canvas>
+                                        <div class="gauge-value">71.1%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="subsection recall-section">
+                                <h4>Recall consideration</h4>
+                                <div class="metrics-row">
+                                    <div class="metric-mini warning">
+                                        <span class="metric-num">8</span>
+                                        <span class="metric-text">ใบเสนอราคาค้างตาม (รออนุมัติ)</span>
+                                    </div>
+                                    <div class="metric-mini danger">
+                                        <span class="metric-num">3</span>
+                                        <span class="metric-text">เกินกำหนด (1 อาทิตย์/ 1 Follow)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Survey Call Section -->
+                    <div class="dashboard-section survey-section">
+                        <div class="section-header">
+                            <div class="section-icon survey">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <h2>Survey Call</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="metrics-grid-4">
+                                <div class="metric-box">
+                                    <div class="metric-icon success"><i class="fas fa-check-circle"></i></div>
+                                    <div class="metric-data">
+                                        <span class="value">12</span>
+                                        <span class="label">จำนวนใบเสนอราคาปิดจบใหม่</span>
+                                    </div>
+                                </div>
+                                <div class="metric-box">
+                                    <div class="metric-icon info"><i class="fas fa-phone"></i></div>
+                                    <div class="metric-data">
+                                        <span class="value">48</span>
+                                        <span class="label">สายที่โทรได้ประจำวัน</span>
+                                    </div>
+                                </div>
+                                <div class="metric-box">
+                                    <div class="metric-icon warning"><i class="fas fa-clock"></i></div>
+                                    <div class="metric-data">
+                                        <span class="value">15</span>
+                                        <span class="label">จำนวนใบเสนอราคาที่ค้างโทร</span>
+                                    </div>
+                                </div>
+                                <div class="metric-box">
+                                    <div class="metric-icon danger"><i class="fas fa-thumbs-down"></i></div>
+                                    <div class="metric-data">
+                                        <span class="value">2</span>
+                                        <span class="label">Bad Feedback Count</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HR Section -->
+                    <div class="dashboard-section hr-section">
+                        <div class="section-header">
+                            <div class="section-icon hr">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h2>HR</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="hr-grid">
+                                <div class="hr-chart-container">
+                                    <canvas id="hrDonutChart"></canvas>
+                                </div>
+                                <div class="hr-legend">
+                                    <div class="legend-item">
+                                        <span class="dot present"></span>
+                                        <span class="label">มาทำงาน</span>
+                                        <span class="value">9 คน</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="dot absent"></span>
+                                        <span class="label">ขาด/ลา งาน</span>
+                                        <span class="value">1 คน</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="dot late"></span>
+                                        <span class="label">มาสาย (≤10 นาที)</span>
+                                        <span class="value">2 คน</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lms-progress">
+                                <div class="lms-header">
+                                    <i class="fas fa-book-reader"></i>
+                                    <span>LMS Knowledge | Tech</span>
+                                    <span class="lms-value">85%</span>
+                                </div>
+                                <div class="lms-bar">
+                                    <div class="lms-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marketing Section -->
+                    <div class="dashboard-section marketing-section full-width">
+                        <div class="section-header">
+                            <div class="section-icon marketing">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h2>Marketing</h2>
+                        </div>
+                        <div class="section-content marketing-grid">
+                            <div class="marketing-subsection">
+                                <h4><i class="fas fa-chart-pie"></i> Ads Budget Distribution</h4>
+                                <div class="ads-budget-chart">
+                                    <div class="donut-chart-container">
+                                        <canvas id="adsBudgetChart"></canvas>
+                                    </div>
+                                    <div class="budget-total-center">
+                                        <span class="total-label">Total</span>
+                                        <span class="total-value">฿125K</span>
+                                    </div>
+                                </div>
+                                <div class="budget-legend">
+                                    <div class="legend-row">
+                                        <span class="dot facebook"></span>
+                                        <span class="label">Facebook</span>
+                                        <span class="value">฿65,000</span>
+                                    </div>
+                                    <div class="legend-row">
+                                        <span class="dot google"></span>
+                                        <span class="label">Google</span>
+                                        <span class="value">฿35,000</span>
+                                    </div>
+                                    <div class="legend-row">
+                                        <span class="dot line"></span>
+                                        <span class="label">Line</span>
+                                        <span class="value">฿25,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="marketing-subsection">
+                                <h4><i class="fas fa-chart-bar"></i> Line Conversion Metrics</h4>
+                                <div class="line-chart-container">
+                                    <canvas id="lineConversionChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="marketing-subsection">
+                                <h4><i class="fas fa-comments"></i> Engagement</h4>
+                                <div class="engagement-metrics">
+                                    <div class="engagement-item">
+                                        <div class="engagement-icon"><i class="fab fa-facebook-messenger"></i></div>
+                                        <div class="engagement-data">
+                                            <span class="value">1,248</span>
+                                            <span class="label">FB Inbox Total Message</span>
+                                        </div>
+                                    </div>
+                                    <div class="engagement-item">
+                                        <div class="engagement-icon"><i class="fas fa-user-plus"></i></div>
+                                        <div class="engagement-data">
+                                            <span class="value">156</span>
+                                            <span class="label">Actual C/Addline | Sum</span>
+                                        </div>
+                                    </div>
+                                    <div class="engagement-item">
+                                        <div class="engagement-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                                        <div class="engagement-data">
+                                            <span class="value">฿ 45.50</span>
+                                            <span class="label">Cost Per Real Add Line</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="marketing-subsection">
+                                <h4><i class="fas fa-photo-video"></i> Media & Performance</h4>
+                                <div class="media-metrics">
+                                    <div class="media-item">
+                                        <span class="label">Media (Earn)</span>
+                                        <span class="value">฿ 28,500</span>
+                                    </div>
+                                    <div class="media-item highlight">
+                                        <span class="label">Pimdai - Performance (Reach)</span>
+                                        <span class="value">458K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warehouse Section -->
+                    <div class="dashboard-section warehouse-section">
+                        <div class="section-header">
+                            <div class="section-icon warehouse">
+                                <i class="fas fa-warehouse"></i>
+                            </div>
+                            <h2>Warehouse</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="warehouse-grid">
+                                <div class="warehouse-chart-area">
+                                    <div class="warehouse-donut">
+                                        <canvas id="warehouseDonutChart"></canvas>
+                                    </div>
+                                    <div class="stock-total">
+                                        <span class="total-label">Stock Value</span>
+                                        <span class="total-value">฿4.58M</span>
+                                    </div>
+                                </div>
+                                <div class="warehouse-legend">
+                                    <div class="legend-item">
+                                        <span class="dot supplies"></span>
+                                        <span class="label">วัสดุสิ้นเปลือง</span>
+                                        <span class="value">฿125K</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="dot materials"></span>
+                                        <span class="label">วัตถุดิบหลัก</span>
+                                        <span class="value">฿890K</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="dot finished"></span>
+                                        <span class="label">สินค้าสำเร็จรูป</span>
+                                        <span class="value">฿2.45M</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="dot tools"></span>
+                                        <span class="label">เครื่องมือช่าง&อะไหล่</span>
+                                        <span class="value">฿315K</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="dot cogs"></span>
+                                        <span class="label">Cost of goods</span>
+                                        <span class="value">฿800K</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="warehouse-progress">
+                                <div class="progress-header">
+                                    <span>% Count (1 แสน) - ราคารับเข้า</span>
+                                    <span class="progress-value">78%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" style="width: 78%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logistic Section -->
+                    <div class="dashboard-section logistic-section">
+                        <div class="section-header">
+                            <div class="section-icon logistic">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h2>Logistic</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="logistic-stats">
+                                <div class="stat-row">
+                                    <div class="stat-item success">
+                                        <i class="fas fa-file-invoice"></i>
+                                        <span class="value">28</span>
+                                        <span class="label">จำนวนใบเสนอราคาที่ส่งได้</span>
+                                    </div>
+                                    <div class="stat-item info">
+                                        <i class="fas fa-box-open"></i>
+                                        <span class="value">156</span>
+                                        <span class="label">จำนวนชิ้นงานที่จัดส่งจริง</span>
+                                    </div>
+                                </div>
+                                <div class="stat-row">
+                                    <div class="stat-item warning">
+                                        <i class="fas fa-calendar-times"></i>
+                                        <span class="value">5</span>
+                                        <span class="label">จำนวนเลื่อนส่งจากส่งไม่ทัน</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="delivery-costs">
+                                <h4>ขนส่งไปษณีย์ (ลูกค้าไม่ได้จ่าย)</h4>
+                                <div class="cost-row">
+                                    <div class="cost-item">
+                                        <span class="label">จำนวน</span>
+                                        <span class="value">12 รายการ</span>
+                                    </div>
+                                    <div class="cost-item">
+                                        <span class="label">มูลค่าที่ใช้</span>
+                                        <span class="value danger">฿ 4,850</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="delivery-others">
+                                <h4>Lalamove & Flash</h4>
+                                <div class="others-row">
+                                    <div class="other-item">
+                                        <span class="label">จำนวนต่องาน</span>
+                                        <span class="value">8</span>
+                                    </div>
+                                    <div class="other-item">
+                                        <span class="label">AVG ค่าต่องาน</span>
+                                        <span class="value">฿ 285</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="customer-shipping">
+                                <div class="shipping-total">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    <span class="label">มูลค่าค่าขนส่งจากลูกค้า</span>
+                                    <span class="value success">฿ 18,500</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PIMDAI Claim & Fix Section -->
+                    <div class="dashboard-section claim-section">
+                        <div class="section-header">
+                            <div class="section-icon claim">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h2>PIMDAI Claim & Fix</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="claim-grid">
+                                <div class="claim-chart-area">
+                                    <canvas id="claimDonutChart"></canvas>
+                                    <div class="claim-center">
+                                        <span class="total-num">16</span>
+                                        <span class="total-text">รายการ</span>
+                                    </div>
+                                </div>
+                                <div class="claim-legend">
+                                    <div class="legend-item inkjet">
+                                        <span class="dot"></span>
+                                        <div class="legend-info">
+                                            <span class="type">Inkjet</span>
+                                            <span class="count">5 รายการ</span>
+                                        </div>
+                                        <i class="fas fa-print"></i>
+                                    </div>
+                                    <div class="legend-item digital">
+                                        <span class="dot"></span>
+                                        <div class="legend-info">
+                                            <span class="type">Digital</span>
+                                            <span class="count">3 รายการ</span>
+                                        </div>
+                                        <i class="fas fa-tv"></i>
+                                    </div>
+                                    <div class="legend-item accessory">
+                                        <span class="dot"></span>
+                                        <div class="legend-info">
+                                            <span class="type">Accessory</span>
+                                            <span class="count">8 รายการ</span>
+                                        </div>
+                                        <i class="fas fa-plug"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </main>
     </div>
 
     <script src="js/app.js"></script>
+    <script src="js/charts.js"></script>
 </body>
 </html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใบส่งสินค้า/ใบวางบิล - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation-list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item active">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>ใบส่งสินค้า/ใบวางบิล</h1>
+                        <nav class="breadcrumb">
+                            <a href="#">ใบส่งสินค้า/ใบวางบิล</a>
+                            <span class="separator">›</span>
+                            <span>แสดงทั้งหมด</span>
+                        </nav>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <a href="billing.html" class="btn-create">
+                        <i class="fas fa-plus"></i>
+                        สร้างใหม่
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content list-page">
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-filter="all">แสดงทั้งหมด</button>
+                        <button class="filter-tab" data-filter="single">ใบวางบิล</button>
+                        <button class="filter-tab" data-filter="combined">ใบวางบิลรวม</button>
+                        <button class="filter-tab icon-tab" title="ดูแบบกราฟ">
+                            <i class="fas fa-chart-bar"></i>
+                        </button>
+                    </div>
+                    <div class="filter-actions">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="ค้นหาเอกสาร..." id="searchInput">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Table -->
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="selectAll">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </th>
+                                <th class="col-date">วันที่</th>
+                                <th class="col-docno">เลขที่เอกสาร</th>
+                                <th class="col-customer">ชื่อลูกค้า/ชื่อโปรเจ็ค</th>
+                                <th class="col-duedate">วันครบกำหนด</th>
+                                <th class="col-amount">ยอดรวมสุทธิ</th>
+                                <th class="col-status">สถานะ</th>
+                                <th class="col-action"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="billingTableBody">
+                            <!-- Row 1 - Pending -->
+                            <tr class="data-row" data-type="single">
+                                <td class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td class="col-date">03-02-2026</td>
+                                <td class="col-docno">
+                                    <span class="status-dot billing-pending"></span>
+                                    <a href="billing.html" class="doc-link">BL2026020004</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                </td>
+                                <td class="col-customer">
+                                    <div class="customer-info">
+                                        <span class="customer-name">พลอยพัชร์ สันต์วัชน์</span>
+                                        <span class="project-name">Lockhome</span>
+                                    </div>
+                                </td>
+                                <td class="col-duedate">03-02-2026</td>
+                                <td class="col-amount">8,790.00</td>
+                                <td class="col-status">
+                                    <div class="status-select-wrapper">
+                                        <select class="status-select billing-pending">
+                                            <option value="billing-pending" selected>รอวางบิล</option>
+                                            <option value="billing-done">เปิดบิลแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="col-action">
+                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr class="data-row" data-type="single">
+                                <td class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td class="col-date">04-02-2026</td>
+                                <td class="col-docno">
+                                    <span class="status-dot billing-pending"></span>
+                                    <a href="billing.html" class="doc-link">BL2026020003</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                </td>
+                                <td class="col-customer">
+                                    <div class="customer-info">
+                                        <span class="customer-name">บริษัท ธรรมวัสน์ คอร์ปอเรชั่น จำกัด</span>
+                                        <span class="project-name">Lockhome</span>
+                                    </div>
+                                </td>
+                                <td class="col-duedate">04-02-2026</td>
+                                <td class="col-amount">6,990.00</td>
+                                <td class="col-status">
+                                    <div class="status-select-wrapper">
+                                        <select class="status-select billing-pending">
+                                            <option value="billing-pending" selected>รอวางบิล</option>
+                                            <option value="billing-done">เปิดบิลแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="col-action">
+                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr class="data-row" data-type="single">
+                                <td class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td class="col-date">03-02-2026</td>
+                                <td class="col-docno">
+                                    <span class="status-dot billing-pending"></span>
+                                    <a href="billing.html" class="doc-link">BL2026020002</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                </td>
+                                <td class="col-customer">
+                                    <div class="customer-info">
+                                        <span class="customer-name">ห้างหุ้นส่วนจำกัด สเกลบา7 สตูดิโอ</span>
+                                        <span class="project-name">Ensure</span>
+                                    </div>
+                                </td>
+                                <td class="col-duedate">03-02-2026</td>
+                                <td class="col-amount">6,625.00</td>
+                                <td class="col-status">
+                                    <div class="status-select-wrapper">
+                                        <select class="status-select billing-pending">
+                                            <option value="billing-pending" selected>รอวางบิล</option>
+                                            <option value="billing-done">เปิดบิลแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="col-action">
+                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 4 - Billed -->
+                            <tr class="data-row" data-type="single">
+                                <td class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td class="col-date">02-02-2026</td>
+                                <td class="col-docno">
+                                    <span class="status-dot billing-done"></span>
+                                    <a href="billing.html" class="doc-link">BL2026020001</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                </td>
+                                <td class="col-customer">
+                                    <div class="customer-info">
+                                        <span class="customer-name">บริษัท นอกความชัดเจก เซอร์วิส โซลูชั่นส์ จำกัด</span>
+                                        <span class="project-name">Lockhome</span>
+                                    </div>
+                                </td>
+                                <td class="col-duedate">02-02-2026</td>
+                                <td class="col-amount">3,990.00</td>
+                                <td class="col-status">
+                                    <div class="status-select-wrapper">
+                                        <select class="status-select billing-done">
+                                            <option value="billing-pending">รอวางบิล</option>
+                                            <option value="billing-done" selected>เปิดบิลแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="col-action">
+                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 5 - Combined Bill -->
+                            <tr class="data-row" data-type="combined">
+                                <td class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td class="col-date">30-01-2026</td>
+                                <td class="col-docno">
+                                    <span class="status-dot billing-done"></span>
+                                    <a href="billing.html" class="doc-link">BL2026010153</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                </td>
+                                <td class="col-customer">
+                                    <div class="customer-info">
+                                        <span class="customer-name">ศูนย์เรียนรู้การพัฒนาอมก๋อยฯ</span>
+                                        <span class="project-name">pimdai (ใบเสนอราคาที่ 4)</span>
+                                    </div>
+                                </td>
+                                <td class="col-duedate">30-01-2026</td>
+                                <td class="col-amount">1,187.70</td>
+                                <td class="col-status">
+                                    <div class="status-select-wrapper">
+                                        <select class="status-select billing-done">
+                                            <option value="billing-pending">รอวางบิล</option>
+                                            <option value="billing-done" selected>เปิดบิลแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="col-action">
+                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 6 -->
+                            <tr class="data-row" data-type="combined">
+                                <td class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td class="col-date">30-01-2026</td>
+                                <td class="col-docno">
+                                    <span class="status-dot billing-done"></span>
+                                    <a href="billing.html" class="doc-link">BL2026010152</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                </td>
+                                <td class="col-customer">
+                                    <div class="customer-info">
+                                        <span class="customer-name">ศูนย์เรียนรู้การพัฒนาอมก๋อยฯ</span>
+                                        <span class="project-name">pimdai (ใบเสนอราคาที่ 3)</span>
+                                    </div>
+                                </td>
+                                <td class="col-duedate">30-01-2026</td>
+                                <td class="col-amount">4,434.08</td>
+                                <td class="col-status">
+                                    <div class="status-select-wrapper">
+                                        <select class="status-select billing-done">
+                                            <option value="billing-pending">รอวางบิล</option>
+                                            <option value="billing-done" selected>เปิดบิลแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="col-action">
+                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <!-- Row 7 -->
+                            <tr class="data-row" data-type="combined">
+                                <td class="col-checkbox">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </td>
+                                <td class="col-date">30-01-2026</td>
+                                <td class="col-docno">
+                                    <span class="status-dot billing-done"></span>
+                                    <a href="billing.html" class="doc-link">BL2026010151</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                </td>
+                                <td class="col-customer">
+                                    <div class="customer-info">
+                                        <span class="customer-name">ศูนย์เรียนรู้การพัฒนาอมก๋อยฯ</span>
+                                        <span class="project-name">pimdai (ใบเสนอราคาที่ 2)</span>
+                                    </div>
+                                </td>
+                                <td class="col-duedate">30-01-2026</td>
+                                <td class="col-amount">14,727.48</td>
+                                <td class="col-status">
+                                    <div class="status-select-wrapper">
+                                        <select class="status-select billing-done">
+                                            <option value="billing-pending">รอวางบิล</option>
+                                            <option value="billing-done" selected>เปิดบิลแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td class="col-action">
+                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination & Footer -->
+                <div class="table-footer">
+                    <div class="pagination">
+                        <button class="page-btn" disabled title="หน้าแรก">
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="page-btn" disabled title="ก่อนหน้า">
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">5</button>
+                        <button class="page-btn" title="ถัดไป">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="page-btn" title="หน้าสุดท้าย">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                        
+                        <div class="page-size">
+                            <span>รายการต่อหน้า</span>
+                            <select id="pageSize" class="page-size-select">
+                                <option value="10">10</option>
+                                <option value="20" selected>20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-show-total">
+                        แสดงยอดรวมทั้งหมด
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/billing-list.js"></script>
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างใบสั่งซื้อ - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation.css">
+    <link rel="stylesheet" href="../css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Green theme for Purchase Orders */
+        .quotation-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .doc-icon {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .doc-type {
+            color: #1f2937;
+        }
+        
+        .doc-number-row h1 {
+            color: #1f2937;
+        }
+        
+        .btn-icon {
+            color: #6b7280;
+            border-color: #e5e7eb;
+        }
+        
+        .btn-icon:hover {
+            background: #f3f4f6;
+            border-color: #10b981;
+            color: #10b981;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+        }
+        
+        .total-display {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        
+        .total-label {
+            color: #2563eb;
+        }
+        
+        .total-amount {
+            color: #2563eb;
+        }
+        
+        .summary-row.total-row .summary-label {
+            color: #2563eb;
+        }
+        
+        .summary-row.total-row .summary-value {
+            color: #2563eb;
+            font-weight: 700;
+        }
+        
+        .btn-add-row {
+            border-color: #10b981;
+            color: #10b981;
+        }
+        
+        .btn-add-row:hover {
+            background: #d1fae5;
+            border-color: #059669;
+        }
+        
+        .btn-secondary {
+            padding: 11px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            color: #64748b;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item active">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header quotation-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <div class="doc-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="doc-info">
+                            <span class="doc-type">สร้างใบสั่งซื้อ</span>
+                            <div class="doc-number-row">
+                                <h1 id="docNumber">PO2026020001</h1>
+                                <button class="btn-icon" title="แก้ไขเลขที่เอกสาร">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <button class="btn-icon" title="รีเซ็ต">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary">
+                        <i class="fas fa-times"></i>
+                        ปิดหน้าต่าง
+                    </button>
+                    <div class="btn-group">
+                        <button class="btn-primary" id="saveBtn">
+                            <i class="fas fa-save"></i>
+                            บันทึกเอกสาร
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Purchase Order Form -->
+            <div class="page-content quotation-page">
+                <div class="quotation-container">
+                    <!-- Main Form Area -->
+                    <div class="quotation-form">
+                        <!-- Top Section: Supplier Info + Document Info -->
+                        <div class="form-top-section">
+                            <!-- Supplier Information -->
+                            <div class="customer-section">
+                                <h3 class="section-label">ชื่อซัพพลายเออร์</h3>
+                                <div class="customer-select-wrapper">
+                                    <select id="supplierSelect" class="form-select large">
+                                        <option value="">เลือกซัพพลายเออร์ หรือพิมพ์เพื่อสร้างใหม่</option>
+                                        <option value="1">บริษัท ซัพพลาย เอเชีย จำกัด</option>
+                                        <option value="2">บริษัท โกลบอล ซัพพลาย จำกัด</option>
+                                        <option value="3">ห้างหุ้นส่วนจำกัด วัตถุดิบดี</option>
+                                        <option value="4">บริษัท เทรด อินเตอร์ จำกัด</option>
+                                    </select>
+                                    <button class="btn-add-customer" title="เพิ่มซัพพลายเออร์ใหม่">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                
+                                <h3 class="section-label">ที่อยู่</h3>
+                                <textarea id="supplierAddress" class="form-textarea" rows="3" placeholder="รายละเอียดที่อยู่"></textarea>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="postalCode" class="form-input" placeholder="รหัสไปรษณีย์">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="taxId" class="form-input" placeholder="เลขประจำตัวผู้เสียภาษี">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="branchNo" class="form-input" placeholder="สำนักงาน/สาขาเลขที่">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="contactPerson" class="form-input" placeholder="ผู้ติดต่อ">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Document Information -->
+                            <div class="document-section">
+                                <!-- Action Buttons -->
+                                <div class="doc-actions">
+                                    <button class="action-btn" title="แชร์">
+                                        <i class="fas fa-share-alt"></i>
+                                        <span>แชร์</span>
+                                    </button>
+                                    <button class="action-btn" title="พิมพ์">
+                                        <i class="fas fa-print"></i>
+                                        <span>พิมพ์</span>
+                                    </button>
+                                    <button class="action-btn" title="ดาวน์โหลด">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span>ดาวน์โหลด</span>
+                                    </button>
+                                    <button class="action-btn" title="เพิ่มเติม">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                        <span>เพิ่มเติม</span>
+                                    </button>
+                                </div>
+                                
+                                <!-- Total Amount Display -->
+                                <div class="total-display">
+                                    <span class="total-label">จำนวนเงินรวมทั้งสิ้น</span>
+                                    <span class="total-amount" id="grandTotal">0.00</span>
+                                </div>
+                                
+                                <!-- Document Details -->
+                                <div class="doc-details">
+                                    <div class="detail-row">
+                                        <label>วันที่สั่งซื้อ:</label>
+                                        <input type="date" id="docDate" class="form-input" value="2026-02-03">
+                                    </div>
+                                    <div class="detail-row">
+                                        <label>วันที่คาดว่าจะได้รับ:</label>
+                                        <input type="date" id="expectedDate" class="form-input" value="2026-02-10">
+                                    </div>
+                                    <div class="detail-row">
+                                        <label>เครดิต (วัน):</label>
+                                        <select id="creditDays" class="form-select">
+                                            <option value="0">0</option>
+                                            <option value="7">7</option>
+                                            <option value="15">15</option>
+                                            <option value="30" selected>30</option>
+                                            <option value="45">45</option>
+                                            <option value="60">60</option>
+                                            <option value="90">90</option>
+                                        </select>
+                                    </div>
+                                    <div class="detail-row">
+                                        <label>ผู้สั่งซื้อ:</label>
+                                        <select id="purchaser" class="form-select">
+                                            <option value="">เลือกผู้สั่งซื้อ</option>
+                                            <option value="1">เกรียงศักดิ์ หมู่เมืองสอง</option>
+                                            <option value="2">สมชาย ใจดี</option>
+                                            <option value="3">สมหญิง รักงาน</option>
+                                        </select>
+                                    </div>
+                                    <div class="detail-row">
+                                        <label>สกุลเงิน: <i class="fas fa-info-circle text-muted"></i></label>
+                                        <select id="currency" class="form-select currency-select">
+                                            <option value="THB">🇹🇭 THB - ไทย</option>
+                                            <option value="USD">🇺🇸 USD - ดอลลาร์</option>
+                                            <option value="EUR">🇪🇺 EUR - ยูโร</option>
+                                        </select>
+                                    </div>
+                                    <div class="detail-row">
+                                        <label>สถานะ:</label>
+                                        <select id="status" class="form-select">
+                                            <option value="pending">รอดำเนินการ</option>
+                                            <option value="approved">อนุมัติแล้ว</option>
+                                            <option value="shipping">กำลังจัดส่ง</option>
+                                            <option value="received">รับสินค้าแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Options Row -->
+                        <div class="product-options-row">
+                            <div class="option-group">
+                                <label>โปรเจ็ค:</label>
+                                <select id="project" class="form-select">
+                                    <option value="">เลือกโปรเจ็ค</option>
+                                    <option value="1">โปรเจ็ค A</option>
+                                    <option value="2">โปรเจ็ค B</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label>เลขที่อ้างอิง:</label>
+                                <input type="text" id="refNumber" class="form-input" placeholder="เลขที่อ้างอิง">
+                            </div>
+                            <div class="option-group">
+                                <label>ราคาสินค้า:</label>
+                                <select id="priceType" class="form-select">
+                                    <option value="exclude">ราคาไม่รวมภาษี</option>
+                                    <option value="include">ราคารวมภาษี</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="product-options-row">
+                            <div class="option-group full-width">
+                                <label>รายละเอียด:</label>
+                                <input type="text" id="description" class="form-input" placeholder="รายละเอียดเพิ่มเติม">
+                            </div>
+                        </div>
+                        
+                        <div class="product-options-row">
+                            <div class="option-group">
+                                <label>คลังสินค้า:</label>
+                                <select id="warehouse" class="form-select">
+                                    <option value="pimdai">Pimdai</option>
+                                    <option value="main">คลังหลัก</option>
+                                    <option value="branch">คลังสาขา</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Items Table -->
+                        <div class="items-table-container">
+                            <table class="items-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-no">ลำดับ</th>
+                                        <th class="col-product">ชื่อสินค้า /รายละเอียด</th>
+                                        <th class="col-qty">จำนวน</th>
+                                        <th class="col-unit">หน่วย</th>
+                                        <th class="col-price">ราคาต่อหน่วย</th>
+                                        <th class="col-total">ราคารวม</th>
+                                        <th class="col-action"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsBody">
+                                    <tr class="item-row" data-row="1">
+                                        <td class="col-no">1</td>
+                                        <td class="col-product">
+                                            <input type="text" class="form-input product-input" placeholder="พิมพ์ชื่อสินค้าหรือรหัส">
+                                        </td>
+                                        <td class="col-qty">
+                                            <input type="number" class="form-input qty-input" value="1" min="1">
+                                        </td>
+                                        <td class="col-unit">
+                                            <select class="form-select unit-select">
+                                                <option value="ชิ้น">ชิ้น</option>
+                                                <option value="กล่อง">กล่อง</option>
+                                                <option value="แพ็ค">แพ็ค</option>
+                                                <option value="เซ็ต">เซ็ต</option>
+                                            </select>
+                                        </td>
+                                        <td class="col-price">
+                                            <input type="number" class="form-input price-input" value="0" min="0" step="0.01">
+                                        </td>
+                                        <td class="col-total">
+                                            <span class="row-total">0.00</span>
+                                        </td>
+                                        <td class="col-action">
+                                            <button class="btn-delete-row" title="ลบรายการ">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="item-row" data-row="2">
+                                        <td class="col-no">2</td>
+                                        <td class="col-product">
+                                            <input type="text" class="form-input product-input" placeholder="พิมพ์ชื่อสินค้าหรือรหัส">
+                                        </td>
+                                        <td class="col-qty">
+                                            <input type="number" class="form-input qty-input" value="1" min="1">
+                                        </td>
+                                        <td class="col-unit">
+                                            <select class="form-select unit-select">
+                                                <option value="ชิ้น">ชิ้น</option>
+                                                <option value="กล่อง">กล่อง</option>
+                                                <option value="แพ็ค">แพ็ค</option>
+                                                <option value="เซ็ต">เซ็ต</option>
+                                            </select>
+                                        </td>
+                                        <td class="col-price">
+                                            <input type="number" class="form-input price-input" value="0" min="0" step="0.01">
+                                        </td>
+                                        <td class="col-total">
+                                            <span class="row-total">0.00</span>
+                                        </td>
+                                        <td class="col-action">
+                                            <button class="btn-delete-row" title="ลบรายการ">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="item-row" data-row="3">
+                                        <td class="col-no">3</td>
+                                        <td class="col-product">
+                                            <input type="text" class="form-input product-input" placeholder="พิมพ์ชื่อสินค้าหรือรหัส">
+                                        </td>
+                                        <td class="col-qty">
+                                            <input type="number" class="form-input qty-input" value="1" min="1">
+                                        </td>
+                                        <td class="col-unit">
+                                            <select class="form-select unit-select">
+                                                <option value="ชิ้น">ชิ้น</option>
+                                                <option value="กล่อง">กล่อง</option>
+                                                <option value="แพ็ค">แพ็ค</option>
+                                                <option value="เซ็ต">เซ็ต</option>
+                                            </select>
+                                        </td>
+                                        <td class="col-price">
+                                            <input type="number" class="form-input price-input" value="0" min="0" step="0.01">
+                                        </td>
+                                        <td class="col-total">
+                                            <span class="row-total">0.00</span>
+                                        </td>
+                                        <td class="col-action">
+                                            <button class="btn-delete-row" title="ลบรายการ">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <button class="btn-add-row" id="addRowBtn">
+                                <i class="fas fa-plus"></i>
+                                เพิ่มแถวรายการ
+                            </button>
+                        </div>
+                        
+                        <!-- Bottom Section: Notes + Summary -->
+                        <div class="form-bottom-section">
+                            <!-- Left: Notes & Attachments -->
+                            <div class="notes-section">
+                                <div class="checkbox-row">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="eSignature" checked>
+                                        <span class="checkmark"></span>
+                                        ลายเซ็นอิเล็กทรอนิกส์และตรายาง
+                                    </label>
+                                </div>
+                                
+                                <div class="notes-row">
+                                    <div class="note-group">
+                                        <label>หมายเหตุ:</label>
+                                        <textarea id="remarks" class="form-textarea" rows="4" placeholder="หมายเหตุสำหรับซัพพลายเออร์"></textarea>
+                                    </div>
+                                    <div class="note-group">
+                                        <label>โน้ตภายในบริษัท:</label>
+                                        <textarea id="internalNote" class="form-textarea" rows="4" placeholder="โน้ตภายในบริษัท"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <!-- File Upload -->
+                                <div class="file-upload-area" id="fileUploadArea">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                    <p class="upload-text">คลิกเพื่อเลือกไฟล์</p>
+                                    <p class="upload-subtext">หรือลากและวางไฟล์ที่นี่</p>
+                                    <input type="file" id="fileInput" multiple hidden>
+                                </div>
+                            </div>
+                            
+                            <!-- Right: Summary -->
+                            <div class="summary-section">
+                                <div class="summary-row">
+                                    <span class="summary-label">รวมเป็นเงิน</span>
+                                    <span class="summary-value" id="subtotal">0.00</span>
+                                </div>
+                                <div class="summary-row discount-row">
+                                    <span class="summary-label">
+                                        ส่วนลด 
+                                        <input type="number" id="discountPercent" class="discount-input" value="0" min="0" max="100"> %
+                                    </span>
+                                    <span class="summary-value">
+                                        <button class="btn-edit-discount"><i class="fas fa-pen"></i></button>
+                                        <span id="discountAmount">0.00</span>
+                                    </span>
+                                </div>
+                                <div class="summary-row">
+                                    <span class="summary-label">ราคาหลังหักส่วนลด</span>
+                                    <span class="summary-value" id="afterDiscount">0.00</span>
+                                </div>
+                                <div class="summary-row vat-row">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="includeVat" checked>
+                                        <span class="checkmark"></span>
+                                        ภาษีมูลค่าเพิ่ม 7%
+                                    </label>
+                                    <span class="summary-value" id="vatAmount">0.00</span>
+                                </div>
+                                <div class="summary-row total-row">
+                                    <span class="summary-label">จำนวนเงินรวมทั้งสิ้น</span>
+                                    <span class="summary-value" id="finalTotal">0.00</span>
+                                </div>
+                                <div class="summary-row withholding-row">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="withholding">
+                                        <span class="checkmark"></span>
+                                        หักภาษี ณ ที่จ่าย
+                                    </label>
+                                    <select id="withholdingRate" class="form-select small" disabled>
+                                        <option value="1">1%</option>
+                                        <option value="2">2%</option>
+                                        <option value="3" selected>3%</option>
+                                        <option value="5">5%</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/pending-order-form.js"></script>
+</body>
+</html>

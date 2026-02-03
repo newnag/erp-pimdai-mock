@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รอสินค้าเข้า - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation-list.css">
+    <link rel="stylesheet" href="../css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Green theme overrides for Purchase Orders */
+        .page-title-main {
+            color: #10b981 !important;
+        }
+        
+        .filter-tab.active {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            border-color: #10b981 !important;
+        }
+        
+        .btn-icon:hover {
+            border-color: #10b981 !important;
+            background: #d1fae5 !important;
+            color: #10b981 !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3) !important;
+        }
+        
+        .search-input:focus {
+            border-color: #10b981 !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15) !important;
+        }
+        
+        .search-input:focus + .search-icon {
+            color: #10b981 !important;
+        }
+        
+        .status-badge.pending {
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fde68a;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.shipping {
+            background: #dbeafe;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.received {
+            background: #d1fae5;
+            color: #059669;
+            border: 1px solid #a7f3d0;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-badge.cancelled {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* Enhanced Status Select Dropdown */
+        .status-select {
+            padding: 8px 32px 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 2px solid;
+            background-position: right 10px center;
+            background-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .status-select.status-pending {
+            background-color: #fef3c7;
+            color: #d97706;
+            border-color: #fde68a;
+        }
+        
+        .status-select.status-pending:hover {
+            background-color: #fde68a;
+            border-color: #fbbf24;
+        }
+        
+        .status-select.status-shipping {
+            background-color: #dbeafe;
+            color: #2563eb;
+            border-color: #bfdbfe;
+        }
+        
+        .status-select.status-shipping:hover {
+            background-color: #bfdbfe;
+            border-color: #93c5fd;
+        }
+        
+        .status-select.status-received {
+            background-color: #d1fae5;
+            color: #059669;
+            border-color: #a7f3d0;
+        }
+        
+        .status-select.status-received:hover {
+            background-color: #a7f3d0;
+            border-color: #6ee7b7;
+        }
+        
+        .status-select.status-cancelled {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border-color: #fecaca;
+        }
+        
+        .status-select.status-cancelled:hover {
+            background-color: #fecaca;
+            border-color: #fca5a5;
+        }
+        
+        /* Enhanced table styling */
+        .data-table tbody tr {
+            transition: all 0.2s;
+        }
+        
+        .data-table tbody tr:hover {
+            background: #f8fafc;
+            transform: translateX(2px);
+        }
+        
+        .doc-number {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-copy-icon {
+            opacity: 0;
+            transition: all 0.2s;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #94a3b8;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .doc-number:hover .btn-copy-icon {
+            opacity: 1;
+        }
+        
+        .btn-copy-icon:hover {
+            background: #f1f5f9;
+            color: #10b981;
+        }
+        
+        .btn-menu {
+            width: 36px;
+            height: 36px;
+            border: 2px solid #e2e8f0;
+            background: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #64748b;
+        }
+        
+        .btn-menu:hover {
+            border-color: #10b981;
+            background: #d1fae5;
+            color: #10b981;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item active">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title-wrapper">
+                        <h1 class="page-title-main">รอสินค้าเข้า</h1>
+                        <p class="page-subtitle">รายการสั่งซื้อที่รอรับสินค้า</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary" id="printBtn">
+                        <i class="fas fa-print"></i>
+                        พิมพ์รายงาน
+                    </button>
+                    <button class="btn-primary" onclick="window.location.href='pending-order-create.html'">
+                        <i class="fas fa-plus"></i>
+                        สร้างใบสั่งซื้อ
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="content-wrapper">
+                    <!-- Filter Bar -->
+                    <div class="filter-bar">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active" data-filter="all">
+                                <i class="fas fa-layer-group"></i>
+                                แสดงทั้งหมด
+                            </button>
+                            <button class="filter-tab" data-filter="pending">
+                                <i class="fas fa-circle" style="color: #f59e0b;"></i>
+                                รอดำเนินการ
+                            </button>
+                            <button class="filter-tab" data-filter="shipping">
+                                <i class="fas fa-circle" style="color: #3b82f6;"></i>
+                                กำลังจัดส่ง
+                            </button>
+                            <button class="filter-tab" data-filter="received">
+                                <i class="fas fa-circle" style="color: #10b981;"></i>
+                                รับสินค้าแล้ว
+                            </button>
+                            <button class="filter-tab" data-filter="cancelled">
+                                <i class="fas fa-circle" style="color: #ef4444;"></i>
+                                ยกเลิก
+                            </button>
+                        </div>
+                        <button class="btn-icon" id="copyListBtn" title="คัดลอก">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="ค้นหาเลขที่ PO หรือซัพพลายเออร์" class="search-input">
+                            <button class="btn-clear" id="clearSearch" style="display: none;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-checkbox">
+                                        <input type="checkbox" id="selectAll">
+                                    </th>
+                                    <th class="col-date">วันที่</th>
+                                    <th class="col-doc-no">เลขที่ PO</th>
+                                    <th class="col-supplier">ซัพพลายเออร์</th>
+                                    <th class="col-expected-date">วันที่คาดว่าจะได้รับ</th>
+                                    <th class="col-amount">จำนวนเงิน</th>
+                                    <th class="col-status">สถานะ</th>
+                                    <th class="col-actions"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <tr data-status="pending">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-date">30/01/2026</td>
+                                    <td class="col-doc-no">
+                                        <div class="doc-number">
+                                            <i class="fas fa-file-alt" style="color: #10b981;"></i>
+                                            <span>PO2026010015</span>
+                                            <button class="btn-copy-icon" title="คัดลอก">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="col-supplier">บริษัท ไทยเจริญ จำกัด</td>
+                                    <td class="col-expected-date">05/02/2026</td>
+                                    <td class="col-amount">฿45,500.00</td>
+                                    <td class="col-status">
+                                        <select class="status-select status-pending">
+                                            <option value="pending" selected>รอดำเนินการ</option>
+                                            <option value="shipping">กำลังจัดส่ง</option>
+                                            <option value="received">รับสินค้าแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="1">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-status="shipping">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-date">28/01/2026</td>
+                                    <td class="col-doc-no">
+                                        <div class="doc-number">
+                                            <i class="fas fa-file-alt" style="color: #10b981;"></i>
+                                            <span>PO2026010014</span>
+                                            <button class="btn-copy-icon" title="คัดลอก">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="col-supplier">หจก. สินค้าดี</td>
+                                    <td class="col-expected-date">03/02/2026</td>
+                                    <td class="col-amount">฿28,750.00</td>
+                                    <td class="col-status">
+                                        <select class="status-select status-shipping">
+                                            <option value="pending">รอดำเนินการ</option>
+                                            <option value="shipping" selected>กำลังจัดส่ง</option>
+                                            <option value="received">รับสินค้าแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="2">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-status="shipping">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-date">27/01/2026</td>
+                                    <td class="col-doc-no">
+                                        <div class="doc-number">
+                                            <i class="fas fa-file-alt" style="color: #10b981;"></i>
+                                            <span>PO2026010013</span>
+                                            <button class="btn-copy-icon" title="คัดลอก">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="col-supplier">บริษัท ซีพี ออลล์ จำกัด</td>
+                                    <td class="col-expected-date">02/02/2026</td>
+                                    <td class="col-amount">฿125,800.00</td>
+                                    <td class="col-status">
+                                        <select class="status-select status-shipping">
+                                            <option value="pending">รอดำเนินการ</option>
+                                            <option value="shipping" selected>กำลังจัดส่ง</option>
+                                            <option value="received">รับสินค้าแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="3">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-status="received">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-date">25/01/2026</td>
+                                    <td class="col-doc-no">
+                                        <div class="doc-number">
+                                            <i class="fas fa-file-alt" style="color: #10b981;"></i>
+                                            <span>PO2026010012</span>
+                                            <button class="btn-copy-icon" title="คัดลอก">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="col-supplier">บริษัท เบทาโกร จำกัด (มหาชน)</td>
+                                    <td class="col-expected-date">31/01/2026</td>
+                                    <td class="col-amount">฿87,200.00</td>
+                                    <td class="col-status">
+                                        <select class="status-select status-received">
+                                            <option value="pending">รอดำเนินการ</option>
+                                            <option value="shipping">กำลังจัดส่ง</option>
+                                            <option value="received" selected>รับสินค้าแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="4">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr data-status="pending">
+                                    <td class="col-checkbox">
+                                        <input type="checkbox" class="row-checkbox">
+                                    </td>
+                                    <td class="col-date">01/02/2026</td>
+                                    <td class="col-doc-no">
+                                        <div class="doc-number">
+                                            <i class="fas fa-file-alt" style="color: #10b981;"></i>
+                                            <span>PO2026020001</span>
+                                            <button class="btn-copy-icon" title="คัดลอก">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="col-supplier">บริษัท ไทยเจริญ จำกัด</td>
+                                    <td class="col-expected-date">07/02/2026</td>
+                                    <td class="col-amount">฿32,450.00</td>
+                                    <td class="col-status">
+                                        <select class="status-select status-pending">
+                                            <option value="pending" selected>รอดำเนินการ</option>
+                                            <option value="shipping">กำลังจัดส่ง</option>
+                                            <option value="received">รับสินค้าแล้ว</option>
+                                            <option value="cancelled">ยกเลิก</option>
+                                        </select>
+                                    </td>
+                                    <td class="col-actions">
+                                        <button class="btn-menu" data-id="5">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn" id="firstPage">
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="page-btn" id="prevPage">
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn" id="nextPage">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="page-btn" id="lastPage">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu" style="display: none;">
+        <div class="context-menu-item">
+            <i class="fas fa-eye"></i>
+            <span>ดูรายละเอียด</span>
+        </div>
+        <div class="context-menu-item">
+            <i class="fas fa-edit"></i>
+            <span>แก้ไข</span>
+        </div>
+        <div class="context-menu-item">
+            <i class="fas fa-box"></i>
+            <span>รับสินค้าเข้าคลัง</span>
+        </div>
+        <div class="context-menu-item">
+            <i class="fas fa-copy"></i>
+            <span>ทำสำเนา</span>
+        </div>
+        <div class="context-menu-divider"></div>
+        <div class="context-menu-item delete">
+            <i class="fas fa-trash-alt"></i>
+            <span>ลบ</span>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/pending-orders.js"></script>
+</body>
+</html>

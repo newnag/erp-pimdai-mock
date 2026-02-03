@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สินค้า - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation-list.css">
+    <link rel="stylesheet" href="../css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Inventory specific styling */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+        
+        .stat-card:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+        
+        .stat-icon.products {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+        }
+        
+        .stat-icon.stock {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+        }
+        
+        .stat-icon.low-stock {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+        }
+        
+        .stat-icon.out-stock {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #fff;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+        
+        .product-card:hover {
+            border-color: #cbd5e1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .product-image {
+            height: 160px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: #cbd5e1;
+            position: relative;
+        }
+        
+        .stock-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .stock-badge.in-stock {
+            background: #d1fae5;
+            color: #059669;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .stock-badge.low-stock {
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fde68a;
+        }
+        
+        .stock-badge.out-of-stock {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 8px 0;
+        }
+        
+        .product-sku {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin: 0 0 4px 0;
+        }
+        
+        .product-category {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .product-stock {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px 0;
+            border-top: 1px solid #f1f5f9;
+        }
+        
+        .stock-label, .price-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .stock-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #10b981;
+        }
+        
+        .stock-value.warning {
+            color: #f59e0b;
+        }
+        
+        .stock-value.danger {
+            color: #ef4444;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 8px;
+            padding: 0 20px 20px 20px;
+        }
+        
+        .product-actions .btn {
+            flex: 1;
+            padding: 8px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            background: #fff;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .product-actions .btn:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+        
+        .product-actions .btn-danger:hover {
+            border-color: #ef4444;
+            background: #fee2e2;
+            color: #ef4444;
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .view-toggle .btn-icon {
+            width: 42px;
+            height: 42px;
+            border: 2px solid #e2e8f0;
+            background: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #64748b;
+        }
+        
+        .view-toggle .btn-icon.active {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-color: #3b82f6;
+            color: #fff;
+        }
+        
+        .filters-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-family: 'Prompt', sans-serif;
+            background: #fff;
+            color: #1f2937;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item active">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title-wrapper">
+                        <h1 class="page-title-main" style="color: #f59e0b;">สินค้า</h1>
+                        <p class="page-subtitle">จัดการสินค้าและสต็อก</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary" onclick="window.print()">
+                        <i class="fas fa-print"></i>
+                        พิมพ์รายงาน
+                    </button>
+                    <button class="btn-secondary" style="background: #10b981; color: white;">
+                        <i class="fas fa-file-excel"></i>
+                        ส่งออก Excel
+                    </button>
+                    <button class="btn-primary" style="background: linear-gradient(135deg, #f59e0b, #d97706);" onclick="window.location.href='product-create.html'">
+                        <i class="fas fa-plus"></i>
+                        เพิ่มสินค้า
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="content-wrapper">
+                    <!-- Stats Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px;">
+                        <div style="background: white; border-radius: 12px; padding: 20px; border: 2px solid #fee2e1;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-boxes" style="color: #d97706; font-size: 18px;"></i>
+                                </div>
+                                <span style="color: #6b7280; font-size: 14px;">สินค้าทั้งหมด</span>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 600; color: #1f2937;">248</div>
+                            <div style="font-size: 13px; color: #9ca3af; margin-top: 4px;">รายการ</div>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 20px; border: 2px solid #dcfce7;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-check-circle" style="color: #059669; font-size: 18px;"></i>
+                                </div>
+                                <span style="color: #6b7280; font-size: 14px;">สต็อกปกติ</span>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 600; color: #1f2937;">182</div>
+                            <div style="font-size: 13px; color: #9ca3af; margin-top: 4px;">รายการ (73.4%)</div>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 20px; border: 2px solid #fed7aa;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-exclamation-triangle" style="color: #d97706; font-size: 18px;"></i>
+                                </div>
+                                <span style="color: #6b7280; font-size: 14px;">สต็อกต่ำ</span>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 600; color: #1f2937;">52</div>
+                            <div style="font-size: 13px; color: #9ca3af; margin-top: 4px;">รายการ (21.0%)</div>
+                        </div>
+
+                        <div style="background: white; border-radius: 12px; padding: 20px; border: 2px solid #e5e7eb;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-ban" style="color: #6b7280; font-size: 18px;"></i>
+                                </div>
+                                <span style="color: #6b7280; font-size: 14px;">สต็อกหมด</span>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 600; color: #1f2937;">14</div>
+                            <div style="font-size: 13px; color: #9ca3af; margin-top: 4px;">รายการ (5.6%)</div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Bar -->
+                    <div class="filter-bar" style="flex-direction: column; align-items: stretch;">
+                        <div class="filter-tabs">
+                            <button class="filter-tab active">ทั้งหมด</button>
+                            <button class="filter-tab">สต็อกปกติ</button>
+                            <button class="filter-tab">สต็อกต่ำ</button>
+                            <button class="filter-tab">สต็อกหมด</button>
+                        </div>
+                        <div class="filter-actions" style="margin-top: 12px; display: flex; align-items: center;">
+                            <select style="padding: 8px 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; margin-right: 10px; font-family: 'Prompt', sans-serif;">
+                                <option>หมวดหมู่ทั้งหมด</option>
+                                <option>วัสดุก่อสร้าง</option>
+                                <option>สี</option>
+                                <option>ท่อและอุปกรณ์</option>
+                                <option>ฮาร์ดแวร์</option>
+                            </select>
+                            <button class="btn-icon" title="กรองข้อมูล">
+                                <i class="fas fa-filter"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- Products Table -->
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">
+                                        <input type="checkbox" id="selectAll">
+                                    </th>
+                                    <th style="width: 120px;">รหัสสินค้า</th>
+                                    <th>ชื่อสินค้า</th>
+                                    <th style="width: 120px;">ราคาต่อหน่วย</th>
+                                    <th style="width: 100px; text-align: center;">คลังหลัก</th>
+                                    <th style="width: 120px;">หมวดหมู่</th>
+                                    <th style="width: 100px;">สถานะ</th>
+                                    <th style="width: 80px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                            <span style="font-weight: 600; color: #1f2937;">PRD-001</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">แผ่นไม้ MDF 4x8 ฟุต</div>
+                                        <div style="font-size: 0.85rem; color: #6b7280;">วัสดุก่อสร้าง</div>
+                                    </td>
+                                    <td style="font-weight: 600; color: #1f2937;">250.00</td>
+                                    <td style="text-align: center; font-weight: 700; color: #059669; font-size: 1.05rem;">650</td>
+                                    <td>
+                                        <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">วัสดุก่อสร้าง</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: #d1fae5; color: #059669;">ปกติ</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn-menu">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                            <span style="font-weight: 600; color: #1f2937;">PRD-002</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">สีทาบ้าน TOA ขาว 1 แกลลอน</div>
+                                        <div style="font-size: 0.85rem; color: #6b7280;">สี</div>
+                                    </td>
+                                    <td style="font-weight: 600; color: #1f2937;">350.00</td>
+                                    <td style="text-align: center; font-weight: 700; color: #d97706; font-size: 1.05rem;">28</td>
+                                    <td>
+                                        <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">สี</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: #fef3c7; color: #d97706;">สต็อกต่ำ</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn-menu">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                            <span style="font-weight: 600; color: #1f2937;">PRD-003</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">ท่อ PVC 4 นิ้ว</div>
+                                        <div style="font-size: 0.85rem; color: #6b7280;">ท่อและอุปกรณ์</div>
+                                    </td>
+                                    <td style="font-weight: 600; color: #1f2937;">85.00</td>
+                                    <td style="text-align: center; font-weight: 700; color: #6b7280; font-size: 1.05rem;">0</td>
+                                    <td>
+                                        <span style="background: #f3f4f6; color: #6b7280; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ท่อและอุปกรณ์</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: #f3f4f6; color: #6b7280;">หมด</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn-menu">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                            <span style="font-weight: 600; color: #1f2937;">PRD-004</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">ตะปู 2 นิ้ว (1 กก.)</div>
+                                        <div style="font-size: 0.85rem; color: #6b7280;">ฮาร์ดแวร์</div>
+                                    </td>
+                                    <td style="font-weight: 600; color: #1f2937;">45.00</td>
+                                    <td style="text-align: center; font-weight: 700; color: #059669; font-size: 1.05rem;">525</td>
+                                    <td>
+                                        <span style="background: #e0e7ff; color: #4f46e5; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ฮาร์ดแวร์</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: #d1fae5; color: #059669;">ปกติ</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn-menu">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
+                                            <span style="font-weight: 600; color: #1f2937;">PRD-005</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #1f2937; margin-bottom: 4px;">ปูนซีเมนต์ ตราช้าง (ถุง 50 กก.)</div>
+                                        <div style="font-size: 0.85rem; color: #6b7280;">วัสดุก่อสร้าง</div>
+                                    </td>
+                                    <td style="font-weight: 600; color: #1f2937;">180.00</td>
+                                    <td style="text-align: center; font-weight: 700; color: #059669; font-size: 1.05rem;">1,550</td>
+                                    <td>
+                                        <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">วัสดุก่อสร้าง</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge" style="background: #d1fae5; color: #059669;">ปกติ</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn-menu">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                      
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="pagination-info">Showing 1-6 of 1,245 products</span>
+                    <div class="pagination-buttons">
+                        <button class="btn btn-secondary" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="btn btn-primary">1</button>
+                        <button class="btn btn-secondary">2</button>
+                        <button class="btn btn-secondary">3</button>
+                        <span>...</span>
+                        <button class="btn btn-secondary">208</button>
+                        <button class="btn btn-secondary"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="../js/app.js"></script>
+    <script src="../js/inventory.js"></script>
+</body>
+</html>

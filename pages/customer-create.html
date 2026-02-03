@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างรายชื่อผู้ติดต่อ - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/customer-form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item active">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">สร้างรายชื่อผู้ติดต่อ</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary" onclick="window.location.href='customers.html'">
+                        <i class="fas fa-times"></i>
+                        ปิดหน้าต่าง
+                    </button>
+                    <button class="btn-primary" id="saveBtn">
+                        <i class="fas fa-save"></i>
+                        บันทึกแล้วปิด
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="customer-form-container">
+                    <!-- Search Database Button -->
+                    <div class="search-database-section">
+                        <button class="btn-search-database">
+                            <i class="fas fa-search"></i>
+                            ค้นหารายฐานข้อมูลธรรพากร
+                        </button>
+                    </div>
+
+                    <!-- Form Grid -->
+                    <div class="form-grid">
+                        <!-- Left Column: Contact Information -->
+                        <div class="form-column">
+                            <h2 class="section-heading">ข้อมูลผู้ติดต่อ</h2>
+
+                            <!-- Contact Type -->
+                            <div class="form-group">
+                                <label class="form-label">ประเภทผู้ติดต่อ:</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="contactType" value="corporate" checked>
+                                        <span>นิติบุคคล</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="contactType" value="individual">
+                                        <span>บุคคลธรรมดา</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Type -->
+                            <div class="form-group">
+                                <label class="form-label">ประเภท:</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="type" value="customer" checked>
+                                        <span>ลูกค้า</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="type" value="vendor">
+                                        <span>ผู้จำหน่าย</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Credit Days -->
+                            <div class="form-group">
+                                <label class="form-label">เครดิต (วัน):</label>
+                                <input type="number" class="form-input" placeholder="จำนวนวัน" min="0">
+                            </div>
+
+                            <!-- Business Location -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    ที่ตั้งธุรกิจ:
+                                    <i class="fas fa-info-circle text-muted" title="เลือกประเทศที่ตั้งธุรกิจ"></i>
+                                </label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="location" value="thai" checked>
+                                        <span>ไทย</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="location" value="foreign">
+                                        <span>ต่างประเทศ</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Contact Code -->
+                            <div class="form-group">
+                                <label class="form-label">รหัสผู้ติดต่อ:</label>
+                                <textarea class="form-textarea" rows="2" placeholder="ตัวอย่างการกรอก: บริษัท โฟลว์แอคเคานท์ จำกัด"></textarea>
+                            </div>
+
+                            <!-- Business Name -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    ชื่อธุรกิจ:
+                                    <i class="fas fa-info-circle text-muted" title="กรอกชื่อบริษัท/ร้านค้า"></i>
+                                </label>
+                                <textarea class="form-textarea" rows="2" placeholder="ตัวอย่างการกรอก: บริษัท โฟลว์แอคเคานท์ จำกัด&#10;ระบุเลขผู้เสียภาษี 10 - 13 หลัก"></textarea>
+                            </div>
+
+                            <!-- Tax ID -->
+                            <div class="form-group">
+                                <label class="form-label">เลขประจำตัวผู้เสียภาษี:</label>
+                                <input type="text" class="form-input" placeholder="เลขประจำตัวผู้เสียภาษี" maxlength="13">
+                            </div>
+
+                            <!-- Branch Type -->
+                            <div class="form-group">
+                                <label class="form-label">สำนักงาน/สาขา:</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="branchType" value="headquarters" checked>
+                                        <span>สำนักงานใหญ่</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="branchType" value="branch">
+                                        <span>สาขา</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="form-group">
+                                <label class="form-label">ที่อยู่:</label>
+                                <textarea class="form-textarea" rows="3" placeholder="ที่อยู่"></textarea>
+                            </div>
+
+                            <!-- Postal Code -->
+                            <div class="form-group">
+                                <label class="form-label">รหัสไปรษณีย์:</label>
+                                <input type="text" class="form-input" placeholder="รหัสไปรษณีย์" maxlength="5">
+                            </div>
+
+                            <!-- Shipping Info -->
+                            <div class="form-group">
+                                <label class="form-label">ข้อมูลจัดส่ง:</label>
+                                <textarea class="form-textarea" rows="3" placeholder="ข้อมูลสำหรับการจัดส่ง"></textarea>
+                            </div>
+
+                            <!-- Office Phone -->
+                            <div class="form-group">
+                                <label class="form-label">เบอร์สำนักงาน:</label>
+                                <input type="text" class="form-input" placeholder="เบอร์สำนักงาน">
+                            </div>
+
+                            <!-- Fax -->
+                            <div class="form-group">
+                                <label class="form-label">เบอร์โทรสาร:</label>
+                                <input type="text" class="form-input" placeholder="เบอร์โทรสาร">
+                            </div>
+
+                            <!-- Website -->
+                            <div class="form-group">
+                                <label class="form-label">เว็บไซต์:</label>
+                                <input type="url" class="form-input" placeholder="https://">
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Contact Details & Bank Info -->
+                        <div class="form-column">
+                            <h2 class="section-heading">รายละเอียดผู้ติดต่อ</h2>
+
+                            <!-- Contact Name -->
+                            <div class="form-group">
+                                <label class="form-label">ชื่อผู้ติดต่อ:</label>
+                                <input type="text" class="form-input" placeholder="ชื่อผู้ติดต่อ">
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label class="form-label">อีเมล:</label>
+                                <input type="email" class="form-input" placeholder="อีเมล">
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="form-group">
+                                <label class="form-label">เบอร์ติดต่อ:</label>
+                                <input type="tel" class="form-input" placeholder="เบอร์ติดต่อ">
+                            </div>
+
+                            <!-- Bank Information Section -->
+                            <h2 class="section-heading section-heading-blue">ข้อมูลธนาคาร</h2>
+
+                            <!-- Bank Name -->
+                            <div class="form-group">
+                                <label class="form-label">ธนาคาร:</label>
+                                <select class="form-select">
+                                    <option value="">กรุณาเลือกธนาคาร</option>
+                                    <option value="BBL">ธนาคารกรุงเทพ</option>
+                                    <option value="KBANK">ธนาคารกสิกรไทย</option>
+                                    <option value="KTB">ธนาคารกรุงไทย</option>
+                                    <option value="TMB">ธนาคารทหารไทย</option>
+                                    <option value="SCB">ธนาคารไทยพาณิชย์</option>
+                                    <option value="BAY">ธนาคารกรุงศรีอยุธยา</option>
+                                    <option value="GSB">ธนาคารออมสิน</option>
+                                    <option value="BAAC">ธนาคารเพื่อการเกษตรและสหกรณ์การเกษตร</option>
+                                </select>
+                            </div>
+
+                            <!-- Account Name -->
+                            <div class="form-group">
+                                <label class="form-label">ชื่อบัญชี:</label>
+                                <input type="text" class="form-input" placeholder="ชื่อบัญชี">
+                            </div>
+
+                            <!-- Account Number -->
+                            <div class="form-group">
+                                <label class="form-label">เลขที่บัญชี:</label>
+                                <input type="text" class="form-input" placeholder="เลขที่บัญชี">
+                            </div>
+
+                            <!-- Branch Code & Name -->
+                            <div class="form-group">
+                                <label class="form-label">รหัสสาขา/ชื่อสาขา:</label>
+                                <div class="form-row-inline">
+                                    <input type="text" class="form-input" placeholder="รหัสสาขา">
+                                    <input type="text" class="form-input" placeholder="ชื่อสาขา">
+                                </div>
+                            </div>
+
+                            <!-- Account Type -->
+                            <div class="form-group">
+                                <label class="form-label">ประเภทบัญชี:</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="accountType" value="savings" checked>
+                                        <span>ออมทรัพย์</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="accountType" value="current">
+                                        <span>กระแสรายวัน</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- QR Code Upload -->
+                            <div class="form-group">
+                                <label class="form-label">คิวอาร์จ่ายเงิน:</label>
+                                <div class="qr-upload-area" id="qrUploadArea">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                    <p class="upload-text">คลิกเพื่อเลือกไฟล์หลายรูป</p>
+                                    <p class="upload-subtext">QR code ที่นี่</p>
+                                    <input type="file" id="qrFileInput" accept="image/*" hidden>
+                                </div>
+                            </div>
+
+                            <!-- Foreign Bank Info -->
+                            <div class="form-group">
+                                <label class="checkbox-label checkbox-label-single">
+                                    <input type="checkbox" id="foreignBankInfo">
+                                    <span class="text-blue">ข้อมูลเพิ่มเติมสำหรับธนาคารต่างประเทศ</span>
+                                </label>
+                            </div>
+
+                            <!-- Swift Code (Hidden by default) -->
+                            <div class="form-group" id="swiftCodeGroup" style="display: none;">
+                                <label class="form-label">Swift Code:</label>
+                                <input type="text" class="form-input" placeholder="Swift Code">
+                            </div>
+
+                            <!-- Bank Address (Hidden by default) -->
+                            <div class="form-group" id="bankAddressGroup" style="display: none;">
+                                <label class="form-label">ที่อยู่ธนาคาร:</label>
+                                <textarea class="form-textarea" rows="3" placeholder="ที่อยู่ธนาคาร"></textarea>
+                            </div>
+
+                            <!-- Additional Information Section -->
+                            <h2 class="section-heading section-heading-blue">ข้อมูลเพิ่มเติม</h2>
+
+                            <!-- Attachments -->
+                            <div class="form-group">
+                                <label class="form-label">
+                                    แนบไฟล์:
+                                    <i class="fas fa-info-circle text-muted" title="แนบเอกสารเพิ่มเติม"></i>
+                                </label>
+                                <button class="btn-attach" id="attachFileBtn">
+                                    <i class="fas fa-paperclip"></i>
+                                    แนบไฟล์
+                                </button>
+                                <input type="file" id="attachmentInput" multiple hidden>
+                            </div>
+
+                            <!-- Note -->
+                            <div class="form-group">
+                                <label class="form-label">โน้ต:</label>
+                                <textarea class="form-textarea" rows="4" placeholder="โน้ต"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/customer-form.js"></script>
+</body>
+</html>
