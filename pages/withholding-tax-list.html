@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ใบกำกับภาษี/ใบเสร็จรับเงิน - ERP PIMDAI</title>
+    <title>หัก ณ ที่จ่าย - ERP PIMDAI</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/quotation-list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -42,17 +42,13 @@
                         <i class="fas fa-file-alt"></i>
                         <span>ใบส่งสินค้า/ใบวางบิล</span>
                     </a>
-                    <a href="invoice-list.html" class="nav-item active">
+                    <a href="invoice-list.html" class="nav-item">
                         <i class="fas fa-receipt"></i>
                         <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
                     </a>
                     <a href="customers.html" class="nav-item">
                         <i class="fas fa-users"></i>
                         <span>ลูกค้า</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user-tie"></i>
-                        <span>พนักงาน</span>
                     </a>
                 </div>
                 
@@ -98,7 +94,7 @@
                         <i class="fas fa-money-bill-wave"></i>
                         <span>ค่าใช้จ่าย</span>
                     </a>
-                    <a href="withholding-tax-list.html" class="nav-item">
+                    <a href="withholding-tax-list.html" class="nav-item active">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>หัก ณ ที่จ่าย</span>
                     </a>
@@ -127,16 +123,20 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="page-title">
-                        <h1>ใบกำกับภาษี/ใบเสร็จรับเงิน</h1>
-                        <nav class="breadcrumb">
-                            <a href="#">ใบกำกับภาษี/ใบเสร็จรับเงิน</a>
+                        <h1 style="color: #9333ea;">หัก ณ ที่จ่าย</h1>
+                        <div class="breadcrumb">
+                            <a href="#">หัก ณ ที่จ่าย</a>
                             <span class="separator">›</span>
                             <span>แสดงทั้งหมด</span>
-                        </nav>
+                        </div>
                     </div>
                 </div>
                 <div class="header-right">
-                    <a href="invoice.html" class="btn-create">
+                    <button class="btn-secondary" style="background: #f3f4f6; color: #3b82f6; border: 2px solid #3b82f6; margin-right: 12px;">
+                        <i class="fas fa-file-excel"></i>
+                        ยื่นแบบภาษีออนไลน์
+                    </button>
+                    <a href="withholding-tax-create.html" class="btn-create" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
                         <i class="fas fa-plus"></i>
                         สร้างใหม่
                     </a>
@@ -153,8 +153,11 @@
                     <div class="filter-actions">
                         <div class="search-box">
                             <i class="fas fa-search"></i>
-                            <input type="text" placeholder="ค้นหาเอกสาร..." id="searchInput">
+                            <input type="text" placeholder="ค้นหา..." id="searchInput">
                         </div>
+                        <button class="btn-icon" title="แสดงตัวกรอง" style="margin-left: 12px;">
+                            <i class="fas fa-sliders-h"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -171,14 +174,14 @@
                                 </th>
                                 <th class="col-date">วันที่</th>
                                 <th class="col-docno">เลขที่เอกสาร</th>
-                                <th class="col-customer">ชื่อลูกค้า/ชื่อโปรเจ็ค</th>
-                                <th class="col-duedate">วันครบกำหนด</th>
-                                <th class="col-amount">ยอดรวมสุทธิ</th>
-                                <th class="col-status">สถานะ</th>
-                                <th class="col-action"></th>
+                                <th class="col-name">ชื่อผู้ถูกหัก ณ ที่จ่าย</th>
+                                <th class="col-payment-type">แบบฟอร์ม/ภาษี</th>
+                                <th class="col-amount">ภาษีหัก</th>
+                                <th class="col-status" style="width: 160px;">สถานะ</th>
+                                <th class="col-action" style="width: 60px; text-align: right; padding-right: 20px;"></th>
                             </tr>
                         </thead>
-                        <tbody id="invoiceTableBody">
+                        <tbody>
                             <!-- Row 1 -->
                             <tr class="data-row">
                                 <td class="col-checkbox">
@@ -187,30 +190,25 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td class="col-date">02-02-2026</td>
+                                <td class="col-date">31-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot invoice-paid"></span>
-                                    <a href="invoice.html" class="doc-link">INV2026020001</a>
+                                    <span class="status-dot" style="background: #3b82f6;"></span>
+                                    <a href="withholding-tax-create.html" class="doc-link">WT2026010007</a>
                                     <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">บริษัท นอกความชัดเจก เซอร์วิส โซลูชั่นส์ จำกัด</span>
-                                        <span class="project-name">Lockhome</span>
-                                    </div>
+                                <td class="col-name">นาย ศิรวิทย์ มงคลสวัสดิ์</td>
+                                <td class="col-payment-type">
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
                                 </td>
-                                <td class="col-duedate">-</td>
-                                <td class="col-amount">
-                                    3,990.00
-                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    <div>16,900.00</div>
+                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">507.00</div>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select invoice-paid">
-                                            <option value="invoice-paid" selected>เก็บเงินแล้ว</option>
-                                            <option value="invoice-partial">เก็บเงินบางส่วน</option>
-                                            <option value="invoice-pending">รอชำระเงิน</option>
-                                            <option value="invoice-overdue">เกินกำหนด</option>
+                                        <select class="status-select" style="background: #dbeafe; color: #2563eb; border-color: #93c5fd;">
+                                            <option value="submitted" selected>ดำเนินการแล้ว</option>
+                                            <option value="pending">รอดำเนินการ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -229,30 +227,25 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td class="col-date">30-01-2026</td>
+                                <td class="col-date">31-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot invoice-paid"></span>
-                                    <a href="invoice.html" class="doc-link">INV2026010143</a>
+                                    <span class="status-dot" style="background: #3b82f6;"></span>
+                                    <a href="withholding-tax-create.html" class="doc-link">WT2026010006</a>
                                     <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">วรพล สุมประการ</span>
-                                        <span class="project-name">Ensure</span>
-                                    </div>
+                                <td class="col-name">นางสาวพนิดา ประมงวัฒนา</td>
+                                <td class="col-payment-type">
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
                                 </td>
-                                <td class="col-duedate">-</td>
-                                <td class="col-amount">
-                                    9,900.00
-                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    <div>17,500.00</div>
+                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">525.00</div>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select invoice-paid">
-                                            <option value="invoice-paid" selected>เก็บเงินแล้ว</option>
-                                            <option value="invoice-partial">เก็บเงินบางส่วน</option>
-                                            <option value="invoice-pending">รอชำระเงิน</option>
-                                            <option value="invoice-overdue">เกินกำหนด</option>
+                                        <select class="status-select" style="background: #dbeafe; color: #2563eb; border-color: #93c5fd;">
+                                            <option value="submitted" selected>ดำเนินการแล้ว</option>
+                                            <option value="pending">รอดำเนินการ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -271,30 +264,25 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td class="col-date">30-01-2026</td>
+                                <td class="col-date">31-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot invoice-paid"></span>
-                                    <a href="invoice.html" class="doc-link">INV2026010142</a>
+                                    <span class="status-dot" style="background: #3b82f6;"></span>
+                                    <a href="withholding-tax-create.html" class="doc-link">WT2026010005</a>
                                     <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">สำนักงานตัวแทน เซฟ อินดี้</span>
-                                        <span class="project-name">pimdai</span>
-                                    </div>
+                                <td class="col-name">นางสาว ณัฐวดี สงวนมงคล</td>
+                                <td class="col-payment-type">
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
                                 </td>
-                                <td class="col-duedate">-</td>
-                                <td class="col-amount">
-                                    2,407.50
-                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    <div>18,210.00</div>
+                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">546.30</div>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select invoice-paid">
-                                            <option value="invoice-paid" selected>เก็บเงินแล้ว</option>
-                                            <option value="invoice-partial">เก็บเงินบางส่วน</option>
-                                            <option value="invoice-pending">รอชำระเงิน</option>
-                                            <option value="invoice-overdue">เกินกำหนด</option>
+                                        <select class="status-select" style="background: #dbeafe; color: #2563eb; border-color: #93c5fd;">
+                                            <option value="submitted" selected>ดำเนินการแล้ว</option>
+                                            <option value="pending">รอดำเนินการ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -315,28 +303,23 @@
                                 </td>
                                 <td class="col-date">30-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot invoice-paid"></span>
-                                    <a href="invoice.html" class="doc-link">INV2026010141</a>
-                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                    <span class="status-dot" style="background: #3b82f6;"></span>
+                                    <a href="withholding-tax-create.html" class="doc-link">WT2026010004</a>
+                                    <i class="fas fa-paperclip" style="color: #3b82f6; margin-left: 8px; font-size: 0.9rem;" title="มีไฟล์แนบ"></i>
                                 </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">ศูนย์เรียนรู้การพัฒนาอมก๋อยฯ</span>
-                                        <span class="project-name">pimdai (ใบเสนอราคาที่ 4)</span>
-                                    </div>
+                                <td class="col-name">บริษัท ภายดีที (ประเทศไทย) จำกัด</td>
+                                <td class="col-payment-type">
+                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 53<br><span style="font-size: 0.75rem; opacity: 0.8;">184.80</span></span>
                                 </td>
-                                <td class="col-duedate">-</td>
-                                <td class="col-amount">
-                                    1,187.70
-                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    <div>6,160.00</div>
+                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">184.80</div>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select invoice-paid">
-                                            <option value="invoice-paid" selected>เก็บเงินแล้ว</option>
-                                            <option value="invoice-partial">เก็บเงินบางส่วน</option>
-                                            <option value="invoice-pending">รอชำระเงิน</option>
-                                            <option value="invoice-overdue">เกินกำหนด</option>
+                                        <select class="status-select" style="background: #dbeafe; color: #2563eb; border-color: #93c5fd;">
+                                            <option value="submitted" selected>ดำเนินการแล้ว</option>
+                                            <option value="pending">รอดำเนินการ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -355,30 +338,25 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td class="col-date">30-01-2026</td>
+                                <td class="col-date">26-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot invoice-paid"></span>
-                                    <a href="invoice.html" class="doc-link">INV2026010140</a>
-                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                    <span class="status-dot" style="background: #3b82f6;"></span>
+                                    <a href="withholding-tax-create.html" class="doc-link">WT2026010003</a>
+                                    <i class="fas fa-paperclip" style="color: #3b82f6; margin-left: 8px; font-size: 0.9rem;" title="มีไฟล์แนบ"></i>
                                 </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">ศูนย์เรียนรู้การพัฒนาอมก๋อยฯ</span>
-                                        <span class="project-name">pimdai (ใบเสนอราคาที่ 3)</span>
-                                    </div>
+                                <td class="col-name">บริษัท ภายดีที (ประเทศไทย) จำกัด</td>
+                                <td class="col-payment-type">
+                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 53<br><span style="font-size: 0.75rem; opacity: 0.8;">66.84</span></span>
                                 </td>
-                                <td class="col-duedate">-</td>
-                                <td class="col-amount">
-                                    4,434.08
-                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    <div>2,228.00</div>
+                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">66.84</div>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select invoice-paid">
-                                            <option value="invoice-paid" selected>เก็บเงินแล้ว</option>
-                                            <option value="invoice-partial">เก็บเงินบางส่วน</option>
-                                            <option value="invoice-pending">รอชำระเงิน</option>
-                                            <option value="invoice-overdue">เกินกำหนด</option>
+                                        <select class="status-select" style="background: #dbeafe; color: #2563eb; border-color: #93c5fd;">
+                                            <option value="submitted" selected>ดำเนินการแล้ว</option>
+                                            <option value="pending">รอดำเนินการ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -397,31 +375,26 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td class="col-date">30-01-2026</td>
+                                <td class="col-date">22-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot invoice-paid"></span>
-                                    <a href="invoice.html" class="doc-link">INV2026010139</a>
+                                    <span class="status-dot" style="background: #ef4444;"></span>
+                                    <a href="withholding-tax-create.html" class="doc-link">WT2026010002</a>
                                     <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">ศูนย์เรียนรู้การพัฒนาอมก๋อยฯ</span>
-                                        <span class="project-name">pimdai (ใบเสนอราคาที่ 2)</span>
-                                    </div>
+                                <td class="col-name">นาย ชัยรัตน์ ภูดี</td>
+                                <td class="col-payment-type">
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
                                 </td>
-                                <td class="col-duedate">-</td>
-                                <td class="col-amount">
-                                    14,727.48
-                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    <div>45,000.00</div>
+                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">1,350.00</div>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select invoice-paid">
-                                            <option value="invoice-paid" selected>เก็บเงินแล้ว</option>
-                                            <option value="invoice-partial">เก็บเงินบางส่วน</option>
-                                            <option value="invoice-pending">รอชำระเงิน</option>
-                                            <option value="invoice-overdue">เกินกำหนด</option>
-                                            <option value="cancelled">ยกเลิก</option>
+                                        <select class="status-select" style="background: #fee2e2; color: #dc2626; border-color: #fecaca;">
+                                            <option value="cancelled" selected>ยกเลิก</option>
+                                            <option value="submitted">ดำเนินการแล้ว</option>
+                                            <option value="pending">รอดำเนินการ</option>
                                         </select>
                                     </div>
                                 </td>
@@ -439,30 +412,25 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
-                                <td class="col-date">30-01-2026</td>
+                                <td class="col-date">09-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot invoice-paid"></span>
-                                    <a href="invoice.html" class="doc-link">INV2026010138</a>
-                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
+                                    <span class="status-dot" style="background: #3b82f6;"></span>
+                                    <a href="withholding-tax-create.html" class="doc-link">WT2026010001</a>
+                                    <i class="fas fa-paperclip" style="color: #3b82f6; margin-left: 8px; font-size: 0.9rem;" title="มีไฟล์แนบ"></i>
                                 </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">ศูนย์เรียนรู้การพัฒนาอมก๋อยฯ</span>
-                                        <span class="project-name">pimdai (ใบเสนอราคาที่ 1)</span>
-                                    </div>
+                                <td class="col-name">บริษัท ภายดีที (ประเทศไทย) จำกัด</td>
+                                <td class="col-payment-type">
+                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 53<br><span style="font-size: 0.75rem; opacity: 0.8;">411.92</span></span>
                                 </td>
-                                <td class="col-duedate">-</td>
-                                <td class="col-amount">
-                                    1,881.06
-                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    <div>13,730.75</div>
+                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">411.92</div>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select invoice-paid">
-                                            <option value="invoice-paid" selected>เก็บเงินแล้ว</option>
-                                            <option value="invoice-partial">เก็บเงินบางส่วน</option>
-                                            <option value="invoice-pending">รอชำระเงิน</option>
-                                            <option value="invoice-overdue">เกินกำหนด</option>
+                                        <select class="status-select" style="background: #dbeafe; color: #2563eb; border-color: #93c5fd;">
+                                            <option value="submitted" selected>ดำเนินการแล้ว</option>
+                                            <option value="pending">รอดำเนินการ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -490,7 +458,6 @@
                         <button class="page-btn">2</button>
                         <button class="page-btn">3</button>
                         <button class="page-btn">4</button>
-                        <button class="page-btn">5</button>
                         <button class="page-btn" title="ถัดไป">
                             <i class="fas fa-angle-right"></i>
                         </button>
@@ -509,15 +476,17 @@
                         </div>
                     </div>
                     
-                    <button class="btn-show-total">
-                        แสดงยอดรวมทั้งหมด
-                    </button>
+                    <div style="margin-top: 16px; text-align: right;">
+                        <a href="#" style="color: #9333ea; text-decoration: none; font-weight: 500; font-size: 14px;">
+                            แสดงตัวกรอง
+                            <i class="fas fa-chevron-down" style="margin-left: 6px;"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 
     <script src="../js/app.js"></script>
-    <script src="../js/invoice-list.js"></script>
 </body>
 </html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างหัก ณ ที่จ่าย - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation.css">
+    <link rel="stylesheet" href="../css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Purple theme for Finance */
+        .quotation-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .doc-icon {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+        }
+        
+        .doc-type {
+            color: #1f2937;
+        }
+        
+        .doc-number-row h1 {
+            color: #1f2937;
+        }
+        
+        .btn-icon {
+            color: #6b7280;
+            border-color: #e5e7eb;
+        }
+        
+        .btn-icon:hover {
+            background: #f3f4f6;
+            border-color: #9333ea;
+            color: #9333ea;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #7e22ce 0%, #6b21a8 100%);
+            box-shadow: 0 6px 16px rgba(147, 51, 234, 0.3);
+        }
+        
+        .section-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 28px;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: all 0.2s;
+        }
+        
+        .section-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #d1d5db;
+        }
+        
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            color: #9333ea;
+            font-size: 1.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 10px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Prompt', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #9333ea;
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 32px;
+        }
+
+        .btn-cancel {
+            padding: 12px 24px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .info-row label {
+            min-width: 140px;
+            font-weight: 500;
+            color: #6b7280;
+        }
+
+        .info-row span {
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .calculate-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calculate-btn:hover {
+            background: linear-gradient(135deg, #7e22ce 0%, #6b21a8 100%);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item active">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header quotation-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <div class="doc-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="doc-info">
+                            <span class="doc-type">หัก ณ ที่จ่าย</span>
+                            <div class="doc-number-row">
+                                <h1 id="docNumber">WT2026020010</h1>
+                                <button class="btn-icon" title="แก้ไขเลขที่เอกสาร">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <button class="btn-icon" title="รีเซ็ต">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary">
+                        <i class="fas fa-times"></i>
+                        ปิดหน้าต่าง
+                    </button>
+                    <div class="btn-group">
+                        <button class="btn-primary" id="saveBtn">
+                            <i class="fas fa-save"></i>
+                            บันทึกเอกสาร
+                        </button>
+                        <button class="btn-primary btn-dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Form Content -->
+            <div class="page-content quotation-page">
+                <div class="quotation-container">
+                    <div class="quotation-form">
+                        <!-- ข้อมูลผู้ถูกหัก ณ ที่จ่าย -->
+                        <div class="section-card">
+                            <div class="section-title">
+                                <i class="fas fa-user"></i>
+                                ข้อมูลผู้ถูกหัก ณ ที่จ่าย
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>วันที่ <span class="required">*</span></label>
+                                    <input type="date" class="form-input" value="2026-02-03" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>ผู้ถูกหัก ณ ที่จ่าย <span class="required">*</span></label>
+                                    <select class="form-select" id="payeeSelect" required onchange="updatePayeeInfo()">
+                                        <option value="">-- เลือกผู้ถูกหัก ณ ที่จ่าย --</option>
+                                        <option value="person1">นาย ศิรวิทย์ มงคลสวัสดิ์</option>
+                                        <option value="person2">นางสาวพนิดา ประมงวัฒนา</option>
+                                        <option value="company1">บริษัท ภายดีที (ประเทศไทย) จำกัด</option>
+                                        <option value="new">+ เพิ่มผู้ถูกหัก ณ ที่จ่ายใหม่</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>เลขประจำตัวผู้เสียภาษี</label>
+                                    <input type="text" class="form-input" id="taxId" placeholder="เลขประจำตัวผู้เสียภาษี 13 หลัก">
+                                </div>
+                                <div class="form-group">
+                                    <label>สำนักงานใหญ่/สาขา</label>
+                                    <select class="form-select">
+                                        <option>สำนักงานใหญ่</option>
+                                        <option>สาขา</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label>ที่อยู่</label>
+                                    <textarea class="form-textarea" id="address" placeholder="ที่อยู่ผู้ถูกหัก ณ ที่จ่าย"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ข้อมูลภาษี -->
+                        <div class="section-card">
+                            <div class="section-title">
+                                <i class="fas fa-calculator"></i>
+                                ข้อมูลภาษีหัก ณ ที่จ่าย
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ประเภทภาษี <span class="required">*</span></label>
+                                    <select class="form-select" id="taxTypeSelect" required onchange="calculateTax()">
+                                        <option value="">-- เลือกประเภทภาษี --</option>
+                                        <option value="pnd3-3">ภงด 3 (3%)</option>
+                                        <option value="pnd3-5">ภงด 3 (5%)</option>
+                                        <option value="pnd53-3">ภงด 53 (3%)</option>
+                                        <option value="pnd53-5">ภงด 53 (5%)</option>
+                                        <option value="pnd1">ภงด 1</option>
+                                        <option value="pnd2">ภงด 2</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>ประเภทเงินได้</label>
+                                    <select class="form-select">
+                                        <option>ค่าจ้าง</option>
+                                        <option>ค่าบริการ</option>
+                                        <option>ค่าเช่า</option>
+                                        <option>ค่าขนส่ง</option>
+                                        <option>ค่าโฆษณา</option>
+                                        <option>อื่นๆ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>จำนวนเงินที่จ่าย (ก่อนหักภาษี) <span class="required">*</span></label>
+                                    <input type="number" class="form-input" id="amountBeforeTax" placeholder="0.00" step="0.01" required onchange="calculateTax()">
+                                </div>
+                                <div class="form-group">
+                                    <label>อัตราภาษี (%)</label>
+                                    <input type="number" class="form-input" id="taxRate" placeholder="0.00" step="0.01" readonly>
+                                </div>
+                            </div>
+                            <div class="info-row" style="background: #f3e8ff; border: 2px solid #e9d5ff;">
+                                <label>ภาษีหัก ณ ที่จ่าย:</label>
+                                <span id="taxAmount" style="color: #9333ea; font-size: 1.1rem;">0.00 บาท</span>
+                                <button type="button" class="calculate-btn" onclick="calculateTax()">
+                                    <i class="fas fa-calculator"></i>
+                                    คำนวณ
+                                </button>
+                            </div>
+                            <div class="info-row">
+                                <label>จำนวนเงินที่ได้รับจริง:</label>
+                                <span id="netAmount" style="font-size: 1.1rem;">0.00 บาท</span>
+                            </div>
+                        </div>
+
+                        <!-- หมายเหตุ -->
+                        <div class="section-card">
+                            <div class="section-title">
+                                <i class="fas fa-sticky-note"></i>
+                                หมายเหตุ
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label>หมายเหตุเพิ่มเติม</label>
+                                    <textarea class="form-textarea" placeholder="หมายเหตุเพิ่มเติม (ถ้ามี)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button class="btn-cancel" onclick="window.location.href='withholding-tax-list.html'">
+                                ยกเลิก
+                            </button>
+                            <button class="btn-primary" onclick="handleSave()">
+                                <i class="fas fa-check"></i>
+                                บันทึกหัก ณ ที่จ่าย
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Sample data
+        const payeeData = {
+            person1: {
+                taxId: '1234567890123',
+                address: '123 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพมหานคร 10110'
+            },
+            person2: {
+                taxId: '9876543210987',
+                address: '456 ถนนพระราม 4 แขวงสีลม เขตบางรัก กรุงเทพมหานคร 10500'
+            },
+            company1: {
+                taxId: '0105559123456',
+                address: '789 ถนนเพชรบุรี แขวงมักกะสัน เขตราชเทวี กรุงเทพมหานคร 10400'
+            }
+        };
+
+        const taxRates = {
+            'pnd3-3': 3,
+            'pnd3-5': 5,
+            'pnd53-3': 3,
+            'pnd53-5': 5,
+            'pnd1': 0,
+            'pnd2': 0
+        };
+
+        function updatePayeeInfo() {
+            const select = document.getElementById('payeeSelect');
+            const value = select.value;
+            
+            if (value === 'new') {
+                window.location.href = 'customer-create.html';
+                return;
+            }
+            
+            if (value && payeeData[value]) {
+                document.getElementById('taxId').value = payeeData[value].taxId;
+                document.getElementById('address').value = payeeData[value].address;
+            } else {
+                document.getElementById('taxId').value = '';
+                document.getElementById('address').value = '';
+            }
+        }
+
+        function calculateTax() {
+            const taxType = document.getElementById('taxTypeSelect').value;
+            const amountBeforeTax = parseFloat(document.getElementById('amountBeforeTax').value) || 0;
+            
+            if (!taxType || !taxRates[taxType]) {
+                return;
+            }
+            
+            const rate = taxRates[taxType];
+            document.getElementById('taxRate').value = rate;
+            
+            const taxAmount = (amountBeforeTax * rate) / 100;
+            const netAmount = amountBeforeTax - taxAmount;
+            
+            document.getElementById('taxAmount').textContent = taxAmount.toFixed(2) + ' บาท';
+            document.getElementById('netAmount').textContent = netAmount.toFixed(2) + ' บาท';
+        }
+
+        function handleSave() {
+            const payee = document.getElementById('payeeSelect').value;
+            const taxType = document.getElementById('taxTypeSelect').value;
+            const amount = document.getElementById('amountBeforeTax').value;
+            
+            if (!payee || !taxType || !amount) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+            
+            if (confirm('ยืนยันการบันทึกข้อมูลหัก ณ ที่จ่ายหรือไม่?')) {
+                alert('บันทึกข้อมูลเรียบร้อยแล้ว');
+                window.location.href = 'withholding-tax-list.html';
+            }
+        }
+    </script>
+</body>
+</html>

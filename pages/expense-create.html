@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกค่าใช้จ่าย - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation.css">
+    <link rel="stylesheet" href="../css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Purple theme for Expense */
+        .quotation-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .doc-icon {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+        }
+        
+        .doc-type {
+            color: #1f2937;
+        }
+        
+        .doc-number-row h1 {
+            color: #1f2937;
+        }
+        
+        .btn-icon {
+            color: #6b7280;
+            border-color: #e5e7eb;
+        }
+        
+        .btn-icon:hover {
+            background: #f3f4f6;
+            border-color: #9333ea;
+            color: #9333ea;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #7e22ce 0%, #6b21a8 100%);
+            box-shadow: 0 6px 16px rgba(147, 51, 234, 0.3);
+        }
+        
+        .section-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 28px;
+            border: 2px solid #e5e7eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: all 0.2s;
+        }
+        
+        .section-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: #d1d5db;
+        }
+        
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            color: #9333ea;
+            font-size: 1.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            padding: 10px 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Prompt', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #9333ea;
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            background: #f9fafb;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .file-upload-area:hover {
+            border-color: #9333ea;
+            background: #f5f3ff;
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: #9ca3af;
+            margin-bottom: 12px;
+        }
+
+        .file-upload-text {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .file-upload-hint {
+            color: #9ca3af;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .uploaded-files {
+            margin-top: 16px;
+        }
+
+        .uploaded-file {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .uploaded-file i {
+            color: #9333ea;
+            font-size: 1.2rem;
+        }
+
+        .uploaded-file-name {
+            flex: 1;
+            font-size: 14px;
+            color: #1f2937;
+        }
+
+        .btn-remove-file {
+            color: #ef4444;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .btn-remove-file:hover {
+            background: #fee2e2;
+            border-radius: 4px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 32px;
+        }
+
+        .btn-cancel {
+            padding: 12px 24px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #f3f4f6;
+            border-color: #d1d5db;
+        }
+
+        .info-banner {
+            background: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-banner i {
+            color: #16a34a;
+            font-size: 1.2rem;
+        }
+
+        .info-banner-text {
+            color: #166534;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item active">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header quotation-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <div class="doc-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="doc-info">
+                            <span class="doc-type">บันทึกค่าใช้จ่าย</span>
+                            <div class="doc-number-row">
+                                <h1 id="docNumber">EXP-2026020009</h1>
+                                <button class="btn-icon" title="แก้ไขเลขที่เอกสาร">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                                <button class="btn-icon" title="รีเซ็ต">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary">
+                        <i class="fas fa-times"></i>
+                        ปิดหน้าต่าง
+                    </button>
+                    <div class="btn-group">
+                        <button class="btn-primary" id="saveBtn">
+                            <i class="fas fa-save"></i>
+                            บันทึกเอกสาร
+                        </button>
+                        <button class="btn-primary btn-dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Form Content -->
+            <div class="page-content quotation-page">
+                <div class="quotation-container">
+                    <div class="quotation-form">
+                        <!-- Info Banner -->
+                        <div class="info-banner">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="info-banner-text">กรุณากรอกข้อมูลค่าใช้จ่ายให้ครบถ้วน และแนบเอกสารหลักฐานประกอบ</span>
+                        </div>
+
+                        <!-- ข้อมูลทั่วไป -->
+                        <div class="section-card">
+                            <div class="section-title">
+                                <i class="fas fa-info-circle"></i>
+                                ข้อมูลทั่วไป
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>วันที่ <span class="required">*</span></label>
+                                    <input type="date" class="form-input" value="2026-02-03" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>หมวดหมู่ <span class="required">*</span></label>
+                                    <select class="form-select" required>
+                                        <option value="">-- เลือกหมวดหมู่ --</option>
+                                        <option>ค่าเดินทาง</option>
+                                        <option>ค่าสาธารณูปโภค</option>
+                                        <option>ค่าวัสดุสำนักงาน</option>
+                                        <option>ค่าซ่อมบำรุง</option>
+                                        <option>ค่าโฆษณา</option>
+                                        <option>ค่าจัดส่ง</option>
+                                        <option>ค่าที่ปรึกษา</option>
+                                        <option>อื่นๆ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label>รายละเอียด <span class="required">*</span></label>
+                                    <input type="text" class="form-input" placeholder="ระบุรายละเอียดค่าใช้จ่าย" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>จำนวนเงิน <span class="required">*</span></label>
+                                    <input type="number" class="form-input" placeholder="0.00" step="0.01" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>ผู้ขออนุมัติ</label>
+                                    <select class="form-select">
+                                        <option value="">-- เลือกผู้ขออนุมัติ --</option>
+                                        <option>Pzo (pongkit@misuexemm.com)</option>
+                                        <option>เกรียงศักดิ์ หมู่เมืองสอง</option>
+                                        <option>สมชาย ใจดี</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label>หมายเหตุ</label>
+                                    <textarea class="form-textarea" placeholder="หมายเหตุเพิ่มเติม (ถ้ามี)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- แนบเอกสาร -->
+                        <div class="section-card">
+                            <div class="section-title">
+                                <i class="fas fa-paperclip"></i>
+                                แนบเอกสาร / ใบเสร็จ
+                            </div>
+                            <div class="file-upload-area" onclick="document.getElementById('fileInput').click()">
+                                <i class="fas fa-cloud-upload-alt file-upload-icon"></i>
+                                <div class="file-upload-text">คลิกเพื่อเลือกไฟล์ หรือลากไฟล์มาวางที่นี่</div>
+                                <div class="file-upload-hint">รองรับไฟล์: PDF, JPG, PNG (ขนาดไม่เกิน 10MB)</div>
+                                <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.jpg,.jpeg,.png">
+                            </div>
+                            <div class="uploaded-files" id="uploadedFiles">
+                                <!-- Uploaded files will appear here -->
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button class="btn-cancel" onclick="window.location.href='expense-list.html'">
+                                ยกเลิก
+                            </button>
+                            <button class="btn-primary" onclick="handleSave()">
+                                <i class="fas fa-check"></i>
+                                บันทึกค่าใช้จ่าย
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Handle file upload
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            const container = document.getElementById('uploadedFiles');
+            
+            for (let file of files) {
+                const fileDiv = document.createElement('div');
+                fileDiv.className = 'uploaded-file';
+                fileDiv.innerHTML = `
+                    <i class="fas fa-file-pdf"></i>
+                    <span class="uploaded-file-name">${file.name}</span>
+                    <i class="fas fa-times btn-remove-file" onclick="this.parentElement.remove()"></i>
+                `;
+                container.appendChild(fileDiv);
+            }
+        });
+
+        // Handle save
+        function handleSave() {
+            if (confirm('ยืนยันการบันทึกข้อมูลค่าใช้จ่ายหรือไม่?')) {
+                alert('บันทึกข้อมูลเรียบร้อยแล้ว');
+                window.location.href = 'expense-list.html';
+            }
+        }
+    </script>
+</body>
+</html>
