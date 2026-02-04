@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -54,6 +54,10 @@
                         <i class="fas fa-user-tie"></i>
                         <span>พนักงาน</span>
                     </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
                 </div>
                 
                 <div class="nav-section">
@@ -70,10 +74,6 @@
                 
                 <div class="nav-section">
                     <span class="nav-section-title">สินค้า (INVENTORY)</span>
-                    <a href="inventory.html" class="nav-item">
-                        <i class="fas fa-warehouse"></i>
-                        <span>คลังสินค้า</span>
-                    </a>
                     <a href="#" class="nav-item">
                         <i class="fas fa-boxes"></i>
                         <span>สินค้า</span>
@@ -83,14 +83,46 @@
                 <div class="nav-section">
                     <span class="nav-section-title">การเงิน (FINANCE)</span>
                     <a href="expense-list.html" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
+                        <i class="fas fa-receipt"></i>
                         <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
                     </a>
                     <a href="withholding-tax-list.html" class="nav-item">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>หัก ณ ที่จ่าย</span>
                     </a>
                 </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
             </nav>
             
             <div class="sidebar-footer">
@@ -120,6 +152,22 @@
                             <a href="#">ใบส่งสินค้า/ใบวางบิล</a>
                             <span class="separator">›</span>
                             <span>แสดงทั้งหมด</span>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
                         </nav>
                     </div>
                 </div>
@@ -156,12 +204,6 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" id="selectAll">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </th>
                                 <th class="col-date">วันที่</th>
                                 <th class="col-docno">เลขที่เอกสาร</th>
                                 <th class="col-customer">ชื่อลูกค้า/ชื่อโปรเจ็ค</th>
@@ -174,12 +216,6 @@
                         <tbody id="billingTableBody">
                             <!-- Row 1 - Pending -->
                             <tr class="data-row" data-type="single">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">03-02-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot billing-pending"></span>
@@ -211,12 +247,6 @@
                             </tr>
                             <!-- Row 2 -->
                             <tr class="data-row" data-type="single">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">04-02-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot billing-pending"></span>
@@ -248,12 +278,6 @@
                             </tr>
                             <!-- Row 3 -->
                             <tr class="data-row" data-type="single">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">03-02-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot billing-pending"></span>
@@ -285,12 +309,6 @@
                             </tr>
                             <!-- Row 4 - Billed -->
                             <tr class="data-row" data-type="single">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">02-02-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot billing-done"></span>
@@ -322,12 +340,6 @@
                             </tr>
                             <!-- Row 5 - Combined Bill -->
                             <tr class="data-row" data-type="combined">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">30-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot billing-done"></span>
@@ -359,12 +371,6 @@
                             </tr>
                             <!-- Row 6 -->
                             <tr class="data-row" data-type="combined">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">30-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot billing-done"></span>
@@ -396,12 +402,6 @@
                             </tr>
                             <!-- Row 7 -->
                             <tr class="data-row" data-type="combined">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">30-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot billing-done"></span>

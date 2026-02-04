@@ -1,0 +1,818 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกค่าเสื่อมราคา - ERP System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Orange theme for Depreciation */
+        .page-header {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .title-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .page-title h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 2px solid #f1f5f9;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+        }
+
+        .card-header h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #78350f;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+            margin-left: 0.25rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.875rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Prompt', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-help {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid #f59e0b;
+            padding: 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .info-box h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #78350f;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #78350f;
+        }
+
+        .table-container {
+            margin-bottom: 2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 1rem 1.5rem;
+            background: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #475569;
+            background: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        th.text-right,
+        td.text-right {
+            text-align: right;
+        }
+
+        td {
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .asset-row {
+            background: #fff;
+        }
+
+        .asset-row:hover {
+            background: #fef3c7;
+        }
+
+        .btn-remove {
+            padding: 0.5rem 0.75rem;
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .btn-remove:hover {
+            background: #fecaca;
+        }
+
+        .btn-add-asset {
+            padding: 0.75rem 1.25rem;
+            background: #fef3c7;
+            color: #78350f;
+            border: 2px dashed #f59e0b;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .btn-add-asset:hover {
+            background: #fde68a;
+            border-color: #d97706;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            padding-top: 2rem;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            font-family: 'Prompt', sans-serif;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            color: #fff;
+            overflow-y: auto;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo i {
+            font-size: 1.75rem;
+            color: #f59e0b;
+        }
+
+        .nav-section {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-section-title {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.2s;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .nav-item i {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.2), transparent);
+            color: #fff;
+            border-left: 3px solid #f59e0b;
+            padding-left: calc(1.5rem - 3px);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .user-email {
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+
+        .btn-logout {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fee2e2;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-cube"></i>
+                <span>ERP System</span>
+            </a>
+        </div>
+
+        <nav>
+            <div class="nav-section">
+                <span class="nav-section-title">DASHBOARD</span>
+                <a href="../index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>ภาพรวม</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-section-title">งาน (SALES)</span>
+                <a href="quotation-list.html" class="nav-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>ใบเสนอราคา</span>
+                </a>
+                <a href="billing-list.html" class="nav-item">
+                    <i class="fas fa-receipt"></i>
+                    <span>ใบวางบิล</span>
+                </a>
+                <a href="invoice-list.html" class="nav-item">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>ใบแจ้งหนี้</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>ลูกค้า</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                <a href="pending-orders.html" class="nav-item">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>รอสั่งซื้อ</span>
+                </a>
+                <a href="suppliers.html" class="nav-item">
+                    <i class="fas fa-building"></i>
+                    <span>ซัพพลายเออร์</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-section-title">การเงิน (FINANCE)</span>
+                <a href="expense-list.html" class="nav-item">
+                    <i class="fas fa-receipt"></i>
+                    <span>ค่าใช้จ่าย</span>
+                </a>
+                <a href="payment-list.html" class="nav-item">
+                    <i class="fas fa-money-check-alt"></i>
+                    <span>เตรียมจ่าย</span>
+                </a>
+                <a href="withholding-tax-list.html" class="nav-item">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <span>หัก ณ ที่จ่าย</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                <a href="asset-list.html" class="nav-item">
+                    <i class="fas fa-laptop"></i>
+                    <span>จัดการสินทรัพย์</span>
+                </a>
+                <a href="depreciation-list.html" class="nav-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>บันทึกค่าเสื่อมราคา</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                <a href="products.html" class="nav-item">
+                    <i class="fas fa-boxes"></i>
+                    <span>สินค้า</span>
+                </a>
+                <a href="stock-in-list.html" class="nav-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>รับวัตถุดิบเข้า</span>
+                </a>
+                <a href="stock-out-list.html" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>เบิกวัตถุดิบออก</span>
+                </a>
+                <a href="stock-adjustment-list.html" class="nav-item">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>ปรับปรุงสต็อก</span>
+                </a>
+            </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <span class="user-label">เข้าสู่ระบบเป็น</span>
+                <span class="user-name">Pzo</span>
+                <span class="user-email">pongkit@misuexemm.com • admin</span>
+            </div>
+            <button class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                ออกจากระบบ
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-content">
+                <div class="page-title">
+                    <div class="title-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <h1>บันทึกค่าเสื่อมราคา</h1>
+                        <div class="breadcrumb">
+                            <a href="depreciation-list.html">บันทึกค่าเสื่อมราคา</a>
+                            <i class="fas fa-chevron-right"></i>
+                            <span>สร้างรายการใหม่</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <form class="form-card">
+                <div class="card-header">
+                    <h2>
+                        <i class="fas fa-file-invoice"></i>
+                        ข้อมูลการบันทึกค่าเสื่อมราคา
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                    <!-- Period Information -->
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>
+                                วันที่เริ่มต้นงวด
+                                <span class="required">*</span>
+                            </label>
+                            <input type="date" value="2026-01-01" required>
+                            <span class="form-help">กำหนดวันที่เริ่มต้นของงวดที่ต้องการคำนวณ</span>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                วันที่สิ้นสุดงวด
+                                <span class="required">*</span>
+                            </label>
+                            <input type="date" value="2026-01-31" required>
+                            <span class="form-help">กำหนดวันที่สิ้นสุดของงวดที่ต้องการคำนวณ</span>
+                        </div>
+                    </div>
+
+                    <!-- Summary Info Box -->
+                    <div class="info-box">
+                        <h3>
+                            <i class="fas fa-info-circle"></i>
+                            สรุปข้อมูลค่าเสื่อมราคา
+                        </h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">จำนวนทรัพย์สิน</span>
+                                <span class="info-value">7 รายการ</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">มูลค่ารวมทรัพย์สิน</span>
+                                <span class="info-value">231,130.00 ฿</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">ค่าเสื่อมงวดนี้</span>
+                                <span class="info-value">72,883.88 ฿</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assets Table -->
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>รายการทรัพย์สินที่คำนวณค่าเสื่อม</h3>
+                            <button type="button" class="btn-add-asset">
+                                <i class="fas fa-plus"></i>
+                                เพิ่มทรัพย์สิน
+                            </button>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">#</th>
+                                    <th>รหัสทรัพย์สิน</th>
+                                    <th>ชื่อทรัพย์สิน</th>
+                                    <th class="text-right">ราคาทุน</th>
+                                    <th class="text-right">ค่าเสื่อมสะสม</th>
+                                    <th class="text-right">ค่าเสื่อมงวดนี้</th>
+                                    <th class="text-right">มูลค่าคงเหลือ</th>
+                                    <th style="width: 100px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="asset-row">
+                                    <td>1</td>
+                                    <td>AST-001</td>
+                                    <td>คำครื่องปัก</td>
+                                    <td class="text-right">50,000.00</td>
+                                    <td class="text-right">7,213.75</td>
+                                    <td class="text-right">16,664.67</td>
+                                    <td class="text-right">26,121.58</td>
+                                    <td>
+                                        <button type="button" class="btn-remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="asset-row">
+                                    <td>2</td>
+                                    <td>AST-002</td>
+                                    <td>คำครื่องปัก</td>
+                                    <td class="text-right">50,000.00</td>
+                                    <td class="text-right">5,798.39</td>
+                                    <td class="text-right">16,664.67</td>
+                                    <td class="text-right">27,536.94</td>
+                                    <td>
+                                        <button type="button" class="btn-remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="asset-row">
+                                    <td>3</td>
+                                    <td>FUR-001</td>
+                                    <td>คำสติกเกอร์คัตเตอร์</td>
+                                    <td class="text-right">390.00</td>
+                                    <td class="text-right">68.42</td>
+                                    <td class="text-right">77.80</td>
+                                    <td class="text-right">243.78</td>
+                                    <td>
+                                        <button type="button" class="btn-remove">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Additional Information -->
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>หมายเหตุ</label>
+                            <textarea placeholder="ระบุข้อมูลเพิ่มเติม (ถ้ามี)"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <a href="depreciation-list.html" class="btn btn-secondary">
+                            <i class="fas fa-times"></i>
+                            ยกเลิก
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            บันทึกข้อมูล
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Simple form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('บันทึกข้อมูลค่าเสื่อมราคาเรียบร้อยแล้ว');
+            window.location.href = 'depreciation-list.html';
+        });
+
+        // Add asset button
+        document.querySelector('.btn-add-asset').addEventListener('click', function() {
+            alert('เปิดหน้าต่างเลือกทรัพย์สิน');
+        });
+
+        // Remove asset buttons
+        document.querySelectorAll('.btn-remove').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                if (confirm('คุณต้องการลบรายการนี้ใช่หรือไม่?')) {
+                    this.closest('tr').remove();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -343,6 +343,10 @@
                         <i class="fas fa-user-tie"></i>
                         <span>พนักงาน</span>
                     </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
                 </div>
                 
                 <div class="nav-section">
@@ -358,14 +362,38 @@
                 </div>
                 
                 <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
                     <span class="nav-section-title">สินค้า (INVENTORY)</span>
                     <a href="products.html" class="nav-item active">
                         <i class="fas fa-boxes"></i>
                         <span>สินค้า</span>
-                    </a>
-                    <a href="inventory.html" class="nav-item">
-                        <i class="fas fa-warehouse"></i>
-                        <span>คลังสินค้า</span>
                     </a>
                     <a href="stock-in-list.html" class="nav-item">
                         <i class="fas fa-sign-in-alt"></i>
@@ -380,18 +408,23 @@
                         <span>ปรับปรุงสต็อก</span>
                     </a>
                 </div>
-
                 <div class="nav-section">
-                    <span class="nav-section-title">การเงิน (FINANCE)</span>
-                    <a href="expense-list.html" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <span>ค่าใช้จ่าย</span>
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
                     </a>
-                    <a href="withholding-tax-list.html" class="nav-item">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        <span>หัก ณ ที่จ่าย</span>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
                     </a>
                 </div>
+
+
             </nav>
             
             <div class="sidebar-footer">
@@ -514,9 +547,6 @@
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th style="width: 50px;">
-                                        <input type="checkbox" id="selectAll">
-                                    </th>
                                     <th style="width: 120px;">รหัสสินค้า</th>
                                     <th>ชื่อสินค้า</th>
                                     <th style="width: 120px;">ราคาต่อหน่วย</th>
@@ -528,7 +558,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input type="checkbox"></td>
                                     <td>
                                         <div style="display: flex; align-items: center; gap: 12px;">
                                             <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
@@ -554,7 +583,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"></td>
                                     <td>
                                         <div style="display: flex; align-items: center; gap: 12px;">
                                             <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
@@ -580,7 +608,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"></td>
                                     <td>
                                         <div style="display: flex; align-items: center; gap: 12px;">
                                             <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
@@ -606,7 +633,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"></td>
                                     <td>
                                         <div style="display: flex; align-items: center; gap: 12px;">
                                             <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">
@@ -632,7 +658,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox"></td>
                                     <td>
                                         <div style="display: flex; align-items: center; gap: 12px;">
                                             <img src="https://via.placeholder.com/40" style="width: 40px; height: 40px; border-radius: 6px; object-fit: cover;">

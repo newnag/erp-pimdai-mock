@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ใบเสนอราคา - ERP PIMDAI</title>
+    <title>เตรียมจ่าย - ERP PIMDAI</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/quotation.css">
     <link rel="stylesheet" href="../css/quotation-list.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -35,7 +34,7 @@
                 
                 <div class="nav-section">
                     <span class="nav-section-title">งาน (SALES)</span>
-                    <a href="quotation-list.html" class="nav-item active">
+                    <a href="quotation-list.html" class="nav-item">
                         <i class="fas fa-file-invoice"></i>
                         <span>ใบเสนอราคา</span>
                     </a>
@@ -50,14 +49,6 @@
                     <a href="customers.html" class="nav-item">
                         <i class="fas fa-users"></i>
                         <span>ลูกค้า</span>
-                    </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user-tie"></i>
-                        <span>พนักงาน</span>
-                    </a>
-                    <a href="extra-duty-list.html" class="nav-item">
-                        <i class="fas fa-tasks"></i>
-                        <span>Extra Duty</span>
                     </a>
                 </div>
                 
@@ -99,7 +90,7 @@
                         <i class="fas fa-receipt"></i>
                         <span>ค่าใช้จ่าย</span>
                     </a>
-                    <a href="payment-list.html" class="nav-item">
+                    <a href="payment-list.html" class="nav-item active">
                         <i class="fas fa-money-check-alt"></i>
                         <span>เตรียมจ่าย</span>
                     </a>
@@ -115,23 +106,27 @@
                         <i class="fas fa-laptop"></i>
                         <span>จัดการสินทรัพย์</span>
                     </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
                 </div>
-
                 <div class="nav-section">
-                    <span class="nav-section-title">ตั้งค่า (SETTINGS)</span>
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
                     <a href="inventory.html" class="nav-item">
                         <i class="fas fa-warehouse"></i>
-                        <span>คลังสินค้า</span>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
                     </a>
                     <a href="asset-category-list.html" class="nav-item">
                         <i class="fas fa-tags"></i>
-                        <span>หมวดหมู่ทรัพย์สิน</span>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
                     </a>
                     <a href="user-list.html" class="nav-item">
                         <i class="fas fa-user-cog"></i>
-                        <span>จัดการสมาชิก</span>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
                     </a>
                 </div>
+
             </nav>
             
             <div class="sidebar-footer">
@@ -156,16 +151,32 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <div class="page-title">
-                        <h1>ใบเสนอราคา</h1>
+                        <h1 style="color: #10b981;">ใบเตรียมจ่าย/ใบสำคัญจ่าย</h1>
                         <nav class="breadcrumb">
-                            <a href="#">ใบเสนอราคา</a>
+                            <a href="#">ใบเตรียมจ่าย/ใบสำคัญจ่าย</a>
                             <span class="separator">›</span>
                             <span>แสดงทั้งหมด</span>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
                         </nav>
                     </div>
                 </div>
                 <div class="header-right">
-                    <a href="quotation.html" class="btn-create">
+                    <a href="payment-create.html" class="btn-create" style="background: linear-gradient(135deg, #10b981, #059669);">
                         <i class="fas fa-plus"></i>
                         สร้างใหม่
                     </a>
@@ -175,18 +186,18 @@
             <!-- Page Content -->
             <div class="page-content list-page">
                 <!-- Filter Bar -->
-                <div class="filter-bar">
+                <div class="filter-bar" style="background: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px;">
                     <div class="filter-tabs">
-                        <button class="filter-tab active">แสดงทั้งหมด</button>
-                        <button class="filter-tab icon-tab" title="ดูแบบกราฟ">
-                            <i class="fas fa-chart-bar"></i>
-                        </button>
+                        <button class="filter-tab active" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 10px 24px; border-radius: 8px; border: none; font-weight: 500; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3); transition: all 0.3s ease;">แสดงทั้งหมด</button>
                     </div>
-                    <div class="filter-actions">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="ค้นหาเอกสาร..." id="searchInput">
+                    <div class="filter-actions" style="display: flex; gap: 12px; align-items: center;">
+                        <div class="search-box" style="position: relative; flex: 1; max-width: 400px;">
+                            <i class="fas fa-search" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #10b981; font-size: 16px;"></i>
+                            <input type="text" placeholder="ค้นหาเลขที่เอกสาร, ผู้จำหน่าย..." id="searchInput" style="width: 100%; padding: 12px 16px 12px 48px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 14px; transition: all 0.3s ease; background: #f9fafb;" onfocus="this.style.borderColor='#10b981'; this.style.background='#ffffff'; this.style.boxShadow='0 0 0 3px rgba(16, 185, 129, 0.1)';" onblur="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'; this.style.boxShadow='none';">
                         </div>
+                        <button class="btn-icon" title="แสดงตัวกรอง" style="padding: 12px 16px; background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 10px; color: #6b7280; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.background='#10b981'; this.style.borderColor='#10b981'; this.style.color='white'; this.style.boxShadow='0 2px 8px rgba(16, 185, 129, 0.3)';" onmouseout="this.style.background='#f3f4f6'; this.style.borderColor='#e5e7eb'; this.style.color='#6b7280'; this.style.boxShadow='none';">
+                            <i class="fas fa-sliders-h"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -195,35 +206,37 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th class="col-date">วันที่</th>
+                                <th class="col-date">ช่วระยอหน้าที่</th>
                                 <th class="col-docno">เลขที่เอกสาร</th>
-                                <th class="col-customer">ชื่อลูกค้า/ชื่อโปรเจ็ค</th>
-                                <th class="col-amount">ยอดรวมสุทธิ</th>
-                                <th class="col-status">สถานะ</th>
-                                <th class="col-action"></th>
+                                <th class="col-supplier">ผู้จำหน่าย</th>
+                                <th class="col-amount">ยอดชำระสุทธิ</th>
+                                <th class="col-status" style="width: 160px;">สถานะ</th>
+                                <th class="col-action" style="width: 60px; text-align: right; padding-right: 20px;"></th>
                             </tr>
                         </thead>
-                        <tbody id="quotationTableBody">
-                            <!-- Row 1 - Approved -->
+                        <tbody id="paymentTableBody">
+                            <!-- Row 1 -->
                             <tr class="data-row">
-                                <td class="col-date">02-02-2026</td>
+                                <td class="col-date">30-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot approved"></span>
-                                    <a href="quotation.html" class="doc-link">QT2026020019</a>
+                                    <span class="status-dot" style="background: #10b981;"></span>
+                                    <a href="#" class="doc-link">PAY2026010003</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
+                                <td class="col-supplier">
                                     <div class="customer-info">
-                                        <span class="customer-name">ชวิน บริบูรณ์</span>
-                                        <span class="project-name">pimdai (Roll up)</span>
+                                        <span class="customer-name">บริษัท วามศิลป์ (ประเทศไทย) จำกัด</span>
                                     </div>
                                 </td>
-                                <td class="col-amount">1,282.93</td>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    6,406.40
+                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select approved">
-                                            <option value="approved" selected>อนุมัติ</option>
-                                            <option value="pending">รออนุมัติ</option>
-                                            <option value="rejected">ไม่อนุมัติ</option>
+                                        <select class="status-select" style="background: #d1fae5; color: #059669; border-color: #a7f3d0;">
+                                            <option value="paid" selected>ช่วระเงินแล้ว</option>
+                                            <option value="pending">รอชำระ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -236,24 +249,26 @@
                             </tr>
                             <!-- Row 2 -->
                             <tr class="data-row">
-                                <td class="col-date">02-02-2026</td>
+                                <td class="col-date">27-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot pending"></span>
-                                    <a href="quotation.html" class="doc-link">QT2026020018</a>
+                                    <span class="status-dot" style="background: #10b981;"></span>
+                                    <a href="#" class="doc-link">PAY2026010002</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
+                                <td class="col-supplier">
                                     <div class="customer-info">
-                                        <span class="customer-name">บริษัท เอ็กซ์เปอร์ท เพสท์ ซิสเต็ม จำกัด</span>
-                                        <span class="project-name">pimdai</span>
+                                        <span class="customer-name">บริษัท วามศิลป์ (ประเทศไทย) จำกัด</span>
                                     </div>
                                 </td>
-                                <td class="col-amount">8,346.00</td>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    2,317.12
+                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select pending">
-                                            <option value="approved">อนุมัติ</option>
-                                            <option value="pending" selected>รออนุมัติ</option>
-                                            <option value="rejected">ไม่อนุมัติ</option>
+                                        <select class="status-select" style="background: #d1fae5; color: #059669; border-color: #a7f3d0;">
+                                            <option value="paid" selected>ช่วระเงินแล้ว</option>
+                                            <option value="pending">รอชำระ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -266,24 +281,26 @@
                             </tr>
                             <!-- Row 3 -->
                             <tr class="data-row">
-                                <td class="col-date">02-02-2026</td>
+                                <td class="col-date">12-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot pending"></span>
-                                    <a href="quotation.html" class="doc-link">QT2026020017</a>
+                                    <span class="status-dot" style="background: #10b981;"></span>
+                                    <a href="#" class="doc-link">PAY2026010001</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
+                                <td class="col-supplier">
                                     <div class="customer-info">
-                                        <span class="customer-name">บริษัท เอ็กซ์เปอร์ท เพสท์ ซิสเต็ม จำกัด</span>
-                                        <span class="project-name">pimdai</span>
+                                        <span class="customer-name">บริษัท วามศิลป์ (ประเทศไทย) จำกัด</span>
                                     </div>
                                 </td>
-                                <td class="col-amount">6,206.00</td>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    13,318.83
+                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select pending">
-                                            <option value="approved">อนุมัติ</option>
-                                            <option value="pending" selected>รออนุมัติ</option>
-                                            <option value="rejected">ไม่อนุมัติ</option>
+                                        <select class="status-select" style="background: #d1fae5; color: #059669; border-color: #a7f3d0;">
+                                            <option value="paid" selected>ช่วระเงินแล้ว</option>
+                                            <option value="pending">รอชำระ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -296,24 +313,26 @@
                             </tr>
                             <!-- Row 4 -->
                             <tr class="data-row">
-                                <td class="col-date">02-02-2026</td>
+                                <td class="col-date">09-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot pending"></span>
-                                    <a href="quotation.html" class="doc-link">QT2026020016</a>
+                                    <span class="status-dot" style="background: #10b981;"></span>
+                                    <a href="#" class="doc-link">PAY2025120002</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
+                                <td class="col-supplier">
                                     <div class="customer-info">
-                                        <span class="customer-name">บริษัท เจ๋งเย่ เอ็นจิเนียริ่ง คอนสตรัคชั่น (ประเทศไทย) จำกัด</span>
-                                        <span class="project-name">pimdai</span>
+                                        <span class="customer-name">บริษัท วามศิลป์ (ประเทศไทย) จำกัด</span>
                                     </div>
                                 </td>
-                                <td class="col-amount">2,728.50</td>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    3,432.00
+                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select pending">
-                                            <option value="approved">อนุมัติ</option>
-                                            <option value="pending" selected>รออนุมัติ</option>
-                                            <option value="rejected">ไม่อนุมัติ</option>
+                                        <select class="status-select" style="background: #d1fae5; color: #059669; border-color: #a7f3d0;">
+                                            <option value="paid" selected>ช่วระเงินแล้ว</option>
+                                            <option value="pending">รอชำระ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -326,24 +345,26 @@
                             </tr>
                             <!-- Row 5 -->
                             <tr class="data-row">
-                                <td class="col-date">02-02-2026</td>
+                                <td class="col-date">09-01-2026</td>
                                 <td class="col-docno">
-                                    <span class="status-dot pending"></span>
-                                    <a href="quotation.html" class="doc-link">QT2026020015</a>
+                                    <span class="status-dot" style="background: #10b981;"></span>
+                                    <a href="#" class="doc-link">PAY2025120001</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
+                                <td class="col-supplier">
                                     <div class="customer-info">
-                                        <span class="customer-name">บริษัท เฮลโลอินอะคัพ จำกัด</span>
-                                        <span class="project-name">pimdai</span>
+                                        <span class="customer-name">บริษัท วามศิลป์ (ประเทศไทย) จำกัด</span>
                                     </div>
                                 </td>
-                                <td class="col-amount">2,120.74</td>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    3,203.20
+                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select pending">
-                                            <option value="approved">อนุมัติ</option>
-                                            <option value="pending" selected>รออนุมัติ</option>
-                                            <option value="rejected">ไม่อนุมัติ</option>
+                                        <select class="status-select" style="background: #d1fae5; color: #059669; border-color: #a7f3d0;">
+                                            <option value="paid" selected>ช่วระเงินแล้ว</option>
+                                            <option value="pending">รอชำระ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -356,54 +377,26 @@
                             </tr>
                             <!-- Row 6 -->
                             <tr class="data-row">
-                                <td class="col-date">02-02-2026</td>
+                                <td class="col-date">13-06-2025</td>
                                 <td class="col-docno">
-                                    <span class="status-dot pending"></span>
-                                    <a href="quotation.html" class="doc-link">QT2026020014</a>
+                                    <span class="status-dot" style="background: #10b981;"></span>
+                                    <a href="#" class="doc-link">PAY2025060001</a>
+                                    <i class="fas fa-copy doc-icon" title="คัดลอกไปยังคลิปบอร์ด"></i>
                                 </td>
-                                <td class="col-customer">
+                                <td class="col-supplier">
                                     <div class="customer-info">
-                                        <span class="customer-name">ศุภนิดา ฤทธิ์เจริญ</span>
-                                        <span class="project-name">pimdai</span>
+                                        <span class="customer-name">นางกัณฑรัตน์ รัตนจันทร์</span>
                                     </div>
                                 </td>
-                                <td class="col-amount">535.00</td>
+                                <td class="col-amount" style="font-weight: 600; color: #1f2937;">
+                                    5,000.00
+                                    <i class="fas fa-info-circle info-icon" title="ข้อมูลเพิ่มเติม"></i>
+                                </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
-                                        <select class="status-select pending">
-                                            <option value="approved">อนุมัติ</option>
-                                            <option value="pending" selected>รออนุมัติ</option>
-                                            <option value="rejected">ไม่อนุมัติ</option>
-                                            <option value="cancelled">ยกเลิก</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td class="col-action">
-                                    <button class="btn-more" title="ตัวเลือกเพิ่มเติม">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- Row 7 -->
-                            <tr class="data-row">
-                                <td class="col-date">02-02-2026</td>
-                                <td class="col-docno">
-                                    <span class="status-dot pending"></span>
-                                    <a href="quotation.html" class="doc-link">QT2026020013</a>
-                                </td>
-                                <td class="col-customer">
-                                    <div class="customer-info">
-                                        <span class="customer-name">บริษัท เมล มาสเตอร์ จำกัด</span>
-                                        <span class="project-name">pimdai</span>
-                                    </div>
-                                </td>
-                                <td class="col-amount">30,067.00</td>
-                                <td class="col-status">
-                                    <div class="status-select-wrapper">
-                                        <select class="status-select pending">
-                                            <option value="approved">อนุมัติ</option>
-                                            <option value="pending" selected>รออนุมัติ</option>
-                                            <option value="rejected">ไม่อนุมัติ</option>
+                                        <select class="status-select" style="background: #d1fae5; color: #059669; border-color: #a7f3d0;">
+                                            <option value="paid" selected>ช่วระเงินแล้ว</option>
+                                            <option value="pending">รอชำระ</option>
                                             <option value="cancelled">ยกเลิก</option>
                                         </select>
                                     </div>
@@ -429,9 +422,6 @@
                         </button>
                         <button class="page-btn active">1</button>
                         <button class="page-btn">2</button>
-                        <button class="page-btn">3</button>
-                        <button class="page-btn">4</button>
-                        <button class="page-btn">5</button>
                         <button class="page-btn" title="ถัดไป">
                             <i class="fas fa-angle-right"></i>
                         </button>
@@ -450,15 +440,17 @@
                         </div>
                     </div>
                     
-                    <button class="btn-show-total">
-                        แสดงยอดรวมทั้งหมด
-                    </button>
+                    <div style="margin-top: 16px; text-align: right;">
+                        <a href="#" style="color: #10b981; text-decoration: none; font-weight: 500; font-size: 14px;">
+                            แสดงยอดรวมทั้งหมด
+                            <i class="fas fa-chevron-down" style="margin-left: 6px;"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 
     <script src="../js/app.js"></script>
-    <script src="../js/quotation-list.js"></script>
 </body>
 </html>

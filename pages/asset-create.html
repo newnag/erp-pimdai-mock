@@ -1,0 +1,626 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่มสินทรัพย์ - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Blue theme for assets */
+        .doc-icon {
+            background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.35);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Enhanced Input Styling */
+        .form-input, .form-select, .form-textarea {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            width: 100%;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            outline: none;
+            background: #f9fafb;
+        }
+        
+        .form-input:hover, .form-select:hover, .form-textarea:hover {
+            border-color: #d1d5db;
+        }
+        
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #9ca3af;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+        }
+        
+        .section-header {
+            color: #3b82f6;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .form-col-full {
+            grid-column: 1 / -1;
+        }
+        
+        .asset-form-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        
+        .form-section {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .image-upload-section {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            margin-top: 24px;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 48px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            cursor: pointer;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .file-upload-area i {
+            font-size: 3rem;
+            color: #9ca3af;
+            margin-bottom: 16px;
+        }
+        
+        .file-upload-area:hover i {
+            color: #3b82f6;
+        }
+        
+        .file-upload-area p {
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+        
+        .file-upload-area small {
+            font-size: 14px;
+            color: #6b7280;
+        }
+        
+        .input-with-unit {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .input-with-unit .form-input {
+            flex: 1;
+        }
+        
+        .input-with-unit .unit-label {
+            color: #6b7280;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 0;
+        }
+        
+        .form-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+        
+        .checkbox-label {
+            font-weight: 500;
+            color: #374151;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        
+        .info-icon {
+            color: #3b82f6;
+            cursor: help;
+            margin-left: 6px;
+            font-size: 14px;
+        }
+        
+        .amount-display-box {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: right;
+            margin-bottom: 24px;
+        }
+        
+        .amount-label {
+            font-size: 14px;
+            color: #1e40af;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .amount-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        
+        .depreciation-section {
+            background: #f9fafb;
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            margin-top: 24px;
+        }
+        
+        .depreciation-header {
+            color: #3b82f6;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .form-footer-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #e5e7eb;
+            display: flex;
+            gap: 16px;
+            justify-content: flex-end;
+        }
+        
+        .form-footer-section .btn-primary,
+        .form-footer-section .btn-secondary {
+            min-width: 160px;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .asset-image-preview {
+            width: 100%;
+            max-width: 280px;
+            height: 280px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .asset-image-preview i {
+            font-size: 4rem;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item active">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                    <a href="stock-report.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>รายงานสต็อก</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header quotation-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <div class="doc-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="doc-info">
+                            <span class="doc-type">เพิ่มสินทรัพย์</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary">
+                        <i class="fas fa-times"></i>
+                        ปิดหน้าต่าง
+                    </button>
+                    <div class="btn-group">
+                        <button class="btn-primary" id="saveBtn">
+                            <i class="fas fa-save"></i>
+                            บันทึกเอกสาร
+                        </button>
+                        <button class="btn-primary btn-dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Asset Form -->
+            <div class="page-content quotation-page">
+                <div class="quotation-container">
+                    <!-- Image Preview & Amount Box -->
+                    <div class="form-section" style="margin-bottom: 24px;">
+                        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 32px; align-items: start;">
+                            <div>
+                                <div class="asset-image-preview">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <p style="text-align: center; color: #6b7280; font-size: 14px;">คลิกเพื่อเลือกไฟล์<br>หรือลากและวางไฟล์ที่นี่</p>
+                            </div>
+                            <div>
+                                <h3 style="font-size: 20px; font-weight: 600; color: #3b82f6; margin-bottom: 16px;">ชื่อสินทรัพย์</h3>
+                                <div style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px;">
+                                    <div style="flex: 1;">
+                                        <div style="font-size: 14px; color: #6b7280; margin-bottom: 4px;">สถานะสินทรัพย์:</div>
+                                        <div style="font-size: 15px; color: #374151; font-weight: 500;">(ระบบจะดำเสื่อมเงิน - เอื่อม)</div>
+                                    </div>
+                                </div>
+                                <div class="amount-display-box">
+                                    <span class="amount-label">ราคาซื้อ</span>
+                                    <div class="amount-value">0.00</div>
+                                </div>
+                                <div class="amount-display-box" style="background: linear-gradient(135deg, #f0fdf4, #d1fae5); border-color: #10b981;">
+                                    <span class="amount-label" style="color: #047857;">มูลค่าทางบัญชี</span>
+                                    <div class="amount-value" style="color: #10b981;">0.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Form -->
+                    <div class="asset-form-container">
+                        <!-- Left Column: Basic Info -->
+                        <div>
+                            <div class="form-section">
+                                <h3 class="section-header">ข้อมูลสินทรัพย์พื้นฐาน</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">รหัสสินทรัพย์:</label>
+                                    <input type="text" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">ชื่อสินทรัพย์:</label>
+                                    <input type="text" class="form-input" placeholder="กรุณาระบุชื่อสินทรัพย์">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">รายละเอียดสินทรัพย์:</label>
+                                    <textarea class="form-textarea" rows="4" placeholder=""></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">เลขที่เอกสารอ้างอิง:</label>
+                                    <input type="text" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">หมวดหมู่สินทรัพย์:</label>
+                                    <select class="form-select">
+                                        <option value="">กรุณาเลือกหมวดหมู่สินทรัพย์</option>
+                                        <option value="computer">คอมพิวเตอร์/อุปกรณ์ไอที</option>
+                                        <option value="furniture">เฟอร์นิเจอร์/อุปกรณ์สำนักงาน</option>
+                                        <option value="vehicle">ยานพาหนะ</option>
+                                        <option value="building">อาคาร/สิ่งปลูกสร้าง</option>
+                                        <option value="machine">เครื่องจักร/อุปกรณ์</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">จำนวน:</label>
+                                    <div class="input-with-unit">
+                                        <input type="number" class="form-input" value="1.00" step="0.01">
+                                        <span class="unit-label">หน่วย</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">วันที่ซื้อ:</label>
+                                    <input type="text" class="form-input" placeholder="กรุณาระบุวันที่ซื้อ">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Additional Info -->
+                        <div>
+                            <div class="form-section">
+                                <h3 class="section-header">ข้อมูลอื่นๆ</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">ชื่อผู้จำหน่าย:</label>
+                                    <input type="text" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">หมายเลขซีเรียล:</label>
+                                    <input type="text" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">วันหมดอายุประกัน:</label>
+                                    <input type="text" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">ที่ตั้งสินทรัพย์:</label>
+                                    <input type="text" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">ผู้ใช้งาน:</label>
+                                    <input type="text" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">โน้ต:</label>
+                                    <textarea class="form-textarea" rows="6" placeholder=""></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section" style="margin-top: 24px;">
+                                <h3 class="section-header">แนบเอกสาร/รูปภาพ:</h3>
+                                <div class="file-upload-area">
+                                    <i class="fas fa-image"></i>
+                                    <p>คลิกเพื่อเลือกไฟล์</p>
+                                    <small>หรือลากและวางไฟล์ที่นี่</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depreciation Section -->
+                    <div class="depreciation-section">
+                        <h3 class="depreciation-header">วิธีการคำนวบค่าเสื่อมราคาบัญชี</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">วันที่เริ่มคิดค่าเสื่อมใช้งาน: <i class="fas fa-info-circle info-icon" title="วันที่เริ่มคิดค่าเสื่อมราคา"></i></label>
+                                <input type="text" class="form-input" placeholder="กรุณาระบุวันที่เริ่มคิดค่าเสื่อมใช้งาน">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">ราคาซื้อ:</label>
+                                <input type="number" class="form-input" value="0.00" step="0.01">
+                            </div>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="enableDepreciation" class="form-checkbox" checked>
+                            <label for="enableDepreciation" class="checkbox-label">คิดค่าเสื่อมราคาสินทรัพย์นี้</label>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">มูลค่าซาก: <i class="fas fa-info-circle info-icon" title="มูลค่าคงเหลือเมื่อสิ้นสุดอายุการใช้งาน"></i></label>
+                                <input type="number" class="form-input" value="1.00" step="0.01">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">มูลค่าที่คิดค่าเสื่อม:</label>
+                                <input type="number" class="form-input" value="0.00" step="0.01" readonly style="background: #f3f4f6;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">อายุการใช้งานทางบัญชี (ปี):</label>
+                                <input type="number" class="form-input" value="0" min="0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">ค่าควบค่าเสื่อมต่อปี (%):</label>
+                                <input type="text" class="form-input" value="0.00%" readonly style="background: #f3f4f6;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">ค่าเสื่อมที่คำนวบได้ต่อปี:</label>
+                            <input type="text" class="form-input" placeholder="" readonly style="background: #f3f4f6;">
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="hasAccumulatedDepreciation" class="form-checkbox">
+                            <label for="hasAccumulatedDepreciation" class="checkbox-label">สินทรัพย์นี้มีค่าเสื่อมสะสมมาก่อน</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,794 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างการชำระหนี้/จ่ายเงินทุน - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation.css">
+    <link rel="stylesheet" href="../css/invoice.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Green theme overrides */
+        .doc-icon {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .document-amount {
+            color: #10b981;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+        
+        .summary-total {
+            color: #10b981;
+            font-weight: 700;
+        }
+        
+        .items-table thead th {
+            background: #10b981;
+            color: white;
+            font-weight: 600;
+            padding: 16px 12px;
+            text-align: center;
+        }
+        
+        .items-table tbody td {
+            padding: 12px;
+            vertical-align: middle;
+        }
+        
+        .btn-add-row {
+            color: #10b981;
+            border: 2px dashed #10b981;
+            background: #f0fdf4;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-add-row:hover {
+            background: #d1fae5;
+            border-color: #059669;
+            color: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+        
+        .payment-header h3 {
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .payment-link {
+            color: #10b981;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .payment-link:hover {
+            color: #059669;
+            transform: translateX(4px);
+        }
+        
+        .form-checkbox:checked + .checkbox-label::before {
+            background: #10b981;
+            border-color: #10b981;
+        }
+        
+        /* Enhanced Input Styling */
+        .form-input, .form-select, .form-textarea {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+            outline: none;
+            background: #f9fafb;
+        }
+        
+        .form-input:hover, .form-select:hover, .form-textarea:hover {
+            border-color: #d1d5db;
+        }
+        
+        .table-input {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 8px 12px;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+        
+        .table-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: none;
+        }
+        
+        .table-input:hover {
+            border-color: #d1d5db;
+        }
+        
+        .customer-select-wrapper {
+            position: relative;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .btn-add-new {
+            min-width: 44px;
+            height: 44px;
+            border: 2px solid #10b981;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+        }
+        
+        .btn-add-new:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .section-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+        }
+        
+        .option-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+        }
+        
+        .document-amount-box {
+            background: linear-gradient(135deg, #f0fdf4, #d1fae5);
+            border: 2px solid #10b981;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+        
+        .amount-label {
+            font-size: 14px;
+            color: #047857;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .summary-section {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 24px;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-total-row {
+            background: linear-gradient(135deg, #f0fdf4, #d1fae5);
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 8px;
+            border: 2px solid #10b981;
+        }
+        
+        .summary-input {
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 6px 12px;
+            text-align: right;
+            transition: all 0.3s ease;
+        }
+        
+        .summary-input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: none;
+        }
+        
+        .file-upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            cursor: pointer;
+        }
+        
+        .file-upload-area:hover {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+        
+        .file-upload-area i {
+            font-size: 2.5rem;
+            color: #9ca3af;
+            margin-bottom: 12px;
+        }
+        
+        .file-upload-area:hover i {
+            color: #10b981;
+        }
+        
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-icon:hover {
+            background: #f9fafb;
+            border-color: #10b981;
+            color: #10b981;
+            transform: scale(1.05);
+        }
+        
+        .info-notice {
+            margin-top: 16px;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .info-notice i {
+            color: #3b82f6;
+            margin-top: 2px;
+        }
+        
+        .form-footer-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 2px solid #e5e7eb;
+            display: flex;
+            gap: 16px;
+        }
+        
+        .form-footer-section .btn-primary {
+            flex: 1;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .form-footer-section .btn-secondary {
+            flex: 1;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            background: white;
+            border: 2px solid #d1d5db;
+            color: #374151;
+        }
+        
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 0;
+        }
+        
+        .checkbox-label {
+            font-weight: 500;
+            color: #374151;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item active">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                    <a href="stock-report.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>รายงานสต็อก</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header quotation-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <div class="doc-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="doc-info">
+                            <span class="doc-type">สร้างการชำระหนี้/จ่ายเงินทุน</span>
+                            <div class="doc-number-row">
+                                <h1 id="docNumber">PAY2026020001</h1>
+                                <button class="btn-icon" title="แก้ไขเลขที่เอกสาร">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-icon" title="รีเซ็ต">
+                                    <i class="fas fa-redo-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary">
+                        <i class="fas fa-times"></i>
+                        ปิดหน้าต่าง
+                    </button>
+                    <div class="btn-group">
+                        <button class="btn-primary" id="saveBtn">
+                            <i class="fas fa-save"></i>
+                            บันทึกการชำระเงิน
+                        </button>
+                        <button class="btn-primary btn-dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Payment Form -->
+            <div class="page-content quotation-page">
+                <div class="quotation-container">
+                    <!-- Main Form Area -->
+                    <div class="quotation-form">
+                        <!-- Top Section: Supplier Info + Document Info -->
+                        <div class="form-top-section">
+                            <!-- Supplier Information -->
+                            <div class="customer-section">
+                                <h3 class="section-label">ชื่อผู้จำหน่าย</h3>
+                                <div class="customer-select-wrapper">
+                                    <select id="supplierSelect" class="form-select">
+                                        <option value="">เลือกผู้จำหน่าย หรือพิมพ์เพื่อค้นหาง่าย</option>
+                                        <option value="supplier1">บริษัท ABC จำกัด</option>
+                                        <option value="supplier2">บริษัท XYZ จำกัด</option>
+                                        <option value="supplier3">ร้านค้าปลีก 123</option>
+                                    </select>
+                                    <button class="btn-add-new">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                
+                                <h3 class="section-label">ที่อยู่</h3>
+                                <textarea id="supplierAddress" class="form-textarea" rows="3" placeholder="รายละเอียดที่อยู่"></textarea>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="postalCode" class="form-input" placeholder="รหัสไปรษณีย์">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="taxId" class="form-input" placeholder="เลขประจำตัวผู้เสียภาษี">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" id="branchCode" class="form-input" placeholder="สำนักงาน/สาขาเลขที่">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Document Information -->
+                            <div class="document-section">
+                                <div class="document-amount-box">
+                                    <span class="amount-label">จำนวนเงินรวมทั้งสิ้น</span>
+                                    <div class="document-amount">0.00</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">วันที่:</label>
+                                    <input type="date" id="docDate" class="form-input" value="2026-02-04">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">ชำระภายในวันที่:</label>
+                                    <input type="date" id="dueDate" class="form-input" value="2026-02-04">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">ผู้จัดเตรียม:</label>
+                                    <select id="preparer" class="form-select">
+                                        <option value="">เก่งศักดิ์ หมู่เมืองหลวง</option>
+                                        <option value="user1">พงษ์กิจ แก้วมณี</option>
+                                        <option value="user2">สมชาย ใจดี</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">สกุลเงิน: <i class="fas fa-info-circle" title="สกุลเงิน"></i></label>
+                                    <select id="currency" class="form-select">
+                                        <option value="THB">🇹🇭 THB - ไทย</option>
+                                        <option value="USD">🇺🇸 USD - ดอลลาร์สหรัฐ</option>
+                                        <option value="EUR">🇪🇺 EUR - ยูโร</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Additional Fields Row -->
+                        <div class="product-options-row">
+                            <div class="option-group">
+                                <label class="option-label">ผู้รับ:</label>
+                                <input type="text" id="recipient" class="form-input" placeholder="">
+                            </div>
+                            <div class="option-group">
+                                <label class="option-label">ผู้อนุมัติ:</label>
+                                <input type="text" id="approver" class="form-input" placeholder="ผู้อนุมัติสามารถมีได้มากกว่า 1 คน">
+                            </div>
+                        </div>
+                        
+                        <div class="product-options-row">
+                            <div class="option-group full-width">
+                                <label class="option-label">สาเหตุที่จ่าย:</label>
+                                <textarea id="paymentReason" class="form-textarea" rows="2" placeholder=""></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Items Table -->
+                        <div class="items-table-container">
+                            <table class="items-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50px;">ลำดับ</th>
+                                        <th style="width: 300px;">ชื่อสินค้า / รายละเอียด</th>
+                                        <th style="width: 150px;">หลังบัญชี</th>
+                                        <th style="width: 100px;">จำนวน</th>
+                                        <th style="width: 80px;">หน่วย</th>
+                                        <th style="width: 120px;">ราคาต่อหน่วย</th>
+                                        <th style="width: 120px;">ราคารวม</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemsTableBody">
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="table-input text-right" value="1.00" step="0.01">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="table-input text-right" value="0.00" step="0.01">
+                                        </td>
+                                        <td class="text-right">0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">2</td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="table-input text-right" value="1.00" step="0.01">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="table-input text-right" value="0.00" step="0.01">
+                                        </td>
+                                        <td class="text-right">0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">3</td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="table-input text-right" value="1.00" step="0.01">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="table-input" placeholder="">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="table-input text-right" value="0.00" step="0.01">
+                                        </td>
+                                        <td class="text-right">0.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <button class="btn-add-row" id="addRowBtn">
+                                <i class="fas fa-plus"></i>
+                                เพิ่มแถวรายการ
+                            </button>
+                        </div>
+                        
+                        <!-- Bottom Section: Notes + Summary -->
+                        <div class="form-bottom-section">
+                            <!-- Left: Notes & Attachments -->
+                            <div class="notes-section">
+                                <div class="form-group">
+                                    <label class="form-label">หมายเหตุ:</label>
+                                    <textarea id="notes" class="form-textarea" rows="4" placeholder=""></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">โน้ตภายในบริษัท:</label>
+                                    <textarea id="internalNotes" class="form-textarea" rows="4" placeholder=""></textarea>
+                                </div>
+                                
+                                <div class="file-upload-area">
+                                    <i class="fas fa-image"></i>
+                                    <p>คลิกเพื่อเลือกไฟล์</p>
+                                    <small>หรือลากและวางไฟล์ที่นี่</small>
+                                </div>
+                            </div>
+                            
+                            <!-- Right: Summary -->
+                            <div class="summary-section">
+                                <div class="summary-row">
+                                    <span class="summary-label" style="color: #10b981; font-weight: 600;">รวมเป็นเงิน</span>
+                                    <span class="summary-value">0.00</span>
+                                </div>
+                                
+                                <div class="summary-row">
+                                    <div style="display: flex; align-items: center; gap: 8px;">
+                                        <span class="summary-label">ส่วนลด</span>
+                                        <input type="number" class="summary-input" value="0.00" step="0.01" style="width: 80px;">
+                                        <span>%</span>
+                                    </div>
+                                    <button class="btn-icon">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <span class="summary-value">0.00</span>
+                                </div>
+                                
+                                <div class="summary-row">
+                                    <span class="summary-label">ราคาหลังหักส่วนลด</span>
+                                    <span class="summary-value">0.00</span>
+                                </div>
+                                
+                                <div class="summary-row summary-total-row">
+                                    <span class="summary-label">จำนวนเงินรวมทั้งสิ้น</span>
+                                    <span class="summary-total">0.00</span>
+                                </div>
+                                
+                                <div class="checkbox-row">
+                                    <input type="checkbox" id="withholdingTax" class="form-checkbox">
+                                    <label for="withholdingTax" class="checkbox-label">หักภาษี ณ ที่จ่าย</label>
+                                </div>
+                                
+                                <div class="info-notice" style="margin-top: 16px; padding: 12px; background: #eff6ff; border-left: 3px solid #3b82f6; border-radius: 4px;">
+                                    <i class="fas fa-info-circle" style="color: #3b82f6; margin-right: 8px;"></i>
+                                    <span style="font-size: 0.875rem; color: #1e40af;">ถ้าต้องการเปิดเอกสารที่มีภาษีหักมูลค่าเพิ่ม 7% กรุณาสร้างเอกสารค่าใช้งาน</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Information Section -->
+                        <div class="payment-section">
+                            <div class="payment-header">
+                                <h3>ข้อมูลชำระเงินของผู้จำหน่าย:</h3>
+                                <a href="#" class="payment-link">
+                                    <i class="fas fa-plus"></i>
+                                    เพิ่มข้อมูลการชำระเงิน
+                                </a>
+                            </div>
+                            <div class="payment-empty" id="paymentEmpty">
+                                <!-- Payment information will be added here -->
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/quotation.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างหมวดหมู่ทรัพย์สิน - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation.css">
+    <link rel="stylesheet" href="../css/invoice.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header quotation-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <div class="doc-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="doc-info">
+                            <span class="doc-type">หมวดหมู่ทรัพย์สิน</span>
+                            <div class="doc-number-row">
+                                <h1 id="docNumber">CAT-007</h1>
+                                <button class="btn-icon" title="แก้ไขรหัส">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-secondary" onclick="window.location.href='asset-category-list.html'">
+                        <i class="fas fa-times"></i>
+                        ยกเลิก
+                    </button>
+                    <div class="btn-group">
+                        <button class="btn-primary" id="saveBtn">
+                            <i class="fas fa-save"></i>
+                            บันทึก
+                        </button>
+                        <button class="btn-primary btn-dropdown">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Category Form -->
+            <div class="page-content quotation-page">
+                <div class="quotation-container">
+                    <!-- Main Form Area -->
+                    <div class="quotation-form">
+                        <!-- Category Information Section -->
+                        <div class="form-top-section">
+                            <div class="customer-section" style="flex: 1;">
+                                <h3 class="section-label">รายละเอียดหมวดหมู่ทรัพย์สิน</h3>
+                                
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label>ชื่อหมวดหมู่:</label>
+                                    <input type="text" id="categoryName" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label>ชื่อหมวดหมู่(EN):</label>
+                                    <input type="text" id="categoryNameEn" class="form-input" placeholder="">
+                                </div>
+                                
+                                <div class="checkbox-row" style="margin-bottom: 20px;">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" id="calculateDepreciation" checked>
+                                        <span class="checkmark"></span>
+                                        <span class="checkbox-label">คิดค่าเสื่อมราคาสินทรัพย์นี้</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group" style="margin-bottom: 20px;">
+                                    <label>อายุการใช้งานทางบัญชี (ปี):</label>
+                                    <input type="text" id="usefulLife" class="form-input" placeholder="กรุณาระบุอายุการใช้งานทางบัญชี (ปี)">
+                                </div>
+                                
+                                <div class="form-group" style="margin-bottom: 30px;">
+                                    <label>คำนวนค่าเสื่อมต่อปี (%):</label>
+                                    <input type="text" id="depreciationRate" class="form-input" value="0.00%" readonly style="background-color: #f3f4f6;">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Accounting Settings -->
+                        <div class="form-section" style="margin-top: 10px;">
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label>บัญชีสินทรัพย์: <i class="fas fa-info-circle" style="color: #3b82f6; margin-left: 5px;"></i></label>
+                                <select id="assetAccount" class="form-select">
+                                    <option value="">กรุณาเลือกบัญชีสินทรัพย์</option>
+                                    <option value="1201">1201 - ทรัพย์สินถาวร</option>
+                                    <option value="1202">1202 - อุปกรณ์สำนักงาน</option>
+                                    <option value="1203">1203 - ยานพาหนะ</option>
+                                    <option value="1204">1204 - เครื่องจักร</option>
+                                    <option value="1205">1205 - อาคารและสิ่งปลูกสร้าง</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label>บัญชีค่าเสื่อมราคา: <i class="fas fa-info-circle" style="color: #3b82f6; margin-left: 5px;"></i></label>
+                                <select id="depreciationExpense" class="form-select">
+                                    <option value="">กรุณาเลือกบัญชีค่าเสื่อมราคา</option>
+                                    <option value="5401">5401 - ค่าเสื่อมราคา</option>
+                                    <option value="5402">5402 - ค่าเสื่อมราคา-อุปกรณ์</option>
+                                    <option value="5403">5403 - ค่าเสื่อมราคา-ยานพาหนะ</option>
+                                    <option value="5404">5404 - ค่าเสื่อมราคา-เครื่องจักร</option>
+                                    <option value="5405">5405 - ค่าเสื่อมราคา-อาคาร</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label>บัญชีค่าเสื่อมราคาสะสม: <i class="fas fa-info-circle" style="color: #3b82f6; margin-left: 5px;"></i></label>
+                                <select id="accumulatedDepreciation" class="form-select">
+                                    <option value="">กรุณาเลือกบัญชีค่าเสื่อมราคาสะสม</option>
+                                    <option value="1211">1211 - ค่าเสื่อมราคาสะสม-ทรัพย์สิน</option>
+                                    <option value="1212">1212 - ค่าเสื่อมราคาสะสม-อุปกรณ์</option>
+                                    <option value="1213">1213 - ค่าเสื่อมราคาสะสม-ยานพาหนะ</option>
+                                    <option value="1214">1214 - ค่าเสื่อมราคาสะสม-เครื่องจักร</option>
+                                    <option value="1215">1215 - ค่าเสื่อมราคาสะสม-อาคาร</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Calculate depreciation rate from useful life
+        document.getElementById('usefulLife').addEventListener('input', function() {
+            let value = this.value.replace(/[^0-9]/g, '');
+            const years = parseFloat(value);
+            
+            if (years > 0) {
+                const rate = (100 / years).toFixed(2);
+                document.getElementById('depreciationRate').value = rate + '%';
+            } else {
+                document.getElementById('depreciationRate').value = '0.00%';
+            }
+        });
+
+        // Toggle depreciation fields based on checkbox
+        document.getElementById('calculateDepreciation').addEventListener('change', function() {
+            const usefulLife = document.getElementById('usefulLife');
+            const depreciationRate = document.getElementById('depreciationRate');
+            const assetAccount = document.getElementById('assetAccount');
+            const depreciationExpense = document.getElementById('depreciationExpense');
+            const accumulatedDepreciation = document.getElementById('accumulatedDepreciation');
+            
+            if (this.checked) {
+                usefulLife.disabled = false;
+                assetAccount.disabled = false;
+                depreciationExpense.disabled = false;
+                accumulatedDepreciation.disabled = false;
+            } else {
+                usefulLife.disabled = true;
+                depreciationRate.value = '0.00%';
+                assetAccount.disabled = true;
+                depreciationExpense.disabled = true;
+                accumulatedDepreciation.disabled = true;
+            }
+        });
+
+        // Save button
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            const categoryName = document.getElementById('categoryName').value;
+            if (!categoryName) {
+                alert('กรุณากรอกชื่อหมวดหมู่');
+                return;
+            }
+            
+            const calculateDepreciation = document.getElementById('calculateDepreciation').checked;
+            if (calculateDepreciation) {
+                const usefulLife = document.getElementById('usefulLife').value;
+                if (!usefulLife) {
+                    alert('กรุณาระบุอายุการใช้งานทางบัญชี');
+                    return;
+                }
+            }
+            
+            alert('บันทึกข้อมูลเรียบร้อยแล้ว');
+            window.location.href = 'asset-category-list.html';
+        });
+    </script>
+</body>
+</html>

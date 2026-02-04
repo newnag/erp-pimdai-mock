@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -70,10 +70,6 @@
                         <i class="fas fa-boxes"></i>
                         <span>สินค้า</span>
                     </a>
-                    <a href="inventory.html" class="nav-item">
-                        <i class="fas fa-warehouse"></i>
-                        <span>คลังสินค้า</span>
-                    </a>
                     <a href="stock-in-list.html" class="nav-item">
                         <i class="fas fa-sign-in-alt"></i>
                         <span>รับวัตถุดิบเข้า</span>
@@ -91,14 +87,42 @@
                 <div class="nav-section">
                     <span class="nav-section-title">การเงิน (FINANCE)</span>
                     <a href="expense-list.html" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
+                        <i class="fas fa-receipt"></i>
                         <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
                     </a>
                     <a href="withholding-tax-list.html" class="nav-item active">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>หัก ณ ที่จ่าย</span>
                     </a>
                 </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
             </nav>
             
             <div class="sidebar-footer">
@@ -132,10 +156,6 @@
                     </div>
                 </div>
                 <div class="header-right">
-                    <button class="btn-secondary" style="background: #f3f4f6; color: #3b82f6; border: 2px solid #3b82f6; margin-right: 12px;">
-                        <i class="fas fa-file-excel"></i>
-                        ยื่นแบบภาษีออนไลน์
-                    </button>
                     <a href="withholding-tax-create.html" class="btn-create" style="background: linear-gradient(135deg, #9333ea, #7e22ce);">
                         <i class="fas fa-plus"></i>
                         สร้างใหม่
@@ -146,16 +166,16 @@
             <!-- Page Content -->
             <div class="page-content list-page">
                 <!-- Filter Bar -->
-                <div class="filter-bar">
+                <div class="filter-bar" style="background: #ffffff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 20px;">
                     <div class="filter-tabs">
-                        <button class="filter-tab active">แสดงทั้งหมด</button>
+                        <button class="filter-tab active" style="background: linear-gradient(135deg, #9333ea, #7e22ce); color: white; padding: 10px 24px; border-radius: 8px; border: none; font-weight: 500; box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3); transition: all 0.3s ease;">แสดงทั้งหมด</button>
                     </div>
-                    <div class="filter-actions">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" placeholder="ค้นหา..." id="searchInput">
+                    <div class="filter-actions" style="display: flex; gap: 12px; align-items: center;">
+                        <div class="search-box" style="position: relative; flex: 1; max-width: 400px;">
+                            <i class="fas fa-search" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #9333ea; font-size: 16px;"></i>
+                            <input type="text" placeholder="ค้นหาเลขที่เอกสาร, ชื่อผู้ถูกหัก..." id="searchInput" style="width: 100%; padding: 12px 16px 12px 48px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 14px; transition: all 0.3s ease; background: #f9fafb;" onfocus="this.style.borderColor='#9333ea'; this.style.background='#ffffff'; this.style.boxShadow='0 0 0 3px rgba(147, 51, 234, 0.1)';" onblur="this.style.borderColor='#e5e7eb'; this.style.background='#f9fafb'; this.style.boxShadow='none';">
                         </div>
-                        <button class="btn-icon" title="แสดงตัวกรอง" style="margin-left: 12px;">
+                        <button class="btn-icon" title="แสดงตัวกรอง" style="padding: 12px 16px; background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 10px; color: #6b7280; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.background='#9333ea'; this.style.borderColor='#9333ea'; this.style.color='white'; this.style.boxShadow='0 2px 8px rgba(147, 51, 234, 0.3)';" onmouseout="this.style.background='#f3f4f6'; this.style.borderColor='#e5e7eb'; this.style.color='#6b7280'; this.style.boxShadow='none';">
                             <i class="fas fa-sliders-h"></i>
                         </button>
                     </div>
@@ -166,12 +186,6 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" id="selectAll">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </th>
                                 <th class="col-date">วันที่</th>
                                 <th class="col-docno">เลขที่เอกสาร</th>
                                 <th class="col-name">ชื่อผู้ถูกหัก ณ ที่จ่าย</th>
@@ -184,12 +198,6 @@
                         <tbody>
                             <!-- Row 1 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">31-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #3b82f6;"></span>
@@ -198,11 +206,10 @@
                                 </td>
                                 <td class="col-name">นาย ศิรวิทย์ มงคลสวัสดิ์</td>
                                 <td class="col-payment-type">
-                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap;">ภงด 3 <span style="font-size: 0.75rem; opacity: 0.8;">(3%)</span></span>
                                 </td>
                                 <td class="col-amount" style="font-weight: 600; color: #1f2937;">
-                                    <div>16,900.00</div>
-                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">507.00</div>
+                                    <span style="display: inline-block;">16,900.00</span> <span style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">(หัก: 507.00)</span>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
@@ -221,12 +228,6 @@
                             </tr>
                             <!-- Row 2 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">31-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #3b82f6;"></span>
@@ -235,11 +236,10 @@
                                 </td>
                                 <td class="col-name">นางสาวพนิดา ประมงวัฒนา</td>
                                 <td class="col-payment-type">
-                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap;">ภงด 3 <span style="font-size: 0.75rem; opacity: 0.8;">(3%)</span></span>
                                 </td>
                                 <td class="col-amount" style="font-weight: 600; color: #1f2937;">
-                                    <div>17,500.00</div>
-                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">525.00</div>
+                                    <span style="display: inline-block;">17,500.00</span> <span style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">(หัก: 525.00)</span>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
@@ -258,12 +258,6 @@
                             </tr>
                             <!-- Row 3 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">31-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #3b82f6;"></span>
@@ -272,11 +266,10 @@
                                 </td>
                                 <td class="col-name">นางสาว ณัฐวดี สงวนมงคล</td>
                                 <td class="col-payment-type">
-                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap;">ภงด 3 <span style="font-size: 0.75rem; opacity: 0.8;">(3%)</span></span>
                                 </td>
                                 <td class="col-amount" style="font-weight: 600; color: #1f2937;">
-                                    <div>18,210.00</div>
-                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">546.30</div>
+                                    <span style="display: inline-block;">18,210.00</span> <span style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">(หัก: 546.30)</span>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
@@ -295,12 +288,6 @@
                             </tr>
                             <!-- Row 4 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">30-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #3b82f6;"></span>
@@ -309,11 +296,10 @@
                                 </td>
                                 <td class="col-name">บริษัท ภายดีที (ประเทศไทย) จำกัด</td>
                                 <td class="col-payment-type">
-                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 53<br><span style="font-size: 0.75rem; opacity: 0.8;">184.80</span></span>
+                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap;">ภงด 53 <span style="font-size: 0.75rem; opacity: 0.8;">(3%)</span></span>
                                 </td>
                                 <td class="col-amount" style="font-weight: 600; color: #1f2937;">
-                                    <div>6,160.00</div>
-                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">184.80</div>
+                                    <span style="display: inline-block;">6,160.00</span> <span style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">(หัก: 184.80)</span>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
@@ -332,12 +318,6 @@
                             </tr>
                             <!-- Row 5 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">26-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #3b82f6;"></span>
@@ -346,11 +326,10 @@
                                 </td>
                                 <td class="col-name">บริษัท ภายดีที (ประเทศไทย) จำกัด</td>
                                 <td class="col-payment-type">
-                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 53<br><span style="font-size: 0.75rem; opacity: 0.8;">66.84</span></span>
+                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap;">ภงด 53 <span style="font-size: 0.75rem; opacity: 0.8;">(3%)</span></span>
                                 </td>
                                 <td class="col-amount" style="font-weight: 600; color: #1f2937;">
-                                    <div>2,228.00</div>
-                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">66.84</div>
+                                    <span style="display: inline-block;">2,228.00</span> <span style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">(หัก: 66.84)</span>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
@@ -369,12 +348,6 @@
                             </tr>
                             <!-- Row 6 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">22-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #ef4444;"></span>
@@ -383,11 +356,10 @@
                                 </td>
                                 <td class="col-name">นาย ชัยรัตน์ ภูดี</td>
                                 <td class="col-payment-type">
-                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 3<br><span style="font-size: 0.75rem; opacity: 0.8;">3%</span></span>
+                                    <span style="background: #dbeafe; color: #2563eb; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap;">ภงด 3 <span style="font-size: 0.75rem; opacity: 0.8;">(3%)</span></span>
                                 </td>
                                 <td class="col-amount" style="font-weight: 600; color: #1f2937;">
-                                    <div>45,000.00</div>
-                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">1,350.00</div>
+                                    <span style="display: inline-block;">45,000.00</span> <span style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">(หัก: 1,350.00)</span>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">
@@ -406,12 +378,6 @@
                             </tr>
                             <!-- Row 7 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">09-01-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #3b82f6;"></span>
@@ -420,11 +386,10 @@
                                 </td>
                                 <td class="col-name">บริษัท ภายดีที (ประเทศไทย) จำกัด</td>
                                 <td class="col-payment-type">
-                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">ภงด 53<br><span style="font-size: 0.75rem; opacity: 0.8;">411.92</span></span>
+                                    <span style="background: #fef3c7; color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; display: inline-block; white-space: nowrap;">ภงด 53 <span style="font-size: 0.75rem; opacity: 0.8;">(3%)</span></span>
                                 </td>
                                 <td class="col-amount" style="font-weight: 600; color: #1f2937;">
-                                    <div>13,730.75</div>
-                                    <div style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">411.92</div>
+                                    <span style="display: inline-block;">13,730.75</span> <span style="font-size: 0.85rem; color: #6b7280; font-weight: 400;">(หัก: 411.92)</span>
                                 </td>
                                 <td class="col-status">
                                     <div class="status-select-wrapper">

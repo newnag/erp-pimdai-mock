@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -55,6 +55,10 @@
                         <i class="fas fa-user-tie"></i>
                         <span>พนักงาน</span>
                     </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
                 </div>
                 
                 <div class="nav-section">
@@ -71,10 +75,6 @@
                 
                 <div class="nav-section">
                     <span class="nav-section-title">สินค้า (INVENTORY)</span>
-                    <a href="inventory.html" class="nav-item">
-                        <i class="fas fa-warehouse"></i>
-                        <span>คลังสินค้า</span>
-                    </a>
                     <a href="#" class="nav-item">
                         <i class="fas fa-boxes"></i>
                         <span>สินค้า</span>
@@ -84,14 +84,46 @@
                 <div class="nav-section">
                     <span class="nav-section-title">การเงิน (FINANCE)</span>
                     <a href="expense-list.html" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
+                        <i class="fas fa-receipt"></i>
                         <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
                     </a>
                     <a href="withholding-tax-list.html" class="nav-item">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>หัก ณ ที่จ่าย</span>
                     </a>
                 </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
             </nav>
             
             <div class="sidebar-footer">
@@ -176,9 +208,6 @@
                         <table class="data-table">
                             <thead>
                                 <tr>
-                                    <th class="col-checkbox">
-                                        <input type="checkbox" id="selectAll">
-                                    </th>
                                     <th class="col-name">รายชื่อ</th>
                                     <th class="col-contact">ชื่อผู้ติดต่อ</th>
                                     <th class="col-phone">เบอร์ติดต่อ</th>
@@ -189,9 +218,6 @@
                             </thead>
                             <tbody id="customersTableBody">
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -211,9 +237,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -233,9 +256,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -255,9 +275,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -277,9 +294,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -299,9 +313,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -321,9 +332,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -343,9 +351,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>
@@ -365,9 +370,6 @@
                                     </td>
                                 </tr>
                                 <tr data-type="customer">
-                                    <td class="col-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                    </td>
                                     <td class="col-name">
                                         <div class="customer-name">
                                             <i class="fas fa-circle status-indicator" style="color: #3b82f6;"></i>

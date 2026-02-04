@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เพิ่ม/แก้ไขสมาชิก - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 24px;
+        }
+        
+        .form-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .form-header-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .form-header-text h2 {
+            font-size: 1.25rem;
+            color: #1f2937;
+            margin: 0 0 4px 0;
+        }
+        
+        .form-header-text p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin: 0;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-label .required {
+            color: #ef4444;
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #374151;
+            transition: border-color 0.2s;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .avatar-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 600;
+            border: 4px solid #e2e8f0;
+        }
+        
+        .avatar-upload-btn {
+            padding: 10px 20px;
+            background: #f1f5f9;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            color: #475569;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .avatar-upload-btn:hover {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+        }
+        
+        .permissions-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .permission-group {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .permission-group-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .permission-group-header i {
+            color: #3b82f6;
+            font-size: 1.1rem;
+        }
+        
+        .permission-group-header h4 {
+            margin: 0;
+            color: #1f2937;
+            font-size: 0.95rem;
+        }
+        
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+        }
+        
+        .permission-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .permission-item label {
+            font-size: 0.9rem;
+            color: #475569;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .permission-level {
+            display: flex;
+            gap: 12px;
+            margin-left: 30px;
+        }
+        
+        .permission-level label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #64748b;
+            cursor: pointer;
+        }
+        
+        .permission-level input[type="radio"] {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            padding-top: 24px;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .status-toggle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 56px;
+            height: 28px;
+            background: #cbd5e1;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .toggle-switch.active {
+            background: #10b981;
+        }
+        
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: left 0.3s;
+        }
+        
+        .toggle-switch.active::after {
+            left: 31px;
+        }
+        
+        .status-toggle-label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .status-toggle-label .label-title {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.95rem;
+        }
+        
+        .status-toggle-label .label-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        
+        .password-toggle {
+            position: relative;
+        }
+        
+        .password-toggle input {
+            padding-right: 45px;
+        }
+        
+        .password-toggle-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 4px;
+        }
+        
+        .password-toggle-btn:hover {
+            color: #3b82f6;
+        }
+        
+        .role-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        
+        .role-card {
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .role-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        
+        .role-card.selected {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .role-card-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .role-card.admin .role-card-icon {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        
+        .role-card.manager .role-card-icon {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+        
+        .role-card.user .role-card-icon {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        
+        .role-card.viewer .role-card-icon {
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+        }
+        
+        .role-card-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        
+        .role-card-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ตั้งค่า (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>หมวดหมู่ทรัพย์สิน</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item active">
+                        <i class="fas fa-user-cog"></i>
+                        <span>จัดการสมาชิก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>เพิ่มสมาชิกใหม่</h1>
+                        <nav class="breadcrumb">
+                            <a href="#">ตั้งค่า</a>
+                            <span class="separator">›</span>
+                            <a href="user-list.html">จัดการสมาชิก</a>
+                            <span class="separator">›</span>
+                            <span>เพิ่มสมาชิกใหม่</span>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="form-container">
+                    <form id="userForm">
+                        <!-- Basic Information -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-header-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="form-header-text">
+                                    <h2>ข้อมูลพื้นฐาน</h2>
+                                    <p>กรอกข้อมูลส่วนตัวของสมาชิก</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label">รูปโปรไฟล์</label>
+                                <div class="avatar-upload">
+                                    <div class="avatar-preview" id="avatarPreview">P</div>
+                                    <div>
+                                        <label for="avatarInput" class="avatar-upload-btn">
+                                            <i class="fas fa-upload"></i>
+                                            เลือกรูปภาพ
+                                        </label>
+                                        <input type="file" id="avatarInput" accept="image/*" style="display: none;">
+                                        <p style="font-size: 0.85rem; color: #64748b; margin-top: 8px;">
+                                            แนะนำ: รูปสี่เหลี่ยมจัตุรัส ขนาดไม่เกิน 2MB
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        ชื่อ <span class="required">*</span>
+                                    </label>
+                                    <input type="text" class="form-input" id="firstName" placeholder="ชื่อจริง" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        นามสกุล <span class="required">*</span>
+                                    </label>
+                                    <input type="text" class="form-input" id="lastName" placeholder="นามสกุล" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        ชื่อเล่น / ชื่อแสดง
+                                    </label>
+                                    <input type="text" class="form-input" id="displayName" placeholder="ชื่อเล่นหรือชื่อที่ต้องการให้แสดง">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        อีเมล <span class="required">*</span>
+                                    </label>
+                                    <input type="email" class="form-input" id="email" placeholder="example@company.com" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        เบอร์โทรศัพท์
+                                    </label>
+                                    <input type="tel" class="form-input" id="phone" placeholder="0812345678">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        แผนก / ตำแหน่ง
+                                    </label>
+                                    <input type="text" class="form-input" id="department" placeholder="เช่น ฝ่ายขาย, การเงิน">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Account Information -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-header-icon">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div class="form-header-text">
+                                    <h2>ข้อมูลบัญชีผู้ใช้</h2>
+                                    <p>ตั้งค่าข้อมูลสำหรับเข้าสู่ระบบ</p>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        ชื่อผู้ใช้ (Username) <span class="required">*</span>
+                                    </label>
+                                    <input type="text" class="form-input" id="username" placeholder="username" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        รหัสผ่าน <span class="required">*</span>
+                                    </label>
+                                    <div class="password-toggle">
+                                        <input type="password" class="form-input" id="password" placeholder="••••••••" required>
+                                        <button type="button" class="password-toggle-btn" onclick="togglePassword('password')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="form-group full-width">
+                                    <div class="status-toggle">
+                                        <div class="toggle-switch active" id="statusToggle" onclick="toggleStatus()"></div>
+                                        <div class="status-toggle-label">
+                                            <span class="label-title">สถานะการใช้งาน</span>
+                                            <span class="label-desc" id="statusText">เปิดใช้งาน - สมาชิกสามารถเข้าสู่ระบบได้</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Role Selection -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-header-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <div class="form-header-text">
+                                    <h2>บทบาทและสิทธิ์</h2>
+                                    <p>เลือกบทบาทและกำหนดสิทธิ์การใช้งาน</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label">
+                                    เลือกบทบาท <span class="required">*</span>
+                                </label>
+                                <div class="role-cards">
+                                    <div class="role-card admin" onclick="selectRole('admin')">
+                                        <div class="role-card-icon">
+                                            <i class="fas fa-user-shield"></i>
+                                        </div>
+                                        <div class="role-card-title">ผู้ดูแลระบบ</div>
+                                        <div class="role-card-desc">สิทธิ์เต็มทุกอย่าง</div>
+                                    </div>
+                                    
+                                    <div class="role-card manager selected" onclick="selectRole('manager')">
+                                        <div class="role-card-icon">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                        <div class="role-card-title">ผู้จัดการ</div>
+                                        <div class="role-card-desc">จัดการและอนุมัติ</div>
+                                    </div>
+                                    
+                                    <div class="role-card user" onclick="selectRole('user')">
+                                        <div class="role-card-icon">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="role-card-title">ผู้ใช้งาน</div>
+                                        <div class="role-card-desc">ใช้งานทั่วไป</div>
+                                    </div>
+                                    
+                                    <div class="role-card viewer" onclick="selectRole('viewer')">
+                                        <div class="role-card-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </div>
+                                        <div class="role-card-title">ผู้ดูข้อมูล</div>
+                                        <div class="role-card-desc">ดูอย่างเดียว</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="selectedRole" value="manager">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label class="form-label">
+                                    สิทธิ์การใช้งานรายการ
+                                </label>
+                                <div class="permissions-section">
+                                    <!-- Sales Permissions -->
+                                    <div class="permission-group">
+                                        <div class="permission-group-header">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <h4>งานขาย</h4>
+                                        </div>
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-quotation" checked>
+                                            <label for="perm-quotation">ใบเสนอราคา</label>
+                                        </div>
+                                        <div class="permission-level">
+                                            <label><input type="radio" name="quotation-level" value="view" checked> ดู</label>
+                                            <label><input type="radio" name="quotation-level" value="edit"> แก้ไข</label>
+                                            <label><input type="radio" name="quotation-level" value="full"> เต็ม</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-invoice" checked>
+                                            <label for="perm-invoice">ใบกำกับภาษี</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-customer" checked>
+                                            <label for="perm-customer">ลูกค้า</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Inventory Permissions -->
+                                    <div class="permission-group">
+                                        <div class="permission-group-header">
+                                            <i class="fas fa-boxes"></i>
+                                            <h4>คลังสินค้า</h4>
+                                        </div>
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-product" checked>
+                                            <label for="perm-product">สินค้า</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-stock" checked>
+                                            <label for="perm-stock">จัดการสต็อก</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-warehouse">
+                                            <label for="perm-warehouse">คลังสินค้า</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Finance Permissions -->
+                                    <div class="permission-group">
+                                        <div class="permission-group-header">
+                                            <i class="fas fa-coins"></i>
+                                            <h4>การเงิน</h4>
+                                        </div>
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-expense">
+                                            <label for="perm-expense">ค่าใช้จ่าย</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-payment">
+                                            <label for="perm-payment">การชำระเงิน</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-report">
+                                            <label for="perm-report">รายงานการเงิน</label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Settings Permissions -->
+                                    <div class="permission-group">
+                                        <div class="permission-group-header">
+                                            <i class="fas fa-cog"></i>
+                                            <h4>การตั้งค่า</h4>
+                                        </div>
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-user">
+                                            <label for="perm-user">จัดการสมาชิก</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-system">
+                                            <label for="perm-system">ตั้งค่าระบบ</label>
+                                        </div>
+                                        
+                                        <div class="permission-item">
+                                            <input type="checkbox" id="perm-backup">
+                                            <label for="perm-backup">สำรองข้อมูล</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-card">
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-secondary" onclick="window.location.href='user-list.html'">
+                                    <i class="fas fa-times"></i>
+                                    ยกเลิก
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    บันทึกข้อมูล
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Avatar preview
+        document.getElementById('avatarInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('avatarPreview');
+                    preview.style.backgroundImage = `url(${e.target.result})`;
+                    preview.style.backgroundSize = 'cover';
+                    preview.textContent = '';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const btn = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.classList.remove('fa-eye');
+                btn.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                btn.classList.remove('fa-eye-slash');
+                btn.classList.add('fa-eye');
+            }
+        }
+
+        // Toggle status
+        let isActive = true;
+        function toggleStatus() {
+            const toggle = document.getElementById('statusToggle');
+            const statusText = document.getElementById('statusText');
+            
+            isActive = !isActive;
+            toggle.classList.toggle('active');
+            
+            if (isActive) {
+                statusText.textContent = 'เปิดใช้งาน - สมาชิกสามารถเข้าสู่ระบบได้';
+            } else {
+                statusText.textContent = 'ระงับการใช้งาน - สมาชิกไม่สามารถเข้าสู่ระบบได้';
+            }
+        }
+
+        // Select role
+        function selectRole(role) {
+            document.querySelectorAll('.role-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            document.getElementById('selectedRole').value = role;
+
+            // Auto-set permissions based on role
+            const allCheckboxes = document.querySelectorAll('.permission-item input[type="checkbox"]');
+            
+            if (role === 'admin') {
+                allCheckboxes.forEach(cb => cb.checked = true);
+            } else if (role === 'manager') {
+                allCheckboxes.forEach(cb => {
+                    const id = cb.id;
+                    cb.checked = !['perm-system', 'perm-backup'].includes(id);
+                });
+            } else if (role === 'user') {
+                allCheckboxes.forEach(cb => {
+                    const id = cb.id;
+                    cb.checked = ['perm-quotation', 'perm-customer', 'perm-product', 'perm-stock'].includes(id);
+                });
+            } else if (role === 'viewer') {
+                allCheckboxes.forEach(cb => cb.checked = false);
+                document.getElementById('perm-report').checked = true;
+            }
+        }
+
+        // Form submission
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                displayName: document.getElementById('displayName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                department: document.getElementById('department').value,
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                role: document.getElementById('selectedRole').value,
+                status: isActive ? 'active' : 'inactive',
+                permissions: []
+            };
+
+            // Collect permissions
+            document.querySelectorAll('.permission-item input[type="checkbox"]:checked').forEach(cb => {
+                formData.permissions.push(cb.id.replace('perm-', ''));
+            });
+
+            console.log('Form data:', formData);
+            alert('บันทึกข้อมูลสำเร็จ!');
+            window.location.href = 'user-list.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -63,16 +63,37 @@
                         <span>ซัพพลายเออร์</span>
                     </a>
                 </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                </div>
+                </div>
                 
                 <div class="nav-section">
                     <span class="nav-section-title">สินค้า (INVENTORY)</span>
                     <a href="products.html" class="nav-item">
                         <i class="fas fa-boxes"></i>
                         <span>สินค้า</span>
-                    </a>
-                    <a href="inventory.html" class="nav-item">
-                        <i class="fas fa-warehouse"></i>
-                        <span>คลังสินค้า</span>
                     </a>
                     <a href="stock-in-list.html" class="nav-item">
                         <i class="fas fa-sign-in-alt"></i>
@@ -91,6 +112,22 @@
                         <span>รายงานสต็อก</span>
                     </a>
                 </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
             </nav>
             
             <div class="sidebar-footer">
@@ -120,6 +157,22 @@
                             <a href="#">รายงานสต็อก</a>
                             <span class="separator">›</span>
                             <span>สต็อกคงเหลือ</span>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
                         </nav>
                     </div>
                 </div>
@@ -211,12 +264,6 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" id="selectAll">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </th>
                                 <th>รหัสสินค้า</th>
                                 <th>ชื่อสินค้า</th>
                                 <th>หมวดหมู่</th>
@@ -230,12 +277,6 @@
                         <tbody>
                             <!-- Row 1 - สต็อกปกติ -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td>PRD-001</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -254,12 +295,6 @@
                             </tr>
                             <!-- Row 2 - สต็อกต่ำ -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td>PRD-002</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -278,12 +313,6 @@
                             </tr>
                             <!-- Row 3 - สต็อกหมด -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td>PRD-003</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -302,12 +331,6 @@
                             </tr>
                             <!-- Row 4 - สต็อกปกติ -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td>PRD-004</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -326,12 +349,6 @@
                             </tr>
                             <!-- Row 5 - สต็อกปกติ -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td>PRD-005</td>
                                 <td>
                                     <div style="display: flex; align-items: center; gap: 10px;">

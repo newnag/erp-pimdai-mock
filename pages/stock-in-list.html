@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -70,10 +70,6 @@
                         <i class="fas fa-boxes"></i>
                         <span>สินค้า</span>
                     </a>
-                    <a href="inventory.html" class="nav-item">
-                        <i class="fas fa-warehouse"></i>
-                        <span>คลังสินค้า</span>
-                    </a>
                     <a href="stock-in-list.html" class="nav-item active">
                         <i class="fas fa-sign-in-alt"></i>
                         <span>รับวัตถุดิบเข้า</span>
@@ -91,14 +87,42 @@
                 <div class="nav-section">
                     <span class="nav-section-title">การเงิน (FINANCE)</span>
                     <a href="expense-list.html" class="nav-item">
-                        <i class="fas fa-money-bill-wave"></i>
+                        <i class="fas fa-receipt"></i>
                         <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
                     </a>
                     <a href="withholding-tax-list.html" class="nav-item">
                         <i class="fas fa-file-invoice-dollar"></i>
                         <span>หัก ณ ที่จ่าย</span>
                     </a>
                 </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">à¸•à¸±à¹‰à¸‡à¸„à¹ˆà¸² (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>à¸„à¸¥à¸±à¸‡à¸ªà¸´à¸™à¸„à¹‰à¸²</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>à¸«à¸¡à¸§à¸”à¸«à¸¡à¸¹à¹ˆà¸—à¸£à¸±à¸žà¸¢à¹Œà¸ªà¸´à¸™</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>à¸ˆà¸±à¸”à¸à¸²à¸£à¸ªà¸¡à¸²à¸Šà¸´à¸</span>
+                    </a>
+                </div>
+
             </nav>
             
             <div class="sidebar-footer">
@@ -162,12 +186,6 @@
                     <table class="data-table">
                         <thead>
                             <tr>
-                                <th class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" id="selectAll">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </th>
                                 <th class="col-date">วันที่</th>
                                 <th class="col-docno">เลขที่เอกสาร</th>
                                 <th class="col-customer">ซัพพลายเออร์</th>
@@ -180,12 +198,6 @@
                         <tbody>
                             <!-- Row 1 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">03-02-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #10b981;"></span>
@@ -216,12 +228,6 @@
                             </tr>
                             <!-- Row 2 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">02-02-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #f59e0b;"></span>
@@ -252,12 +258,6 @@
                             </tr>
                             <!-- Row 3 -->
                             <tr class="data-row">
-                                <td class="col-checkbox">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" class="row-checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </td>
                                 <td class="col-date">01-02-2026</td>
                                 <td class="col-docno">
                                     <span class="status-dot" style="background: #10b981;"></span>

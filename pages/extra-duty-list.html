@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extra Duty - ERP PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/quotation-list.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Add Duty Button */
+        .btn-add-duty {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-add-duty::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-add-duty:hover::before {
+            left: 100%;
+        }
+        
+        .btn-add-duty:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-add-duty:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-add-duty i {
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-add-duty:hover i {
+            transform: rotate(90deg);
+        }
+        
+        .btn-add-duty span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .duty-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .duty-table th {
+            background: #f8fafc;
+            padding: 12px 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+        .duty-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f1f5f9;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .duty-table tr:hover {
+            background: #f8fafc;
+        }
+        .duty-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+            appearance: none;
+            position: relative;
+        }
+        .duty-checkbox:checked {
+            background: #10b981;
+            border-color: #10b981;
+        }
+        .duty-checkbox:checked::after {
+            content: '✓';
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .duty-number {
+            width: 60px;
+            padding: 6px 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .duty-capture {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .capture-btn {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 6px 10px;
+            cursor: pointer;
+            color: #64748b;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .capture-btn:hover {
+            background: #e2e8f0;
+        }
+        .capture-count {
+            background: #3b82f6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+        .sales-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: flex-start;
+        }
+        .sales-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #3b82f6;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .row-number {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+        .date-picker {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .date-picker input {
+            padding: 10px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+        .date-nav {
+            display: flex;
+            gap: 4px;
+        }
+        .date-nav button {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: #64748b;
+        }
+        .date-nav button:hover {
+            background: #e2e8f0;
+        }
+        .tab-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0;
+        }
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            font-family: inherit;
+        }
+        .tab-btn.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+        .add-view-btn {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        .table-toolbar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .toolbar-btn {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px 12px;
+            cursor: pointer;
+            color: #64748b;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .toolbar-btn:hover {
+            background: #f1f5f9;
+        }
+        .summary-row {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .summary-label {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        .summary-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>พนักงาน</span>
+                    </a>
+                    <a href="extra-duty-list.html" class="nav-item active">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ตั้งค่า (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>หมวดหมู่ทรัพย์สิน</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1><i class="fas fa-tasks" style="color: #3b82f6; margin-right: 10px;"></i> Extra Duty</h1>
+                        <span class="page-subtitle">บันทึกภาระงานประจำวัน</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-add-duty" onclick="window.location.href='extra-duty-create.html'">
+                        <i class="fas fa-plus"></i>
+                        <span>บันทึกการงาน</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="list-container">
+                    <!-- Tab Header -->
+                    <div class="tab-header">
+                        <button class="tab-btn active"><i class="fas fa-table"></i> Extra duty</button>
+                    </div>
+
+                    <!-- Table Toolbar -->
+                    <div class="table-toolbar">
+                        <button class="toolbar-btn"><i class="fas fa-plus"></i></button>
+                        <button class="toolbar-btn"><i class="fas fa-cog"></i></button>
+                        <button class="toolbar-btn"><i class="fas fa-columns"></i></button>
+                        <button class="toolbar-btn"><i class="fas fa-list"></i></button>
+                        <button class="toolbar-btn"><i class="fas fa-sort-amount-down"></i></button>
+                        <button class="toolbar-btn"><i class="fas fa-sort"></i></button>
+                        <button class="toolbar-btn"><i class="fas fa-paint-brush"></i></button>
+                    </div>
+
+                    <!-- Date Picker -->
+                    <div class="date-picker">
+                        <div class="date-nav">
+                            <button><i class="fas fa-chevron-left"></i></button>
+                            <button><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <input type="date" value="2026-02-03">
+                    </div>
+
+                    <!-- Duty Table -->
+                    <div class="table-responsive">
+                        <table class="duty-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="duty-checkbox"></th>
+                                    <th></th>
+                                    <th><i class="fas fa-lock" style="color: #94a3b8;"></i></th>
+                                    <th><i class="fas fa-calendar"></i> วันนี้</th>
+                                    <th><i class="fas fa-user"></i> เซลล์</th>
+                                    <th><i class="fas fa-check-square"></i> FB Group</th>
+                                    <th>Market place</th>
+                                    <th>Repost</th>
+                                    <th>Comment post</th>
+                                    <th>Lemon8 Review</th>
+                                    <th><i class="fas fa-check-square"></i> Recall</th>
+                                    <th>จำนวนที่ Recall</th>
+                                    <th><i class="fas fa-paperclip"></i> Capture สิ่งที่ทำ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td class="row-number">1</td>
+                                    <td><i class="fas fa-lock" style="color: #d1d5db;"></i></td>
+                                    <td>03/02/2026</td>
+                                    <td>
+                                        <div class="sales-name">
+                                            <div class="sales-avatar">ก</div>
+                                            <span>กมลวรรณ</span>
+                                        </div>
+                                    </td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="number" class="duty-number" value="5"></td>
+                                    <td>
+                                        <div class="duty-capture">
+                                            <button class="capture-btn"><i class="fas fa-image"></i></button>
+                                            <span class="capture-count">3</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td class="row-number">2</td>
+                                    <td><i class="fas fa-lock" style="color: #d1d5db;"></i></td>
+                                    <td>03/02/2026</td>
+                                    <td>
+                                        <div class="sales-name">
+                                            <div class="sales-avatar" style="background: #10b981;">ส</div>
+                                            <span>สมชาย</span>
+                                        </div>
+                                    </td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="number" class="duty-number" value="8"></td>
+                                    <td>
+                                        <div class="duty-capture">
+                                            <button class="capture-btn"><i class="fas fa-image"></i></button>
+                                            <span class="capture-count">5</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td class="row-number">3</td>
+                                    <td><i class="fas fa-lock" style="color: #d1d5db;"></i></td>
+                                    <td>03/02/2026</td>
+                                    <td>
+                                        <div class="sales-name">
+                                            <div class="sales-avatar" style="background: #f59e0b;">น</div>
+                                            <span>นภา</span>
+                                        </div>
+                                    </td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="number" class="duty-number" value="0"></td>
+                                    <td>
+                                        <div class="duty-capture">
+                                            <button class="capture-btn"><i class="fas fa-image"></i></button>
+                                            <span class="capture-count">2</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td class="row-number">4</td>
+                                    <td><i class="fas fa-lock" style="color: #d1d5db;"></i></td>
+                                    <td>03/02/2026</td>
+                                    <td>
+                                        <div class="sales-name">
+                                            <div class="sales-avatar" style="background: #8b5cf6;">พ</div>
+                                            <span>พิมพ์ใจ</span>
+                                        </div>
+                                    </td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="checkbox" class="duty-checkbox" checked></td>
+                                    <td><input type="number" class="duty-number" value="12"></td>
+                                    <td>
+                                        <div class="duty-capture">
+                                            <button class="capture-btn"><i class="fas fa-image"></i></button>
+                                            <span class="capture-count">7</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td class="row-number">5</td>
+                                    <td><i class="fas fa-lock" style="color: #d1d5db;"></i></td>
+                                    <td>03/02/2026</td>
+                                    <td>
+                                        <div class="sales-name">
+                                            <div class="sales-avatar" style="background: #ec4899;">ว</div>
+                                            <span>วิชัย</span>
+                                        </div>
+                                    </td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="checkbox" class="duty-checkbox"></td>
+                                    <td><input type="number" class="duty-number" value="0"></td>
+                                    <td>
+                                        <div class="duty-capture">
+                                            <button class="capture-btn"><i class="fas fa-image"></i></button>
+                                            <span class="capture-count">0</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="summary-row">
+                        <div class="summary-item">
+                            <span class="summary-label">รวมทั้งหมด:</span>
+                            <span class="summary-value">5 คน</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">FB Group:</span>
+                            <span class="summary-value">3</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Market place:</span>
+                            <span class="summary-value">3</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Repost:</span>
+                            <span class="summary-value">3</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Recall ทั้งหมด:</span>
+                            <span class="summary-value" style="color: #10b981;">25 ครั้ง</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>
