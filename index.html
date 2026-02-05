@@ -50,13 +50,33 @@
                         <i class="fas fa-users"></i>
                         <span>ลูกค้า</span>
                     </a>
-                    <a href="#" class="nav-item">
-                        <i class="fas fa-user-tie"></i>
-                        <span>พนักงาน</span>
+                    <a href="pages/survey-call.html" class="nav-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Survey Call</span>
+                    </a>
+                    <a href="pages/claim-fix.html" class="nav-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Claim & Fix</span>
                     </a>
                     <a href="pages/extra-duty-list.html" class="nav-item">
                         <i class="fas fa-tasks"></i>
                         <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">การตลาด (MARKETING)</span>
+                    <a href="pages/marketing.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกข้อมูลการตลาด</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">บุคลากร (HR)</span>
+                    <a href="pages/attendance.html" class="nav-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>บันทึกเวลาเข้า-ออก</span>
                     </a>
                 </div>
                 
@@ -89,6 +109,14 @@
                     <a href="pages/stock-adjustment-list.html" class="nav-item">
                         <i class="fas fa-exchange-alt"></i>
                         <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การขนส่ง (LOGISTIC)</span>
+                    <a href="pages/logistic-data.html" class="nav-item">
+                        <i class="fas fa-truck"></i>
+                        <span>บันทึกข้อมูลขนส่ง</span>
                     </a>
                 </div>
 
@@ -652,7 +680,7 @@
                 <div class="dashboard-grid">
                     
                     <!-- Account Section -->
-                    <div class="dashboard-section account-section">
+                    <div class="dashboard-section account-section full-width">
                         <div class="section-header">
                             <div class="section-icon account">
                                 <i class="fas fa-wallet"></i>
@@ -942,7 +970,7 @@
                                     </div>
                                     <div class="budget-total-center">
                                         <span class="total-label">Total</span>
-                                        <span class="total-value">฿125K</span>
+                                        <span class="total-value">125K/50K</span>
                                     </div>
                                 </div>
                                 <div class="budget-legend">
@@ -964,9 +992,36 @@
                                 </div>
                             </div>
                             <div class="marketing-subsection">
-                                <h4><i class="fas fa-chart-bar"></i> Line Conversion Metrics</h4>
-                                <div class="line-chart-container">
-                                    <canvas id="lineConversionChart"></canvas>
+                                <h4><i class="fas fa-chart-bar"></i> Conversion Metrics</h4>
+                                <div class="engagement-metrics">
+                                    <div class="engagement-item">
+                                        <div class="engagement-icon"><i class="fas fa-volume-up"></i></div>
+                                        <div class="engagement-data">
+                                            <span class="value">2,450</span>
+                                            <span class="label">Line Volumn</span>
+                                        </div>
+                                    </div>
+                                    <div class="engagement-item">
+                                        <div class="engagement-icon"><i class="fas fa-sync-alt"></i></div>
+                                        <div class="engagement-data">
+                                            <span class="value">35</span>
+                                            <span class="label">Line Conversion Update</span>
+                                        </div>
+                                    </div>
+                                    <div class="engagement-item">
+                                        <div class="engagement-icon"><i class="fab fa-google"></i></div>
+                                        <div class="engagement-data">
+                                            <span class="value">180</span>
+                                            <span class="label">Line GG Ads Conversion Click</span>
+                                        </div>
+                                    </div>
+                                    <div class="engagement-item">
+                                        <div class="engagement-icon"><i class="fas fa-mouse-pointer"></i></div>
+                                        <div class="engagement-data">
+                                            <span class="value">85</span>
+                                            <span class="label">Line Ads Conversion Click/Add</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="marketing-subsection">
@@ -996,15 +1051,77 @@
                                 </div>
                             </div>
                             <div class="marketing-subsection">
-                                <h4><i class="fas fa-photo-video"></i> Media & Performance</h4>
+                                <h4><i class="fas fa-photo-video"></i> Performance</h4>
                                 <div class="media-metrics">
-                                    <div class="media-item">
-                                        <span class="label">Media (Earn)</span>
-                                        <span class="value">฿ 28,500</span>
-                                    </div>
                                     <div class="media-item highlight">
                                         <span class="label">Pimdai - Performance (Reach)</span>
                                         <span class="value">458K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logistic Section -->
+                    <div class="dashboard-section logistic-section full-width">
+                        <div class="section-header">
+                            <div class="section-icon logistic">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h2>Logistic</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="logistic-stats">
+                                <div class="stat-row">
+                                    <div class="stat-item success">
+                                        <i class="fas fa-file-invoice"></i>
+                                        <span class="value">28</span>
+                                        <span class="label">จำนวนใบเสนอราคาที่ส่งได้</span>
+                                    </div>
+                                    <div class="stat-item info">
+                                        <i class="fas fa-box-open"></i>
+                                        <span class="value">156</span>
+                                        <span class="label">จำนวนชิ้นงานที่จัดส่งจริง</span>
+                                    </div>
+                                    <div class="stat-item warning">
+                                        <i class="fas fa-calendar-times"></i>
+                                        <span class="value">5</span>
+                                        <span class="label">จำนวนเลื่อนส่งจากส่งไม่ทัน</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="logistic-details-grid">
+                                <div class="delivery-costs">
+                                    <h4>ขนส่งไปษณีย์ (ลูกค้าไม่ได้จ่าย)</h4>
+                                    <div class="cost-row">
+                                        <div class="cost-item">
+                                            <span class="label">จำนวน</span>
+                                            <span class="value">12 รายการ</span>
+                                        </div>
+                                        <div class="cost-item">
+                                            <span class="label">มูลค่าที่ใช้</span>
+                                            <span class="value danger">฿ 4,850</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="delivery-others">
+                                    <h4>Lalamove & Flash</h4>
+                                    <div class="others-row">
+                                        <div class="other-item">
+                                            <span class="label">จำนวนต่องาน</span>
+                                            <span class="value">8</span>
+                                        </div>
+                                        <div class="other-item">
+                                            <span class="label">AVG ค่าต่องาน</span>
+                                            <span class="value">฿ 285</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="customer-shipping">
+                                    <div class="shipping-total">
+                                        <i class="fas fa-hand-holding-usd"></i>
+                                        <span class="label">มูลค่าค่าขนส่งจากลูกค้า</span>
+                                        <span class="value success">฿ 18,500</span>
                                     </div>
                                 </div>
                             </div>
@@ -1056,81 +1173,6 @@
                                         <span class="label">Cost of goods</span>
                                         <span class="value">฿800K</span>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="warehouse-progress">
-                                <div class="progress-header">
-                                    <span>% Count (1 แสน) - ราคารับเข้า</span>
-                                    <span class="progress-value">78%</span>
-                                </div>
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar-fill" style="width: 78%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Logistic Section -->
-                    <div class="dashboard-section logistic-section">
-                        <div class="section-header">
-                            <div class="section-icon logistic">
-                                <i class="fas fa-truck"></i>
-                            </div>
-                            <h2>Logistic</h2>
-                        </div>
-                        <div class="section-content">
-                            <div class="logistic-stats">
-                                <div class="stat-row">
-                                    <div class="stat-item success">
-                                        <i class="fas fa-file-invoice"></i>
-                                        <span class="value">28</span>
-                                        <span class="label">จำนวนใบเสนอราคาที่ส่งได้</span>
-                                    </div>
-                                    <div class="stat-item info">
-                                        <i class="fas fa-box-open"></i>
-                                        <span class="value">156</span>
-                                        <span class="label">จำนวนชิ้นงานที่จัดส่งจริง</span>
-                                    </div>
-                                </div>
-                                <div class="stat-row">
-                                    <div class="stat-item warning">
-                                        <i class="fas fa-calendar-times"></i>
-                                        <span class="value">5</span>
-                                        <span class="label">จำนวนเลื่อนส่งจากส่งไม่ทัน</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="delivery-costs">
-                                <h4>ขนส่งไปษณีย์ (ลูกค้าไม่ได้จ่าย)</h4>
-                                <div class="cost-row">
-                                    <div class="cost-item">
-                                        <span class="label">จำนวน</span>
-                                        <span class="value">12 รายการ</span>
-                                    </div>
-                                    <div class="cost-item">
-                                        <span class="label">มูลค่าที่ใช้</span>
-                                        <span class="value danger">฿ 4,850</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="delivery-others">
-                                <h4>Lalamove & Flash</h4>
-                                <div class="others-row">
-                                    <div class="other-item">
-                                        <span class="label">จำนวนต่องาน</span>
-                                        <span class="value">8</span>
-                                    </div>
-                                    <div class="other-item">
-                                        <span class="label">AVG ค่าต่องาน</span>
-                                        <span class="value">฿ 285</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customer-shipping">
-                                <div class="shipping-total">
-                                    <i class="fas fa-hand-holding-usd"></i>
-                                    <span class="label">มูลค่าค่าขนส่งจากลูกค้า</span>
-                                    <span class="value success">฿ 18,500</span>
                                 </div>
                             </div>
                         </div>

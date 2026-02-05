@@ -9,8 +9,8 @@
     --danger-color: #ef4444;
     --info-color: #3b82f6;
     
-    --bg-color: #f0f5ff;
-    --sidebar-bg: linear-gradient(180deg, #1a56db 0%, #1e40af 100%);
+    --bg-color: #ffffff;
+    --sidebar-bg: linear-gradient(180deg, #2563eb 0%, #1e40af 100%);
     --card-bg: #ffffff;
     --text-primary: #1e293b;
     --text-secondary: #64748b;
@@ -874,17 +874,13 @@ a {
 
 /* ===== Logistic Section ===== */
 .logistic-stats {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .stat-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 12px;
-}
-
-.stat-row:last-child {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
     margin-bottom: 0;
 }
 
@@ -893,69 +889,105 @@ a {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 15px;
+    padding: 20px 15px;
     background: #f8fafc;
-    border-radius: 10px;
-    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .stat-item i {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.stat-item.success {
+    border-color: #6ee7b7;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
 }
 
 .stat-item.success i { color: #059669; }
+
+.stat-item.info {
+    border-color: #93c5fd;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
 .stat-item.info i { color: #2563eb; }
+
+.stat-item.warning {
+    border-color: #fcd34d;
+    background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+}
+
 .stat-item.warning i { color: #d97706; }
 
 .stat-item .value {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--text-primary);
+    margin-bottom: 6px;
 }
 
 .stat-item .label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
-    margin-top: 4px;
+    font-weight: 500;
 }
 
-.delivery-costs, .delivery-others {
-    padding: 15px;
+/* Logistic Details Grid */
+.logistic-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.delivery-costs, .delivery-others, .customer-shipping {
+    padding: 18px;
     background: #f8fafc;
-    border-radius: 10px;
-    margin-bottom: 12px;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
 }
 
 .delivery-costs h4, .delivery-others h4 {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border-color);
 }
 
 .cost-row, .others-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .cost-item, .other-item {
     display: flex;
-    flex-direction: column;
-    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
     background: #fff;
     border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
 
 .cost-item .label, .other-item .label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--text-secondary);
+    font-weight: 500;
 }
 
 .cost-item .value, .other-item .value {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: var(--text-primary);
 }
 
@@ -964,31 +996,35 @@ a {
 }
 
 .customer-shipping {
-    padding: 15px;
     background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-    border-radius: 10px;
-    border: 1px solid #6ee7b7;
+    border: 2px solid #6ee7b7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .shipping-total {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 12px;
+    text-align: center;
+    gap: 8px;
+    width: 100%;
 }
 
 .shipping-total i {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: #059669;
 }
 
 .shipping-total .label {
-    flex: 1;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.8rem;
+    color: #047857;
+    font-weight: 500;
 }
 
 .shipping-total .value {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 700;
 }
 
@@ -1288,22 +1324,22 @@ a {
 /* ===== Account Section - Clean Simple Design ===== */
 .account-layout-simple {
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 25px;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
     align-items: stretch;
 }
 
 .cash-balance-card {
     background: linear-gradient(145deg, #10b981 0%, #059669 50%, #047857 100%);
-    border-radius: 20px;
-    padding: 28px 24px;
+    border-radius: 24px;
+    padding: 35px 30px;
     color: #fff;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35);
-    min-height: 280px;
+    box-shadow: 0 15px 50px rgba(16, 185, 129, 0.4);
+    min-height: 350px;
 }
 
 .cash-balance-card::before {
@@ -1313,7 +1349,7 @@ a {
     right: -50%;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -1324,82 +1360,84 @@ a {
     left: -30%;
     width: 80%;
     height: 80%;
-    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
     pointer-events: none;
 }
 
 .cash-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 14px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 20px;
+    font-size: 1.7rem;
+    margin-bottom: 25px;
     backdrop-filter: blur(10px);
 }
 
 .cash-label {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    font-weight: 500;
+    font-size: 1.05rem;
+    opacity: 0.95;
+    font-weight: 600;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .cash-symbol {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 300;
-    margin-top: 15px;
-    opacity: 0.9;
+    margin-top: 20px;
+    opacity: 0.95;
 }
 
 .cash-amount {
-    font-size: 1.9rem;
+    font-size: 2.3rem;
     font-weight: 700;
-    margin-top: -8px;
+    margin-top: -5px;
     letter-spacing: -0.5px;
 }
 
 .cash-trend {
     margin-top: auto;
-    padding-top: 20px;
-    font-size: 0.8rem;
+    padding-top: 25px;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    gap: 8px;
-    opacity: 0.9;
+    gap: 10px;
+    opacity: 0.95;
 }
 
 .cash-trend i {
-    background: rgba(255, 255, 255, 0.25);
-    padding: 5px;
-    border-radius: 6px;
-    font-size: 0.7rem;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 6px;
+    border-radius: 8px;
+    font-size: 0.75rem;
 }
 
 .account-chart-area-full {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    border-radius: 16px;
-    padding: 20px 25px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
     border: 1px solid #e2e8f0;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .account-chart-area-full .chart-title {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 1rem;
+    color: var(--text-primary);
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .account-chart-wrapper-large {
     flex: 1;
-    min-height: 220px;
+    min-height: 280px;
 }
 
 /* Account Section Responsive */
@@ -1500,6 +1538,46 @@ a {
 .stat-badge.out {
     background: #fee2e2;
     color: #dc2626;
+}
+
+/* Badge Styles - Enhanced */
+.badge {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 0.01em;
+}
+
+.badge-primary {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e40af;
+    border: 1px solid #93c5fd;
+}
+
+.badge-success {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.badge-warning {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+    border: 1px solid #fbbf24;
+}
+
+.badge-danger {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+    border: 1px solid #f87171;
+}
+
+.badge-info {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e40af;
+    border: 1px solid #93c5fd;
 }
 
 .stat-title {
@@ -1644,10 +1722,11 @@ a {
 }
 
 .sales-total-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #ffffff;
     border-radius: var(--border-radius);
     padding: 20px;
-    color: white;
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
 }
 
 .total-header h4 {
@@ -1666,17 +1745,18 @@ a {
 }
 
 .total-chart-item {
-    background: rgba(255, 255, 255, 0.15);
+    background: #ffffff;
     border-radius: 10px;
     padding: 15px;
-    backdrop-filter: blur(10px);
+    border: 2px solid #3b82f6;
+    box-shadow: 0 2px 6px rgba(59, 130, 246, 0.1);
 }
 
 .total-chart-item h5 {
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 10px;
-    opacity: 0.95;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1e40af;
 }
 
 .total-chart-item .chart-wrapper {
@@ -1739,11 +1819,29 @@ a {
 }
 
 .person-stat-card {
-    background: white;
+    background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     padding: 15px;
     transition: all 0.3s ease;
+}
+
+.person-stat-card:nth-child(1) {
+    border-left-width: 4px;
+    border-left-color: #8b5cf6;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
+}
+
+.person-stat-card:nth-child(2) {
+    border-left-width: 4px;
+    border-left-color: #ec4899;
+    box-shadow: 0 2px 8px rgba(236, 72, 153, 0.1);
+}
+
+.person-stat-card:nth-child(3) {
+    border-left-width: 4px;
+    border-left-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
 }
 
 .person-stat-card:hover {
@@ -1799,8 +1897,9 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 8px 10px;
-    background: var(--bg-color);
+    background: #f8fafc;
     border-radius: 6px;
+    border: 1px solid #e2e8f0;
 }
 
 .stat-box .stat-label {
@@ -1946,19 +2045,25 @@ a {
     transform: translate(-50%, -50%);
     text-align: center;
     pointer-events: none;
+    max-width: 80px;
+    line-height: 1.2;
 }
 
 .budget-total-center .total-label {
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 2px;
 }
 
 .budget-total-center .total-value {
     display: block;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-primary);
+    line-height: 1.1;
+    word-break: break-word;
 }
 
 .budget-legend {

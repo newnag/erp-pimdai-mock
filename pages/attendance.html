@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกเวลาเข้า-ออก - ERP Stock PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">การขนส่ง (LOGISTIC)</span>
+                    <a href="logistic-data.html" class="nav-item">
+                        <i class="fas fa-truck"></i>
+                        <span>บันทึกข้อมูลขนส่ง</span>
+                    </a>
+                </div>                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="survey-call.html" class="nav-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Survey Call</span>
+                    </a>
+                    <a href="claim-fix.html" class="nav-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Claim & Fix</span>
+                    </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">การตลาด (MARKETING)</span>
+                    <a href="marketing.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกข้อมูลการตลาด</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">บุคลากร (HR)</span>
+                    <a href="attendance.html" class="nav-item active">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>บันทึกเวลาเข้า-ออก</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ตั้งค่า (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>หมวดหมู่ทรัพย์สิน</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>จัดการสมาชิก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>บันทึกการเข้างานพนักงาน</h1>
+                        <span class="page-subtitle">บันทึกเวลาเข้า-ออก • สถานะการเข้างาน • หมายเหตุ</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" onclick="showAddForm()">
+                        <i class="fas fa-plus"></i>
+                        บันทึกการเข้างาน
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                
+                <!-- Today Summary -->
+                <div class="attendance-summary">
+                    <div class="summary-card-attendance">
+                        <div class="summary-icon-lg success">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="summary-content">
+                            <span class="summary-label">เข้างานวันนี้</span>
+                            <span class="summary-value">9 / 12 คน</span>
+                            <span class="summary-percent">75%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card-attendance">
+                        <div class="summary-icon-lg warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <span class="summary-label">มาสาย</span>
+                            <span class="summary-value">2 คน</span>
+                            <span class="summary-note">มากกว่า 10 นาที</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card-attendance">
+                        <div class="summary-icon-lg danger">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="summary-content">
+                            <span class="summary-label">ลา/ขาด</span>
+                            <span class="summary-value">1 คน</span>
+                            <span class="summary-note">มีใบลาอนุมัติ</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card-attendance">
+                        <div class="summary-icon-lg info">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="summary-content">
+                            <span class="summary-label">ยังไม่ลงเวลา</span>
+                            <span class="summary-value">2 คน</span>
+                            <span class="summary-note">รอลงเวลาเข้างาน</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HR Attendance Form -->
+                <div class="hr-form-section">
+                    <div class="hr-form-card">
+                        <h3><i class="fas fa-clipboard-check"></i> บันทึกข้อมูลการเข้างานพนักงาน</h3>
+                        <form class="attendance-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>พนักงาน <span class="required">*</span></label>
+                                    <select class="form-control" id="employeeSelect" required>
+                                        <option value="">-- เลือกพนักงาน --</option>
+                                        <option value="EMP001">EMP001 - สมชาย ใจดี (ฝ่ายขาย)</option>
+                                        <option value="EMP002">EMP002 - สมหญิง รักงาน (ฝ่ายขาย)</option>
+                                        <option value="EMP003">EMP003 - สมศักดิ์ ขยัน (ฝ่ายขาย)</option>
+                                        <option value="EMP004">EMP004 - วิไล สุขใจ (คลังสินค้า)</option>
+                                        <option value="EMP005">EMP005 - ประสิทธิ์ มานะ (คลังสินค้า)</option>
+                                        <option value="EMP006">EMP006 - มานพ บริสุทธิ์ (บัญชี)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>เวลาเข้า <span class="required">*</span></label>
+                                    <input type="time" class="form-control" id="timeIn" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>เวลาออก</label>
+                                    <input type="time" class="form-control" id="timeOut">
+                                </div>
+                                <div class="form-group">
+                                    <label>สถานะ <span class="required">*</span></label>
+                                    <select class="form-control" id="status" required>
+                                        <option value="present">เข้างาน</option>
+                                        <option value="late">มาสาย</option>
+                                        <option value="leave">ลาป่วย</option>
+                                        <option value="personal">ลากิจ</option>
+                                        <option value="absent">ขาดงาน</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label>หมายเหตุ</label>
+                                    <input type="text" class="form-control" id="note" placeholder="ระบุรายละเอียดเพิ่มเติม (ถ้าม)">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    บันทึกข้อมูล
+                                </button>
+                                <button type="reset" class="btn-secondary">
+                                    <i class="fas fa-redo"></i>
+                                    ล้างข้อมูล
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Date Filter -->
+                <div class="page-toolbar">
+                    <div class="toolbar-left">
+                        <input type="date" class="form-control" value="2026-02-05">
+                        <select class="filter-select">
+                            <option value="all">ทุกสถานะ</option>
+                            <option value="present">เข้างาน</option>
+                            <option value="late">มาสาย</option>
+                            <option value="absent">ลา/ขาด</option>
+                        </select>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn-secondary">
+                            <i class="fas fa-download"></i>
+                            ส่งออกข้อมูล
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Attendance Records -->
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>บันทึกเวลาเข้า-ออก วันที่ 5 กุมภาพันธ์ 2569</h3>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>รหัส</th>
+                                    <th>ชื่อ-นามสกุล</th>
+                                    <th>แผนก</th>
+                                    <th>เวลาเข้า</th>
+                                    <th>เวลาออก</th>
+                                    <th>ชั่วโมงทำงาน</th>
+                                    <th>สถานะ</th>
+                                    <th>หมายเหตุ</th>
+                                    <th>จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>EMP001</td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span class="employee-name">สมชาย ใจดี</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-info">ฝ่ายขาย</span></td>
+                                    <td class="time-cell">08:45</td>
+                                    <td class="time-cell">17:30</td>
+                                    <td>8.75 ชม.</td>
+                                    <td><span class="status-badge status-present">เข้างาน</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>EMP002</td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span class="employee-name">สมหญิง รักงาน</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-info">ฝ่ายขาย</span></td>
+                                    <td class="time-cell">08:30</td>
+                                    <td class="time-cell">-</td>
+                                    <td>-</td>
+                                    <td><span class="status-badge status-present">เข้างาน</span></td>
+                                    <td>ยังไม่ออกงาน</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="row-late">
+                                    <td>EMP003</td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span class="employee-name">สมศักดิ์ ขยัน</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-info">ฝ่ายขาย</span></td>
+                                    <td class="time-cell late">09:15</td>
+                                    <td class="time-cell">-</td>
+                                    <td>-</td>
+                                    <td><span class="status-badge status-late">มาสาย</span></td>
+                                    <td>สาย 15 นาที</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>EMP004</td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span class="employee-name">วิไล สุขใจ</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-success">คลังสินค้า</span></td>
+                                    <td class="time-cell">08:00</td>
+                                    <td class="time-cell">-</td>
+                                    <td>-</td>
+                                    <td><span class="status-badge status-present">เข้างาน</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="row-late">
+                                    <td>EMP005</td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span class="employee-name">ประสิทธิ์ มานะ</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-success">คลังสินค้า</span></td>
+                                    <td class="time-cell late">09:10</td>
+                                    <td class="time-cell">-</td>
+                                    <td>-</td>
+                                    <td><span class="status-badge status-late">มาสาย</span></td>
+                                    <td>สาย 10 นาที</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="row-absent">
+                                    <td>EMP006</td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span class="employee-name">มานพ บริสุทธิ์</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge badge-warning">บัญชี</span></td>
+                                    <td class="time-cell">-</td>
+                                    <td class="time-cell">-</td>
+                                    <td>-</td>
+                                    <td><span class="status-badge status-leave">ลาป่วย</span></td>
+                                    <td>มีใบลาอนุมัติ</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Form handling
+        document.querySelector('.attendance-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('บันทึกข้อมูลเรียบร้อย');
+            this.reset();
+        });
+
+        // Edit button handler
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('เปิดฟอร์มแก้ไขข้อมูล');
+            });
+        });
+
+        // Delete button handler
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(confirm('ต้องการลบข้อมูลนี้หรือไม่?')) {
+                    alert('ลบข้อมูลเรียบร้อย');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

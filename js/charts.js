@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         label: 'ใบเสนอราคา',
                         data: [42, 45, 38, 50, 47, 45],
-                        backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                        borderColor: 'rgba(255, 255, 255, 0.8)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
                         borderWidth: 2,
                         borderRadius: 6,
                         barThickness: 25
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         label: 'ปิดการขาย',
                         data: [28, 32, 25, 35, 34, 32],
-                        backgroundColor: 'rgba(16, 185, 129, 0.9)',
+                        backgroundColor: 'rgba(16, 185, 129, 0.7)',
                         borderColor: 'rgba(16, 185, 129, 1)',
                         borderWidth: 2,
                         borderRadius: 6,
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: true,
                         position: 'top',
                         labels: {
-                            color: 'white',
+                            color: '#1e293b',
                             usePointStyle: true,
                             padding: 10,
                             font: { size: 11 }
@@ -137,12 +137,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     y: {
                         beginAtZero: true,
                         grid: { 
-                            color: 'rgba(255, 255, 255, 0.1)',
+                            color: 'rgba(226, 232, 240, 0.6)',
                             drawBorder: false
                         },
                         border: { display: false },
                         ticks: {
-                            color: 'rgba(255, 255, 255, 0.8)',
+                            color: '#64748b',
                             font: { size: 10 },
                             padding: 5
                         }
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         grid: { display: false },
                         border: { display: false },
                         ticks: {
-                            color: 'rgba(255, 255, 255, 0.8)',
+                            color: '#64748b',
                             font: { size: 10 }
                         }
                     }
@@ -171,14 +171,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     {
                         label: 'มูลค่าใบเสนอราคา (ล้านบาท)',
                         data: [2.1, 2.5, 2.0, 2.8, 2.6, 2.5],
-                        borderColor: 'rgba(255, 255, 255, 0.9)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
                         borderWidth: 3,
                         tension: 0.4,
                         fill: true,
                         pointRadius: 5,
-                        pointBackgroundColor: 'white',
-                        pointBorderColor: 'rgba(102, 126, 234, 1)',
+                        pointBackgroundColor: '#3b82f6',
+                        pointBorderColor: 'white',
                         pointBorderWidth: 2
                     },
                     {
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: true,
                         position: 'top',
                         labels: {
-                            color: 'white',
+                            color: '#1e293b',
                             usePointStyle: true,
                             padding: 10,
                             font: { size: 11 }
@@ -225,12 +225,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     y: {
                         beginAtZero: true,
                         grid: { 
-                            color: 'rgba(255, 255, 255, 0.1)',
+                            color: 'rgba(226, 232, 240, 0.6)',
                             drawBorder: false
                         },
                         border: { display: false },
                         ticks: {
-                            color: 'rgba(255, 255, 255, 0.8)',
+                            color: '#64748b',
                             font: { size: 10 },
                             padding: 5,
                             callback: function(value) {
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         grid: { display: false },
                         border: { display: false },
                         ticks: {
-                            color: 'rgba(255, 255, 255, 0.8)',
+                            color: '#64748b',
                             font: { size: 10 }
                         }
                     }
@@ -517,9 +517,9 @@ document.addEventListener('DOMContentLoaded', function() {
         new Chart(lineConversionCtx, {
             type: 'bar',
             data: {
-                labels: ['Followers', 'Conversion', 'FB Click', 'GG Click', 'Ads Click/Add'],
+                labels: ['Line Volume Followers', 'GG Ads Conversion Click', 'Line Ads Conversion Click/Add'],
                 datasets: [{
-                    data: [124, 38, 256, 189, 85],
+                    data: [2000, 38, 256, 189, 85],
                     backgroundColor: [
                         '#00c300',
                         '#00a000',

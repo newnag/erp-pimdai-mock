@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บันทึกข้อมูล Claim & Fix - ERP Stock PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="survey-call.html" class="nav-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Survey Call</span>
+                    </a>
+                    <a href="claim-fix.html" class="nav-item active">
+                        <i class="fas fa-tools"></i>
+                        <span>Claim & Fix</span>
+                    </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">การตลาด (MARKETING)</span>
+                    <a href="marketing.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกข้อมูลการตลาด</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">บุคลากร (HR)</span>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>บันทึกเวลาเข้า-ออก</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การขนส่ง (LOGISTIC)</span>
+                    <a href="logistic-data.html" class="nav-item">
+                        <i class="fas fa-truck"></i>
+                        <span>บันทึกข้อมูลขนส่ง</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ตั้งค่า (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>หมวดหมู่ทรัพย์สิน</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>จัดการสมาชิก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>บันทึกข้อมูล Claim & Fix</h1>
+                        <span class="page-subtitle">Inkjet • Digital • Accessory</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+
+                <!-- Claim & Fix Data Entry Form -->
+                <div class="marketing-form-section">
+                    <div class="marketing-form-card">
+                        <h3><i class="fas fa-tools"></i> บันทึกข้อมูล Claim & Fix ประจำวัน</h3>
+                        
+                        <!-- Date Selector -->
+                        <div class="month-selector">
+                            <label>วันที่ <span class="required">*</span></label>
+                            <input type="date" class="form-control" id="claimDate" required value="2026-02-05">
+                        </div>
+
+                        <form class="platform-form" id="claim-fix-form">
+                            <!-- Inkjet Section -->
+                            <div class="platform-header">
+                                <i class="fas fa-print"></i>
+                                <h4>Inkjet</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>จำนวนเครื่อง Inkjet ที่รับเคลม</label>
+                                    <input type="number" class="form-control" id="inkjetClaimCount" placeholder="0">
+                                </div>
+                            </div>
+
+                            <!-- Digital Section -->
+                            <div class="form-divider" style="margin: 24px 0;">
+                                <span><i class="fas fa-desktop"></i> Digital</span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>จำนวนเครื่อง Digital ที่รับเคลม</label>
+                                    <input type="number" class="form-control" id="digitalClaimCount" placeholder="0">
+                                </div>
+                            </div>
+
+                            <!-- Accessory Section -->
+                            <div class="form-divider" style="margin: 24px 0;">
+                                <span><i class="fas fa-plug"></i> Accessory</span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>จำนวน Accessory ที่รับเคลม</label>
+                                    <input type="number" class="form-control" id="accessoryClaimCount" placeholder="0">
+                                </div>
+                            </div>
+
+                            <!-- Notes -->
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label>หมายเหตุ</label>
+                                    <textarea class="form-control" id="claimNote" rows="4" placeholder="บันทึกรายละเอียดเพิ่มเติม..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    บันทึกข้อมูล
+                                </button>
+                                <button type="reset" class="btn-secondary">
+                                    <i class="fas fa-redo"></i>
+                                    ล้างข้อมูล
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Recent Records -->
+                <div class="list-section">
+                    <div class="list-card">
+                        <div class="list-header">
+                            <h3><i class="fas fa-history"></i> บันทึกล่าสุด</h3>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>วันที่</th>
+                                        <th>Inkjet</th>
+                                        <th>Digital</th>
+                                        <th>Accessory</th>
+                                        <th>รวม</th>
+                                        <th>จัดการ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>05/02/2569</td>
+                                        <td>8</td>
+                                        <td>5</td>
+                                        <td>12</td>
+                                        <td>25</td>
+                                        <td>
+                                            <button class="btn-icon btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>04/02/2569</td>
+                                        <td>6</td>
+                                        <td>4</td>
+                                        <td>9</td>
+                                        <td>19</td>
+                                        <td>
+                                            <button class="btn-icon btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>03/02/2569</td>
+                                        <td>10</td>
+                                        <td>6</td>
+                                        <td>15</td>
+                                        <td>31</td>
+                                        <td>
+                                            <button class="btn-icon btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Form submission handler
+        document.getElementById('claim-fix-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('บันทึกข้อมูล Claim & Fix เรียบร้อย');
+            // Here you would typically send data to server
+            // this.reset();
+        });
+
+        // Action button handlers
+        document.querySelectorAll('.btn-view').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('ดูรายละเอียดข้อมูล Claim & Fix');
+            });
+        });
+
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('แก้ไขข้อมูล Claim & Fix');
+            });
+        });
+
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (confirm('คุณต้องการลบข้อมูลนี้หรือไม่?')) {
+                    alert('ลบข้อมูลเรียบร้อย');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

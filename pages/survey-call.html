@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Call - ERP Stock PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <span class="nav-section-title">การขนส่ง (LOGISTIC)</span>
+                    <a href="logistic-data.html" class="nav-item">
+                        <i class="fas fa-truck"></i>
+                        <span>บันทึกข้อมูลขนส่ง</span>
+                    </a>
+                </div>                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="survey-call.html" class="nav-item active">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Survey Call</span>
+                    </a>
+                    <a href="claim-fix.html" class="nav-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Claim & Fix</span>
+                    </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">การตลาด (MARKETING)</span>
+                    <a href="marketing.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกข้อมูลการตลาด</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">บุคลากร (HR)</span>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>บันทึกเวลาเข้า-ออก</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ตั้งค่า (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>หมวดหมู่ทรัพย์สิน</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>จัดการสมาชิก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>Survey Call</h1>
+                        <span class="page-subtitle">บันทึกการติดตามลูกค้า • สถิติการโทร • ผลตอบรับ</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-primary" onclick="showAddForm()">
+                        <i class="fas fa-plus"></i>
+                        บันทึก Survey Call
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+
+                <!-- Survey Call Form -->
+                <div class="survey-form-section">
+                    <div class="survey-form-card">
+                        <h3><i class="fas fa-phone-volume"></i> บันทึกข้อมูล Survey Call</h3>
+                        <form class="survey-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>วันที่โทร <span class="required">*</span></label>
+                                    <input type="date" class="form-control" id="callDate" required value="2026-02-05">
+                                </div>
+                                <div class="form-group">
+                                    <label>เวลาที่โทร <span class="required">*</span></label>
+                                    <input type="time" class="form-control" id="callTime" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>เลขที่ใบเสนอราคา <span class="required">*</span></label>
+                                    <input type="text" class="form-control" id="quotationNo" placeholder="QT2026-001" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ลูกค้า <span class="required">*</span></label>
+                                    <select class="form-control" id="customer" required>
+                                        <option value="">-- เลือกลูกค้า --</option>
+                                        <option value="C001">บริษัท ABC จำกัด</option>
+                                        <option value="C002">ร้าน XYZ</option>
+                                        <option value="C003">บริษัท DEF จำกัด</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>ผู้ติดต่อ</label>
+                                    <input type="text" class="form-control" id="contactPerson" placeholder="ชื่อผู้ติดต่อ">
+                                </div>
+                                <div class="form-group">
+                                    <label>เบอร์โทรศัพท์ <span class="required">*</span></label>
+                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="0812345678" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>สถานะการโทร <span class="required">*</span></label>
+                                    <select class="form-control" id="callStatus" required>
+                                        <option value="">-- เลือกสถานะ --</option>
+                                        <option value="answered">รับสาย</option>
+                                        <option value="no-answer">ไม่รับสาย</option>
+                                        <option value="busy">สายไม่ว่าง</option>
+                                        <option value="wrong-number">เบอร์ผิด</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>ผลตอบรับ <span class="required">*</span></label>
+                                    <select class="form-control" id="feedback" required>
+                                        <option value="">-- เลือกผลตอบรับ --</option>
+                                        <option value="closed">ปิดบิลใหม่</option>
+                                        <option value="interested">สนใจ/รอพิจารณา</option>
+                                        <option value="not-interested">ไม่สนใจ</option>
+                                        <option value="postpone">เลื่อนการตัดสินใจ</option>
+                                        <option value="bad-feedback">ความคิดเห็นเชิงลบ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>ติดตามครั้งถัดไป</label>
+                                    <input type="date" class="form-control" id="followUpDate">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label>รายละเอียดการสนทนา</label>
+                                    <textarea class="form-control" id="callNote" rows="4" placeholder="บันทึกรายละเอียดการสนทนากับลูกค้า..."></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    บันทึกข้อมูล
+                                </button>
+                                <button type="reset" class="btn-secondary">
+                                    <i class="fas fa-redo"></i>
+                                    ล้างข้อมูล
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Filter Toolbar -->
+                <div class="page-toolbar">
+                    <div class="toolbar-left">
+                        <input type="date" class="form-control" value="2026-02-05">
+                        <select class="filter-select">
+                            <option value="">ทุกสถานะ</option>
+                            <option value="answered">รับสาย</option>
+                            <option value="no-answer">ไม่รับสาย</option>
+                            <option value="busy">สายไม่ว่าง</option>
+                        </select>
+                        <select class="filter-select">
+                            <option value="">ผลตอบรับทั้งหมด</option>
+                            <option value="closed">ปิดบิลใหม่</option>
+                            <option value="interested">สนใจ</option>
+                            <option value="not-interested">ไม่สนใจ</option>
+                            <option value="bad-feedback">ความคิดเห็นเชิงลบ</option>
+                        </select>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn-secondary">
+                            <i class="fas fa-download"></i>
+                            ส่งออกข้อมูล
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Survey Call Records -->
+                <div class="data-card">
+                    <div class="card-header">
+                        <h3>บันทึก Survey Call วันที่ 5 กุมภาพันธ์ 2569</h3>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>เวลา</th>
+                                    <th>เลขที่ใบเสนอราคา</th>
+                                    <th>ลูกค้า</th>
+                                    <th>ผู้ติดต่อ</th>
+                                    <th>เบอร์โทร</th>
+                                    <th>สถานะการโทร</th>
+                                    <th>ผลตอบรับ</th>
+                                    <th>ติดตามครั้งถัดไป</th>
+                                    <th>จัดการ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>09:30</td>
+                                    <td><strong>QT2026-101</strong></td>
+                                    <td>บริษัท ABC จำกัด</td>
+                                    <td>คุณสมชาย</td>
+                                    <td>081-234-5678</td>
+                                    <td><span class="status-badge status-success">รับสาย</span></td>
+                                    <td><span class="feedback-badge closed">ปิดบิลใหม่</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10:15</td>
+                                    <td><strong>QT2026-098</strong></td>
+                                    <td>ร้าน XYZ</td>
+                                    <td>คุณวิไล</td>
+                                    <td>082-345-6789</td>
+                                    <td><span class="status-badge status-success">รับสาย</span></td>
+                                    <td><span class="feedback-badge interested">สนใจ</span></td>
+                                    <td>10/02/2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>11:45</td>
+                                    <td><strong>QT2026-095</strong></td>
+                                    <td>บริษัท DEF จำกัด</td>
+                                    <td>คุณประสิทธิ์</td>
+                                    <td>083-456-7890</td>
+                                    <td><span class="status-badge status-warning">ไม่รับสาย</span></td>
+                                    <td><span class="feedback-badge pending">รอโทรกลับ</span></td>
+                                    <td>06/02/2026</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>14:20</td>
+                                    <td><strong>QT2026-089</strong></td>
+                                    <td>ห้างหุ้นส่วน GHI</td>
+                                    <td>คุณมานพ</td>
+                                    <td>084-567-8901</td>
+                                    <td><span class="status-badge status-success">รับสาย</span></td>
+                                    <td><span class="feedback-badge bad">ความคิดเห็นเชิงลบ</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>15:30</td>
+                                    <td><strong>QT2026-105</strong></td>
+                                    <td>บริษัท JKL จำกัด</td>
+                                    <td>คุณสมศักดิ์</td>
+                                    <td>085-678-9012</td>
+                                    <td><span class="status-badge status-success">รับสาย</span></td>
+                                    <td><span class="feedback-badge closed">ปิดบิลใหม่</span></td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-action btn-view" title="ดูรายละเอียด">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-action btn-edit" title="แก้ไข">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-action btn-delete" title="ลบ">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Form handling
+        document.querySelector('.survey-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('บันทึกข้อมูลเรียบร้อย');
+            this.reset();
+        });
+
+        // Edit button handler
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('เปิดฟอร์มแก้ไขข้อมูล');
+            });
+        });
+
+        // Delete button handler
+        document.querySelectorAll('.btn-delete').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(confirm('ต้องการลบข้อมูลนี้หรือไม่?')) {
+                    alert('ลบข้อมูลเรียบร้อย');
+                }
+            });
+        });
+
+        // View button handler
+        document.querySelectorAll('.btn-view').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('แสดงรายละเอียดการโทร');
+            });
+        });
+
+        // Set current time on load
+        document.getElementById('callTime').value = new Date().toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
+    </script>
+</body>
+</html>
