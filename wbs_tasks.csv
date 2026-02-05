@@ -1,0 +1,20 @@
+ID,WBS,Task,Description,Assignee,Est_PersonDays,TechStack,Dependencies
+1,1.0,Project Management,แผนโครงการ; สโคป; ไทม์ไลน์; ประชุมสรุป,Both,4,Next.js/MySQL/Bootstrap,
+2,2.0,Requirements Analysis,เก็บข้อกำหนดและวิเคราะห์ฟีเจอร์หลัก,Both,5,Next.js/MySQL/Bootstrap,
+3,3.0,UX/UI Design,ออกแบบหน้าจอหลัก; mockups; component library (Bootstrap),Dev2,6,Bootstrap,2
+4,4.0,Next.js Project Setup,Scaffold project; ESLint/Prettier; Add Bootstrap,Dev2,3,Next.js/Bootstrap,3
+5,6.0,Database Design,ออกแบบ ERD และ migration scripts (MySQL),Dev1,6,MySQL,2
+6,5.0,Auth & User Management,API สำหรับ auth และ RBAC,Dev1,6,Next.js/MySQL,5
+7,4.1,Customers Module,CRUD APIs + pages/forms (list/create/edit),Dev2,6,Next.js/MySQL,5;6
+8,4.2,Products & Inventory,APIs for products and stock; frontend pages,Dev1,7,Next.js/MySQL,5
+9,4.3,Invoicing & Billing,Invoice backend; frontend UI; PDF export,Dev2,7,Next.js/MySQL,7;8
+10,4.4,Quotations Module,Quotation CRUD and convert-to-invoice,Dev2,5,Next.js/MySQL,7
+11,4.5,Suppliers & Purchases,Supplier CRUD and purchase flows,Dev1,4,Next.js/MySQL,5
+12,7.0,API Contracts & Integration,Define contracts and API docs,Dev1,2,Next.js/MySQL,4
+13,8.0,Data Import & Migration,Import scripts (CSV) and data validation,Dev1,3,MySQL,5
+14,9.0,Unit & Integration Tests,Unit tests for backend and integration tests,Dev1,4,Node/Testing,6;7;8
+15,9.1,E2E Testing & QA,Cypress E2E and QA bugfixes,Dev2,3,Cypress/Next.js,14
+16,10.0,Performance & Security Audit,Query tuning; frontend load; security review,Both,3,MySQL/Next.js,14;15
+17,11.0,CI/CD & Deployment,GitHub Actions build/test/deploy; staging/prod,Dev2,3,GitHub Actions,14;16
+18,12.0,Documentation & Training,User docs; API docs; training materials,Dev2,2,Markdown,17
+19,13.0,UAT Support & Buffer,UAT support and bugfix buffer,Both,1,Next.js/MySQL,18
