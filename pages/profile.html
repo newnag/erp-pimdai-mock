@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ของฉัน - ERP Stock PIMDAI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>ERP</span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ERP Stock</span>
+                    <span class="logo-subtitle">Stock • Sales • Purchase</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <span class="nav-section-title">DASHBOARD</span>
+                    <a href="../index.html" class="nav-item">
+                        <i class="fas fa-th-large"></i>
+                        <span>ภาพรวม</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">งาน (SALES)</span>
+                    <a href="quotation-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>ใบเสนอราคา</span>
+                    </a>
+                    <a href="billing-list.html" class="nav-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>ใบส่งสินค้า/ใบวางบิล</span>
+                    </a>
+                    <a href="invoice-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ใบกำกับภาษี/ใบเสร็จรับเงิน</span>
+                    </a>
+                    <a href="customers.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>ลูกค้า</span>
+                    </a>
+                    <a href="survey-call.html" class="nav-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Survey Call</span>
+                    </a>
+                    <a href="claim-fix.html" class="nav-item">
+                        <i class="fas fa-tools"></i>
+                        <span>Claim & Fix</span>
+                    </a>
+                    <a href="extra-duty-list.html" class="nav-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Extra Duty</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">การตลาด (MARKETING)</span>
+                    <a href="marketing.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกข้อมูลการตลาด</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">บุคลากร (HR)</span>
+                    <a href="attendance.html" class="nav-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>บันทึกเวลาเข้า-ออก</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">ซื้อ (PURCHASES)</span>
+                    <a href="pending-orders.html" class="nav-item">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>รอสินค้าเข้า</span>
+                    </a>
+                    <a href="suppliers.html" class="nav-item">
+                        <i class="fas fa-building"></i>
+                        <span>ซัพพลายเออร์</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">สินค้า (INVENTORY)</span>
+                    <a href="products.html" class="nav-item">
+                        <i class="fas fa-boxes"></i>
+                        <span>สินค้า</span>
+                    </a>
+                    <a href="stock-in-list.html" class="nav-item">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>รับวัตถุดิบเข้า</span>
+                    </a>
+                    <a href="stock-out-list.html" class="nav-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>เบิกวัตถุดิบออก</span>
+                    </a>
+                    <a href="stock-adjustment-list.html" class="nav-item">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>ปรับปรุงสต็อก</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การขนส่ง (LOGISTIC)</span>
+                    <a href="logistic-data.html" class="nav-item">
+                        <i class="fas fa-truck"></i>
+                        <span>บันทึกข้อมูลขนส่ง</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">การเงิน (FINANCE)</span>
+                    <a href="expense-list.html" class="nav-item">
+                        <i class="fas fa-receipt"></i>
+                        <span>ค่าใช้จ่าย</span>
+                    </a>
+                    <a href="payment-list.html" class="nav-item">
+                        <i class="fas fa-money-check-alt"></i>
+                        <span>เตรียมจ่าย</span>
+                    </a>
+                    <a href="withholding-tax-list.html" class="nav-item">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>หัก ณ ที่จ่าย</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ทรัพย์สิน (ASSETS)</span>
+                    <a href="asset-list.html" class="nav-item">
+                        <i class="fas fa-laptop"></i>
+                        <span>จัดการสินทรัพย์</span>
+                    </a>
+                    <a href="depreciation-list.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>บันทึกค่าเสื่อมราคา</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">ตั้งค่า (SETTINGS)</span>
+                    <a href="inventory.html" class="nav-item">
+                        <i class="fas fa-warehouse"></i>
+                        <span>คลังสินค้า</span>
+                    </a>
+                    <a href="asset-category-list.html" class="nav-item">
+                        <i class="fas fa-tags"></i>
+                        <span>หมวดหมู่ทรัพย์สิน</span>
+                    </a>
+                    <a href="user-list.html" class="nav-item">
+                        <i class="fas fa-user-cog"></i>
+                        <span>จัดการสมาชิก</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <span class="user-label">เข้าสู่ระบบเป็น</span>
+                    <span class="user-name">Pzo</span>
+                    <span class="user-email">pongkit@misuexemm.com • admin</span>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    ออกจากระบบ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>โปรไฟล์ของฉัน</h1>
+                        <span class="page-subtitle">ข้อมูลส่วนตัว • การตั้งค่าบัญชี</span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <a href="../index.html" class="btn-secondary" style="text-decoration: none;">
+                        <i class="fas fa-arrow-left"></i> กลับหน้าหลัก
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+
+                <!-- Profile Section -->
+                <div class="marketing-form-section">
+                    <!-- Profile Information Card -->
+                    <div class="marketing-form-card">
+                        <h3><i class="fas fa-user-circle"></i> ข้อมูลส่วนตัว</h3>
+                        
+                        <!-- Profile Picture -->
+                        <div class="profile-picture-section">
+                            <div class="profile-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-upload">
+                                <p class="profile-name">Pzo</p>
+                                <p class="profile-role">Administrator</p>
+                                <button type="button" class="btn-secondary btn-sm">
+                                    <i class="fas fa-camera"></i> เปลี่ยนรูปโปรไฟล์
+                                </button>
+                            </div>
+                        </div>
+
+                        <form class="platform-form" id="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ชื่อผู้ใช้ <span class="required">*</span></label>
+                                    <input type="text" class="form-control" id="username" value="Pzo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>ชื่อ-นามสกุล <span class="required">*</span></label>
+                                    <input type="text" class="form-control" id="fullname" value="พงศ์กิตติ์" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>อีเมล <span class="required">*</span></label>
+                                    <input type="email" class="form-control" id="email" value="pongkit@misuexemm.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>เบอร์โทรศัพท์</label>
+                                    <input type="tel" class="form-control" id="phone" value="08-1234-5678">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>แผนก</label>
+                                    <select class="form-control" id="department">
+                                        <option value="admin">ผู้ดูแลระบบ</option>
+                                        <option value="sales">ฝ่ายขาย</option>
+                                        <option value="marketing">ฝ่ายการตลาด</option>
+                                        <option value="hr">ฝ่ายบุคคล</option>
+                                        <option value="finance">ฝ่ายการเงิน</option>
+                                        <option value="warehouse">คลังสินค้า</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>ตำแหน่ง</label>
+                                    <input type="text" class="form-control" id="position" value="Administrator">
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i> บันทึกข้อมูล
+                                </button>
+                                <button type="reset" class="btn-secondary">
+                                    <i class="fas fa-undo"></i> ยกเลิก
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Change Password Card -->
+                    <div class="marketing-form-card" style="margin-top: 24px;">
+                        <h3><i class="fas fa-key"></i> เปลี่ยนรหัสผ่าน</h3>
+                        
+                        <form class="platform-form" id="password-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>รหัสผ่านปัจจุบัน <span class="required">*</span></label>
+                                    <div style="position: relative;">
+                                        <input type="password" class="form-control" id="current-password" placeholder="กรอกรหัสผ่านปัจจุบัน" required>
+                                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('current-password', this)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>รหัสผ่านใหม่ <span class="required">*</span></label>
+                                    <div style="position: relative;">
+                                        <input type="password" class="form-control" id="new-password" placeholder="กรอกรหัสผ่านใหม่" required minlength="6">
+                                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('new-password', this)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <small class="form-help">รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>ยืนยันรหัสผ่านใหม่ <span class="required">*</span></label>
+                                    <div style="position: relative;">
+                                        <input type="password" class="form-control" id="confirm-password" placeholder="กรอกรหัสผ่านใหม่อีกครั้ง" required>
+                                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirm-password', this)">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="password-requirements">
+                                <p><i class="fas fa-info-circle"></i> ข้อกำหนดรหัสผ่าน:</p>
+                                <ul>
+                                    <li>มีความยาวอย่างน้อย 6 ตัวอักษร</li>
+                                    <li>แนะนำให้ใช้ตัวอักษรพิมพ์ใหญ่และพิมพ์เล็กผสมกัน</li>
+                                    <li>ควรมีตัวเลขและอักขระพิเศษ</li>
+                                </ul>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-key"></i> เปลี่ยนรหัสผ่าน
+                                </button>
+                                <button type="reset" class="btn-secondary">
+                                    <i class="fas fa-undo"></i> ยกเลิก
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Profile form submission
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('บันทึกข้อมูลโปรไฟล์เรียบร้อย');
+        });
+
+        // Password form submission
+        document.getElementById('password-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (newPassword !== confirmPassword) {
+                alert('รหัสผ่านใหม่และการยืนยันรหัสผ่านไม่ตรงกัน');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                alert('รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร');
+                return;
+            }
+            
+            alert('เปลี่ยนรหัสผ่านเรียบร้อย');
+            this.reset();
+        });
+
+        // Toggle password visibility
+        function togglePasswordVisibility(inputId, button) {
+            const input = document.getElementById(inputId);
+            const icon = button.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+    <style>
+        .profile-picture-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            margin-bottom: 32px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 64px;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .profile-upload {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .profile-role {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: #3b82f6;
+        }
+
+        .form-help {
+            display: block;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .password-requirements {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .password-requirements p {
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .password-requirements i {
+            color: #3b82f6;
+        }
+
+        .password-requirements ul {
+            margin: 0;
+            padding-left: 24px;
+        }
+
+        .password-requirements li {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+    </style>
+</body>
+</html>
