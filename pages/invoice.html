@@ -242,10 +242,6 @@
                             <div class="document-section">
                                 <!-- Action Buttons -->
                                 <div class="doc-actions">
-                                    <button class="action-btn" title="เปิดหน้าเว็บ">
-                                        <i class="fas fa-hand-holding-usd"></i>
-                                        <span>เปิดหน้าเว็บ</span>
-                                    </button>
                                     <button class="action-btn" title="แชร์">
                                         <i class="fas fa-share-alt"></i>
                                         <span>แชร์</span>
@@ -270,14 +266,6 @@
                                     <span class="total-amount" id="grandTotal">0.00</span>
                                 </div>
                                 
-                                <!-- Business Location -->
-                                <div class="doc-details">
-                                    <div class="detail-row">
-                                        <label>ที่ตั้งธุรกิจ:</label>
-                                        <span class="business-location">ไทย</span>
-                                    </div>
-                                </div>
-                                
                                 <!-- Document Details -->
                                 <div class="doc-details" style="margin-top: 15px;">
                                     <div class="detail-row">
@@ -293,28 +281,12 @@
                                             <option value="3">สมหญิง รักงาน</option>
                                         </select>
                                     </div>
-                                    <div class="detail-row">
-                                        <label>สกุลเงิน: <i class="fas fa-info-circle text-muted"></i></label>
-                                        <select id="currency" class="form-select currency-select">
-                                            <option value="THB">🇹🇭 THB - ไทย</option>
-                                            <option value="USD">🇺🇸 USD - ดอลลาร์</option>
-                                            <option value="EUR">🇪🇺 EUR - ยูโร</option>
-                                        </select>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Product Options Row -->
                         <div class="product-options-row">
-                            <div class="option-group">
-                                <label>โปรเจ็ค:</label>
-                                <select id="project" class="form-select">
-                                    <option value="">เลือกโปรเจ็ค</option>
-                                    <option value="1">โปรเจ็ค A</option>
-                                    <option value="2">โปรเจ็ค B</option>
-                                </select>
-                            </div>
                             <div class="option-group">
                                 <label>เลขที่อ้างอิง:</label>
                                 <input type="text" id="refNumber" class="form-input" placeholder="เลขที่อ้างอิง">
@@ -519,15 +491,6 @@
                                 <div class="summary-row total-row">
                                     <span class="summary-label">จำนวนเงินรวมทั้งสิ้น</span>
                                     <span class="summary-value" id="finalTotal">0.00</span>
-                                </div>
-                                
-                                <!-- Additional Options -->
-                                <div class="summary-row adjustment-row">
-                                    <label class="custom-checkbox">
-                                        <input type="checkbox" id="adjustments">
-                                        <span class="checkmark"></span>
-                                        เพิ่มรายการปรับลด/ปรับเพิ่ม <i class="fas fa-info-circle text-muted"></i>
-                                    </label>
                                 </div>
                                 
                                 <div class="summary-row withholding-row">

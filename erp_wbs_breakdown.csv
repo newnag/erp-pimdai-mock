@@ -1,0 +1,27 @@
+WBS Code,Parent Code,Task Name,Description,Level,Estimated Days
+1,,Project Management & Setup,Overall project coordination and initial environment,1,5
+1.1,1,Foundations,Infrastructure and design standards,2,3
+1.1.1,1.1,Project Layout & Navigation,Implement Sidebar Navbar and Footer across all pages,3,2
+1.1.2,1.1,UI/UX Base Theme,Bootstrap integration and custom CSS variables,3,1
+2,,Core Modules Development,Main ERP functionalities,1,30
+2.1,2,CRM (Customers & Suppliers),Management of external partners,2,8
+2.1.1,2.1,Customer Management,CRUD for customers (customer-create.html customers.html),3,4
+2.1.2,2.1,Supplier Management,CRUD for suppliers (supplier-create.html suppliers.html),3,4
+2.2,2,Inventory Control,Stock and product management,2,10
+2.2.1,2.2,Product Registry,Manage product details and categories (products.html),3,3
+2.2.2,2.2,Warehouse & Storage,Set up warehouses and locations (warehouse-create.html),3,2
+2.2.3,2.2,Stock Movements,Stock-in Stock-out and Adjustments (stock-in-list.html stock-out-list.html),3,5
+2.3,2,Sales Workflow,Quotations to Invoices,2,12
+2.3.1,2.3,Quotation System,Generating and tracking quotes (quotation.html),3,4
+2.3.2,2.3,Sales & Orders,Processing orders and pending lists (sales.html pending-orders.html),3,4
+2.3.3,2.3,Billing & Invoicing,Invoice generation and payment tracking (invoice.html billing.html),3,4
+3,,Financial & Operational Support,Secondary but essential modules,1,15
+3.1,3,Asset Management,Tracking physical assets and depreciation,2,8
+3.1.1,3.1,Asset Registry,Listing and categorizing assets (asset-list.html),3,4
+3.1.2,3.1,Depreciation Logic,Calculating value over time (depreciation-list.html),3,4
+3.2,3,HR & Internal Admin,Employee-related tasks,2,7
+3.2.1,3.2,Attendance System,Daily tracking and reports (attendance.html),3,3
+3.2.2,3.2,Expense Claims,"Tracking employee expenses, claims, and tax (expense-list.html)",3,4
+4,,Quality Assurance & Delivery,Closing the project,1,7
+4.1,4,Testing,Manual and automated testing,2,4
+4.2,4,Deployment,Go-live and documentation,2,3

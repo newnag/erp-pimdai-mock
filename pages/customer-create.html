@@ -205,24 +205,6 @@
                                 <input type="number" class="form-input" placeholder="จำนวนวัน" min="0">
                             </div>
 
-                            <!-- Business Location -->
-                            <div class="form-group">
-                                <label class="form-label">
-                                    ที่ตั้งธุรกิจ:
-                                    <i class="fas fa-info-circle text-muted" title="เลือกประเทศที่ตั้งธุรกิจ"></i>
-                                </label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="location" value="thai" checked>
-                                        <span>ไทย</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="location" value="foreign">
-                                        <span>ต่างประเทศ</span>
-                                    </label>
-                                </div>
-                            </div>
-
                             <!-- Contact Code -->
                             <div class="form-group">
                                 <label class="form-label">รหัสผู้ติดต่อ:</label>
@@ -281,12 +263,6 @@
                             <div class="form-group">
                                 <label class="form-label">เบอร์สำนักงาน:</label>
                                 <input type="text" class="form-input" placeholder="เบอร์สำนักงาน">
-                            </div>
-
-                            <!-- Fax -->
-                            <div class="form-group">
-                                <label class="form-label">เบอร์โทรสาร:</label>
-                                <input type="text" class="form-input" placeholder="เบอร์โทรสาร">
                             </div>
 
                             <!-- Website -->
@@ -351,59 +327,10 @@
 
                             <!-- Branch Code & Name -->
                             <div class="form-group">
-                                <label class="form-label">รหัสสาขา/ชื่อสาขา:</label>
+                                <label class="form-label">ชื่อสาขา:</label>
                                 <div class="form-row-inline">
-                                    <input type="text" class="form-input" placeholder="รหัสสาขา">
                                     <input type="text" class="form-input" placeholder="ชื่อสาขา">
                                 </div>
-                            </div>
-
-                            <!-- Account Type -->
-                            <div class="form-group">
-                                <label class="form-label">ประเภทบัญชี:</label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="accountType" value="savings" checked>
-                                        <span>ออมทรัพย์</span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="accountType" value="current">
-                                        <span>กระแสรายวัน</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- QR Code Upload -->
-                            <div class="form-group">
-                                <label class="form-label">คิวอาร์จ่ายเงิน:</label>
-                                <div class="qr-upload-area" id="qrUploadArea">
-                                    <div class="upload-icon">
-                                        <i class="fas fa-image"></i>
-                                    </div>
-                                    <p class="upload-text">คลิกเพื่อเลือกไฟล์หลายรูป</p>
-                                    <p class="upload-subtext">QR code ที่นี่</p>
-                                    <input type="file" id="qrFileInput" accept="image/*" hidden>
-                                </div>
-                            </div>
-
-                            <!-- Foreign Bank Info -->
-                            <div class="form-group">
-                                <label class="checkbox-label checkbox-label-single">
-                                    <input type="checkbox" id="foreignBankInfo">
-                                    <span class="text-blue">ข้อมูลเพิ่มเติมสำหรับธนาคารต่างประเทศ</span>
-                                </label>
-                            </div>
-
-                            <!-- Swift Code (Hidden by default) -->
-                            <div class="form-group" id="swiftCodeGroup" style="display: none;">
-                                <label class="form-label">Swift Code:</label>
-                                <input type="text" class="form-input" placeholder="Swift Code">
-                            </div>
-
-                            <!-- Bank Address (Hidden by default) -->
-                            <div class="form-group" id="bankAddressGroup" style="display: none;">
-                                <label class="form-label">ที่อยู่ธนาคาร:</label>
-                                <textarea class="form-textarea" rows="3" placeholder="ที่อยู่ธนาคาร"></textarea>
                             </div>
 
                             <!-- Additional Information Section -->
